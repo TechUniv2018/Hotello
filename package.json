@@ -1,0 +1,30 @@
+{
+  "name": "hotello",
+  "version": "1.0.0",
+  "description": "## Problem Statement",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --coverage --notify"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TechUniv2018/Hotello.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TechUniv2018/Hotello/issues"
+  },
+  "homepage": "https://github.com/TechUniv2018/Hotello#readme",
+  "devDependencies": {
+    "eslint": "^4.17.0",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.6.1",
+    "jest": "^22.2.2"
+  },
+  "dependencies": {
+    "hapi": "^16.6.2"
+  }
+}
