@@ -58,4 +58,32 @@ describe('Testing for validation of user input', () => {
       done();
     });
   });
+  it('Should return 400 Bad Request for invalid input (invalid characters in username)', (done) => {
+    const options = {
+      method: 'POST',
+      url: '/publicLogin',
+      payload: {
+        username: 'abcdef$',
+        password: '123a',
+      },
+    };
+    Server.inject(options, (response) => {
+      expect(response.statusCode).toBe(400);
+      done();
+    });
+  });
+  it('Should return 400 Bad Request for invalid input (invalid characters in password)', (done) => {
+    const options = {
+      method: 'POST',
+      url: '/publicLogin',
+      payload: {
+        username: 'abcdef',
+        password: '123ab34$',
+      },
+    };
+    Server.inject(options, (response) => {
+      expect(response.statusCode).toBe(400);
+      done();
+    });
+  });
 });
