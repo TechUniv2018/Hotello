@@ -1,11 +1,18 @@
 const Joi = require('joi');
+const Models = require('../../models');
 
 module.exports = [
   {
     method: 'POST',
     path: '/login',
     handler: (request, reply) => {
-      reply('login successful');
+      Models.users.find({ where: { username: request.payload.username } }).then((user) => {
+        if (user.dataValues.password === request.payload.password) {
+          reply('Valid credentials');
+        } else {
+          reply('Invalid credentials');
+        }
+      });
     },
     config: {
       validate: {
