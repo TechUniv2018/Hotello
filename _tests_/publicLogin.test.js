@@ -105,5 +105,19 @@ describe('Testing for user validation with database', () => {
       done();
     });
   });
+  it('Should return "Invalid credentials" for invalid password (username exists in database but password does not match)', (done) => {
+    const options = {
+      method: 'POST',
+      url: '/publicLogin',
+      payload: {
+        username: 'abcdef',
+        password: '123pqrstuv',
+      },
+    };
+    Server.inject(options, (response) => {
+      expect(response.payload).toMatch('Invalid credentials');
+      done();
+    });
+  });
 });
 
