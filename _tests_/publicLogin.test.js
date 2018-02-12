@@ -1,35 +1,8 @@
 const Server = require('../src/server');
+const Models = require('../models');
 
 
 describe('Testing for validation of user input', () => {
-  it('Should return "Login OK" for valid string input', (done) => {
-    const options = {
-      method: 'POST',
-      url: '/publicLogin',
-      payload: {
-        username: 'abcdef',
-        password: 'abcdefghi',
-      },
-    };
-    Server.inject(options, (response) => {
-      expect(response.payload).toMatch('Login OK');
-      done();
-    });
-  });
-  it('Should return "Login OK" for valid alphanumeric input', (done) => {
-    const options = {
-      method: 'POST',
-      url: '/publicLogin',
-      payload: {
-        username: 'abcdef123',
-        password: '123abc456',
-      },
-    };
-    Server.inject(options, (response) => {
-      expect(response.payload).toMatch('Login OK');
-      done();
-    });
-  });
   it('Should return 400 Bad Request for invalid input (length of username)', (done) => {
     const options = {
       method: 'POST',
@@ -87,3 +60,36 @@ describe('Testing for validation of user input', () => {
     });
   });
 });
+
+
+describe('Testing for user validation with database', () => {
+  beforeAll(() => Models.users.create({
+    username: 'abcdef',
+    firstname: 'ABC',
+    lastname: 'DEF',
+    password: '123abcdef',
+    mobile: 9876543210,
+    email_id: 'abcdef@sample.com',
+    address: 'Sample address text',
+    role: 'Admin',
+    dob: '1997-08-09',
+  }));
+
+  afterAll(() => Models.users.destroy({ truncate: true }));
+
+  it('Should return "Valid credentials" for valid user (user exists in database)', (done) => {
+    const options = {
+      method: 'POST',
+      url: '/publicLogin',
+      payload: {
+        username: 'abcdef',
+        password: '123abcdef',
+      },
+    };
+    Server.inject(options, (response) => {
+      expect(response.payload).toMatch('Valid credentials');
+      done();
+    });
+  });
+});
+
