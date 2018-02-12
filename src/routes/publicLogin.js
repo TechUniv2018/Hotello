@@ -7,7 +7,6 @@ module.exports = [
     path: '/publicLogin',
     handler: (request, reply) => {
       Models.users.findOne({ where: { username: request.payload.username } }).then((user) => {
-        console.log(user);
         if (user !== null) {
           if (user.dataValues.password === request.payload.password) {
             reply('Valid credentials');
