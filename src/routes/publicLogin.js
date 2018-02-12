@@ -8,10 +8,14 @@ module.exports = [
     handler: (request, reply) => {
       Models.users.findOne({ where: { username: request.payload.username } }).then((user) => {
         console.log(user);
-        if (user.dataValues.password === request.payload.password) {
-          reply('Valid credentials');
+        if (user !== null) {
+          if (user.dataValues.password === request.payload.password) {
+            reply('Valid credentials');
+          } else {
+            reply('Invalid credentials');
+          }
         } else {
-          reply('Invalid credentials');
+          reply('User does not exist');
         }
       });
     },

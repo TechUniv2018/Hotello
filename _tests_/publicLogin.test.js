@@ -91,5 +91,19 @@ describe('Testing for user validation with database', () => {
       done();
     });
   });
+  it('Should return "User does not exist" for invalid user (user does not exist in database)', (done) => {
+    const options = {
+      method: 'POST',
+      url: '/publicLogin',
+      payload: {
+        username: 'pqrstuv',
+        password: '123pqrstuv',
+      },
+    };
+    Server.inject(options, (response) => {
+      expect(response.payload).toMatch('User does not exist');
+      done();
+    });
+  });
 });
 
