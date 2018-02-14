@@ -1,7 +1,6 @@
-const Joi = require('joi');
+const joiValidation = require('../schemes/adminLoginValidation');
 const handlerFunction = require('../controllers/adminLogin.js');
 
-const passRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,}$/;
 module.exports = [
   {
     method: 'POST',
@@ -10,10 +9,7 @@ module.exports = [
     config: {
       auth: false,
       validate: {
-        payload: Joi.object({
-          username: Joi.string().email().required(),
-          password: Joi.string().required().regex(passRegex),
-        }),
+        payload: joiValidation,
       },
     },
   },
