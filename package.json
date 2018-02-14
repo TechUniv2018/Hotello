@@ -4,7 +4,8 @@
   "description": "## Problem Statement",
   "main": "index.js",
   "scripts": {
-    "test": "jest --coverage --notify"
+    "test": "jest --coverage --notify",
+    "start": "nodemon src/server.js"
   },
   "repository": {
     "type": "git",

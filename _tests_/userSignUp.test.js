@@ -9,9 +9,8 @@ describe('Test server for POST /usersignup: ', () => {
         email: 'ajay@gmail.com',
         firstName: 'Ajay',
         lastName: 'Singh',
-        username: 'ajay9876',
-        password: 'p@$$w0rd',
-        confirmPassword: 'p@$$w0rd',
+        password: 'P@$$w0rd',
+        role: 'user',
       },
     };
     Server.inject(options, (response) => {
@@ -28,9 +27,8 @@ describe('Test server for POST /usersignup: ', () => {
         email: 'ajay@gmail.com',
         firstName: 'Ajay',
         lastName: 'Singh',
-        username: 'ajay9876',
-        password: 'p@$$w0rd',
-        confirmPassword: 'p@$$w0rd',
+        password: 'P@$$w0rd',
+        role: 'user',
       },
     };
     Server.inject(options, (response) => {
@@ -47,28 +45,8 @@ describe('Test server for POST /usersignup: ', () => {
         email: 'ajay@gmail.com',
         firstName: null,
         lastName: 'Singh',
-        username: 'ajay9876',
-        password: 'p@$$w0rd',
-        confirmPassword: 'p@$$w0rd',
-      },
-    };
-    Server.inject(options, (response) => {
-      expect(response.statusCode).toBe(400);
-      done();
-    });
-  });
-
-  test('Should return statusCode: 400 for unmatched confirm password: ', (done) => {
-    const options = {
-      url: 'localhost:8000/usersignup',
-      method: 'POST',
-      payload: {
-        email: 'ajay@gmail.com',
-        firstName: 'Ajay',
-        lastName: 'Singh',
-        username: 'ajay9876',
-        password: 'p@$$w0rd',
-        confirmPassword: 'p@$$w0',
+        password: 'P@$$w0rd',
+        role: 'user',
       },
     };
     Server.inject(options, (response) => {

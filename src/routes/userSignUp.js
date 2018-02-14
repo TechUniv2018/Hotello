@@ -1,8 +1,6 @@
-const Joi = require('joi');
+const signUpValidation = require('../schemes/signUpValidation');
+const handler = require('../controllers/userSignUpHandler');
 
-const handler = (request, reply) => {
-  reply('User Signed Up!').code(201);
-};
 
 module.exports = {
   path: '/usersignup',
@@ -10,15 +8,7 @@ module.exports = {
   handler,
   config: {
     validate: {
-      payload: Joi.object({
-        email: Joi.string().email().required(),
-        firstName: Joi.string().required(),
-        lastName: Joi.string().required(),
-        username: Joi.string().alphanum().min(4).max(30)
-          .required(),
-        password: Joi.string().required().min(8),
-        confirmPassword: Joi.any().valid(Joi.ref('password')).required(),
-      }),
+      payload: signUpValidation,
     },
   },
 };
