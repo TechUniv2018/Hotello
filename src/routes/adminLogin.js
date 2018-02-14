@@ -1,17 +1,18 @@
 const Joi = require('joi');
 const handlerFunction = require('../controllers/adminLogin.js');
 
+const passRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,}$/;
 module.exports = [
   {
     method: 'POST',
-    path: '/login',
+    path: '/adminLogin',
     handler: handlerFunction.validateAndSign,
     config: {
       auth: false,
       validate: {
         payload: Joi.object({
-          username: Joi.string().required().min(6),
-          password: Joi.string().required().min(8),
+          username: Joi.string().email().required(),
+          password: Joi.string().required().regex(passRegex),
         }),
       },
     },
@@ -28,3 +29,4 @@ module.exports = [
     },
   },
 ];
+

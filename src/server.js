@@ -6,7 +6,7 @@ const Models = require('../models');
 const server = new Hapi.Server();
 server.connection({
   host: 'localhost',
-  port: Number(5500),
+  port: 8081,
 });
 
 const validate = (decoded, request, callback) => {
