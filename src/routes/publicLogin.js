@@ -1,23 +1,11 @@
 const Joi = require('joi');
-const Models = require('../../models');
+const publicLoginHandler = require('../controllers/publicLoginHandler');
 
 module.exports = [
   {
     method: 'POST',
     path: '/publicLogin',
-    handler: (request, reply) => {
-      Models.users.findOne({ where: { username: request.payload.username } }).then((user) => {
-        if (user !== null) {
-          if (user.dataValues.password === request.payload.password) {
-            reply('Valid credentials');
-          } else {
-            reply('Invalid credentials');
-          }
-        } else {
-          reply('User does not exist');
-        }
-      });
-    },
+    handler: publicLoginHandler,
     config: {
       validate: {
         payload: Joi.object({
@@ -27,6 +15,7 @@ module.exports = [
             .max(30),
         }),
       },
+      auth: false,
     },
   },
 ];

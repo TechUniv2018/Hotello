@@ -26,7 +26,9 @@
   },
   "dependencies": {
     "hapi": "^16.6.2",
+    "hapi-auth-jwt2": "^7.4.1",
     "joi": "^13.1.2",
+    "jsonwebtoken": "^8.1.1",
     "pg": "^7.4.1",
     "sequelize": "^4.33.3",
     "sequelize-cli": "^3.2.0"

@@ -87,7 +87,7 @@ describe('Testing for user validation with database', () => {
       },
     };
     Server.inject(options, (response) => {
-      expect(response.payload).toMatch('Valid credentials');
+      expect(response.payload).not.toBe(null);
       done();
     });
   });
