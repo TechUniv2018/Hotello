@@ -1,26 +1,30 @@
 const Joi = require('joi');
-const Models = require('../../models');
+const handlerFunction = require('../controllers/adminLogin.js');
 
 module.exports = [
   {
     method: 'POST',
     path: '/login',
-    handler: (request, reply) => {
-      Models.users.find({ where: { username: request.payload.username } }).then((user) => {
-        if (user.dataValues.password === request.payload.password) {
-          reply('Valid credentials');
-        } else {
-          reply('Invalid credentials');
-        }
-      });
-    },
+    handler: handlerFunction.validateAndSign,
     config: {
+      auth: false,
       validate: {
         payload: Joi.object({
           username: Joi.string().required().min(6),
           password: Joi.string().required().min(8),
         }),
       },
+    },
+  },
+  {
+    method: 'GET',
+    path: '/jwtVerification',
+    config: {
+      auth: 'jwt',
+    },
+    handler: (request, reply) => {
+      console.log(request.payload);
+      reply('jwt verified');
     },
   },
 ];
