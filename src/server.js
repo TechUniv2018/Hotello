@@ -38,5 +38,8 @@ server.register(Hapiauthjwt, (err) => {
 });
 
 
-server.start((err) => { if (err) console.log(err); });
+server.start((err) => {
+  if (err) console.log(err);
+  console.log('Routes are ', Routes);
+});
 module.exports = server;
