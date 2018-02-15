@@ -3,26 +3,12 @@ const Models = require('../../models');
 
 
 describe('Testing for validation of user input', () => {
-  it('Should return 400 Bad Request for invalid input (length of username)', (done) => {
-    const options = {
-      method: 'POST',
-      url: '/publicLogin',
-      payload: {
-        username: 'abc',
-        password: '123abc456',
-      },
-    };
-    Server.inject(options, (response) => {
-      expect(response.statusCode).toBe(400);
-      done();
-    });
-  });
   it('Should return 400 Bad Request for invalid input (length of password)', (done) => {
     const options = {
       method: 'POST',
       url: '/publicLogin',
       payload: {
-        username: 'abcdef',
+        username: 'abcdef@gmail.com',
         password: '123a',
       },
     };
@@ -31,13 +17,13 @@ describe('Testing for validation of user input', () => {
       done();
     });
   });
-  it('Should return 400 Bad Request for invalid input (invalid characters in username)', (done) => {
+  it('Should return 400 Bad Request for invalid input (username not an email id)', (done) => {
     const options = {
       method: 'POST',
       url: '/publicLogin',
       payload: {
-        username: 'abcdef$',
-        password: '123a',
+        username: 'abcdef',
+        password: 'aA$basd1',
       },
     };
     Server.inject(options, (response) => {
@@ -51,7 +37,7 @@ describe('Testing for validation of user input', () => {
       url: '/publicLogin',
       payload: {
         username: 'abcdef',
-        password: '123ab34$',
+        password: 'aA$basd1\'',
       },
     };
     Server.inject(options, (response) => {
@@ -64,15 +50,12 @@ describe('Testing for validation of user input', () => {
 
 describe('Testing for user validation with database', () => {
   beforeAll(() => Models.users.create({
-    username: 'abcdef',
-    firstname: 'ABC',
-    lastname: 'DEF',
-    password: '123abcdef',
-    mobile: 9876543210,
-    email_id: 'abcdef@sample.com',
-    address: 'Sample address text',
+    firstName: 'ABC',
+    lastName: 'DEF',
+    email: 'abcdef@sample.com',
+    password: 'aA$basd1',
     role: 'Admin',
-    dob: '1997-08-09',
+    phoneNumber: 9876543210,
   }));
 
   afterAll(() => Models.users.destroy({ truncate: true }));
@@ -82,8 +65,8 @@ describe('Testing for user validation with database', () => {
       method: 'POST',
       url: '/publicLogin',
       payload: {
-        username: 'abcdef',
-        password: '123abcdef',
+        username: 'abcdef@sample.com',
+        password: 'aA$basd1',
       },
     };
     Server.inject(options, (response) => {
@@ -96,8 +79,8 @@ describe('Testing for user validation with database', () => {
       method: 'POST',
       url: '/publicLogin',
       payload: {
-        username: 'pqrstuv',
-        password: '123pqrstuv',
+        username: 'abcdef@gmail.com',
+        password: 'aA$basd1',
       },
     };
     Server.inject(options, (response) => {
@@ -110,8 +93,8 @@ describe('Testing for user validation with database', () => {
       method: 'POST',
       url: '/publicLogin',
       payload: {
-        username: 'abcdef',
-        password: '123pqrstuv',
+        username: 'abcdef@sample.com',
+        password: 'aA$basd123',
       },
     };
     Server.inject(options, (response) => {

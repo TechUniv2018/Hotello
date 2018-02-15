@@ -1,23 +1,23 @@
 {
   "development": {
-    "username": "root",
+    "username": "hotello",
     "password": null,
-    "database": "database_development",
+    "database": "hotello_develop",
     "host": "127.0.0.1",
-    "dialect": "mysql"
+    "dialect": "postgres"
   },
   "test": {
-    "username": "abhilash",
-    "password": "abhi",
+    "username": "hotello",
+    "password": null,
     "database": "hotello_test",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },
   "production": {
-    "username": "root",
+    "username": "hotello",
     "password": null,
-    "database": "database_production",
+    "database": "hotello",
     "host": "127.0.0.1",
-    "dialect": "mysql"
+    "dialect": "postgres"
   }
 }

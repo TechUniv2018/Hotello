@@ -2,7 +2,7 @@ const Models = require('../../models');
 const JWT = require('jsonwebtoken');
 
 module.exports = (request, reply) => {
-  Models.users.findOne({ where: { username: request.payload.username } }).then((user) => {
+  Models.users.findOne({ where: { email: request.payload.username } }).then((user) => {
     if (user !== null) {
       if (user.dataValues.password === request.payload.password) {
         const token = JWT.sign({
