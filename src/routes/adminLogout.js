@@ -9,7 +9,9 @@ module.exports = [
     path: '/logout',
     handler: (request, reply) => {
       console.log('The jwt token is: ', request.headers.authorization);
-      reply('Logged out');
+      const decodedToken = JWT.decode(request.headers.authorization, 'NeverShareYourSecret');
+      decodedToken.exp = Math.floor(Date.now() / 1000);
+      reply(JWT.sign(decodedToken, 'NeverShareYourSecret'));
     },
     config: {
       auth: 'jwt',

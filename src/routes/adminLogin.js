@@ -1,18 +1,15 @@
-const Joi = require('joi');
+const joiValidation = require('../schemes/adminLoginValidation');
 const handlerFunction = require('../controllers/adminLogin.js');
 
 module.exports = [
   {
     method: 'POST',
-    path: '/login',
+    path: '/adminLogin',
     handler: handlerFunction.validateAndSign,
     config: {
       auth: false,
       validate: {
-        payload: Joi.object({
-          username: Joi.string().required().min(6),
-          password: Joi.string().required().min(8),
-        }),
+        payload: joiValidation,
       },
     },
   },
@@ -28,3 +25,4 @@ module.exports = [
     },
   },
 ];
+

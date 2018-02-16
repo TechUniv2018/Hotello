@@ -3,25 +3,24 @@ const Models = require('../models');
 const jwt = require('jsonwebtoken');
 
 describe('Testing the validation part', () => {
-  beforeAll((done) => {
+  beforeEach((done) => {
     Models.users.create({
-      username: 'arpitanew',
-      password: 'arpita_jain',
-    }).then((err) => {
-      console.log('ERROR IS', err);
+      email: 'admin@hotello.com',
+      password: 'Hotello@12',
+    }).then(() => {
       done();
     });
   });
-  afterAll((done) => {
+  afterEach((done) => {
     Models.users.destroy({ truncate: true });
     done();
   });
   it('returns status code 400 for username< 6characters', (done) => {
     const options = {
       method: 'POST',
-      url: '/login',
+      url: '/adminLogin',
       payload: {
-        username: 'arpit',
+        email: 'arpit',
         password: 'arpita_jain',
       },
     };
@@ -33,9 +32,9 @@ describe('Testing the validation part', () => {
   it('returns status code 400 for password< 8characters', (done) => {
     const options = {
       method: 'POST',
-      url: '/login',
+      url: '/adminLogin',
       payload: {
-        username: 'arpita',
+        email: 'arpita',
         password: 'arpita',
       },
     };
@@ -50,10 +49,9 @@ describe('Testing the validation part', () => {
 describe('Testing if database calls are made', () => {
   beforeAll((done) => {
     Models.users.create({
-      username: 'arpitanew',
-      password: 'arpita_jain',
-    }).then((err) => {
-      console.log('ERROR IS', err);
+      email: 'admin@hotello.com',
+      password: 'Hotello@12',
+    }).then(() => {
       done();
     });
   });
@@ -64,24 +62,24 @@ describe('Testing if database calls are made', () => {
   it('returns wrong username for invalid form data', (done) => {
     const options = {
       method: 'POST',
-      url: '/login',
+      url: '/adminLogin',
       payload: {
-        username: 'aakash',
-        password: 'aakash12',
+        email: 'abcd@gmail.com',
+        password: 'Aashdhdf@1223',
       },
     };
     server.inject(options, (response) => {
-      expect(response.result).toBe('Wrong username');
+      expect(response.result).toBe('Wrong email');
       done();
     });
   });
   it('returns wrong password for invalid form data', (done) => {
     const options = {
       method: 'POST',
-      url: '/login',
+      url: '/adminLogin',
       payload: {
-        username: 'arpitanew',
-        password: 'aakash12',
+        email: 'admin@hotello.com',
+        password: 'ABcd@123',
       },
     };
     server.inject(options, (response) => {
@@ -94,10 +92,9 @@ describe('Testing if database calls are made', () => {
 describe('Testing if login route is returning a jwt token', () => {
   beforeAll((done) => {
     Models.users.create({
-      username: 'arpitanew',
-      password: 'arpita_jain',
-    }).then((err) => {
-      console.log('ERROR IS', err);
+      email: 'admin@hotello.com',
+      password: 'Hotello@12',
+    }).then(() => {
       done();
     });
   });
@@ -108,10 +105,10 @@ describe('Testing if login route is returning a jwt token', () => {
   it('Passing correct login credentials, Expected output: a JWT token', (done) => {
     const options = {
       method: 'POST',
-      url: '/login',
+      url: '/adminLogin',
       payload: {
-        username: 'arpitanew',
-        password: 'arpita_jain',
+        email: 'admin@hotello.com',
+        password: 'Hotello@12',
       },
     };
     server.inject(options, (response) => {
@@ -119,7 +116,7 @@ describe('Testing if login route is returning a jwt token', () => {
       const tokenPayload = jwt.decode(JWT, { complete: true }).payload;
       expect(tokenPayload).toHaveProperty('iat');
       expect(tokenPayload).toHaveProperty('exp');
-      expect(tokenPayload).toHaveProperty('name');
+      expect(tokenPayload).toHaveProperty('email');
       done();
     });
   });

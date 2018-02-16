@@ -1,14 +1,14 @@
 {
   "development": {
     "username": "hotello",
-    "password": "null",
+    "password": null,
     "database": "hotello",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },
   "test": {
     "username": "hotello",
-    "password": "null",
+    "password": null,
     "database": "hotello_test",
     "host": "127.0.0.1",
     "dialect": "postgres"

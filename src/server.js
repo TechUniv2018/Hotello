@@ -6,12 +6,13 @@ const Models = require('../models');
 const server = new Hapi.Server();
 server.connection({
   host: 'localhost',
-  port: Number(5500),
+  port: 5500,
 });
+
 
 const validate = (decoded, request, callback) => {
   console.log(decoded);
-  Models.users.find({ where: { username: decoded.name } }).then((data) => {
+  Models.users.find({ where: { email: decoded.email } }).then((data) => {
     if (data) {
       callback(null, true);
     } else {
@@ -38,8 +39,8 @@ server.register(Hapiauthjwt, (err) => {
 });
 
 
-server.start((err) => {
-  if (err) console.log(err);
-  console.log('Routes are ', Routes);
-});
+// server.start((err) => {
+//   if (err) console.log(err);
+//   console.log('Routes are ', Routes);
+// });
 module.exports = server;
