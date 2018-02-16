@@ -3,7 +3,7 @@ const handler = require('../controllers/userSignUpHandler');
 
 
 module.exports = {
-  path: '/usersignup',
+  path: '/userSignUp',
   method: 'POST',
   handler,
   config: {
