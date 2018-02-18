@@ -4,7 +4,8 @@
   "description": "## Problem Statement",
   "main": "index.js",
   "scripts": {
-    "test": "jest --coverage --notify"
+    "test": "NODE_ENV=test sequelize db:migrate:undo:all && NODE_ENV=test sequelize db:migrate && jest --coverage --notify",
+    "start": "sequelize db:migrate && nodemon src/server.js"
   },
   "repository": {
     "type": "git",
@@ -25,6 +26,10 @@
     "jest": "^22.2.2"
   },
   "dependencies": {
-    "hapi": "^16.6.2"
+    "hapi": "^16.6.2",
+    "joi": "^13.1.2",
+    "pg": "^7.4.1",
+    "sequelize": "^4.33.4",
+    "sequelize-cli": "^3.2.0"
   }
 }
