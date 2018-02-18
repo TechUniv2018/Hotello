@@ -30,7 +30,7 @@ describe('Testing the logout route', () => {
       expect(response).not.toBe(null);
       done();
     });
-  });
+  }, 100000);
   it('Checking if JWT token is expired', (done) => {
     const requestToken = jwt.sign({
       exp: Math.floor(Date.now() / 1000) + (60 * 60),
@@ -48,5 +48,5 @@ describe('Testing the logout route', () => {
       expect(decodedToken.exp).toBeLessThanOrEqual(Math.floor(Date.now() / 1000));
       done();
     });
-  });
+  }, 100000);
 });

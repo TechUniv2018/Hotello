@@ -1,9 +1,16 @@
-const handlerFunction = require('../controllers/adminUpdateDetails');
+const updateHandler = require('../controllers/adminUpdateDetails');
 
 module.exports = [
   {
-    method: 'PUT',
+    method: 'GET',
     path: '/adminDetails',
-    handler: handlerFunction,
+    handler: (request, reply) => {
+      const userDetailsPromise = updateHandler(request.headers.authorization);
+      console.log(userDetailsPromise);
+      userDetailsPromise.then((userDetails) => { reply(userDetails); });
+    },
+    config: {
+      auth: 'jwt',
+    },
   },
 ];
