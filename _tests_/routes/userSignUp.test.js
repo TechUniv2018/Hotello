@@ -1,5 +1,5 @@
-const Server = require('../src/server');
-const Models = require('../models');
+const Server = require('../../src/server');
+const Models = require('../../models');
 
 describe('Test server for POST /usersignup: ', () => {
   beforeAll((done) => {
