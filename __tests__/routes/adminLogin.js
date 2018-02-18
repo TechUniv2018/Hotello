@@ -1,5 +1,5 @@
-const server = require('../src/server');
-const Models = require('../models');
+const server = require('../../src/server');
+const Models = require('../../models');
 const jwt = require('jsonwebtoken');
 
 describe('Testing the validation part', () => {
@@ -15,13 +15,13 @@ describe('Testing the validation part', () => {
     Models.users.destroy({ truncate: true });
     done();
   });
-  it('returns status code 400 for username< 6characters', (done) => {
+  it('returns status code 400 for username not a valid email', (done) => {
     const options = {
       method: 'POST',
       url: '/adminLogin',
       payload: {
-        email: 'arpit',
-        password: 'arpita_jain',
+        email: 'arpitajain',
+        password: 'Arpita@12345',
       },
     };
     server.inject(options, (response) => {
@@ -29,13 +29,41 @@ describe('Testing the validation part', () => {
       done();
     });
   });
-  it('returns status code 400 for password< 8characters', (done) => {
+  it('returns status code 400 for password not containing a capital letter', (done) => {
     const options = {
       method: 'POST',
       url: '/adminLogin',
       payload: {
-        email: 'arpita',
-        password: 'arpita',
+        email: 'arpitajain0811@gmail.com',
+        password: 'arpita@123',
+      },
+    };
+    server.inject(options, (response) => {
+      expect(response.statusCode).toBe(400);
+      done();
+    });
+  });
+  it('returns status code 400 for password not containing a special character', (done) => {
+    const options = {
+      method: 'POST',
+      url: '/adminLogin',
+      payload: {
+        email: 'arpitajain0811@gmail.com',
+        password: 'Arpita123',
+      },
+    };
+    server.inject(options, (response) => {
+      expect(response.statusCode).toBe(400);
+      done();
+    });
+  });
+  it('returns status code 400 for password not containing a number', (done) => {
+    const options = {
+      method: 'POST',
+      url: '/adminLogin',
+      payload: {
+        email: 'arpitajain0811@gmail.com',
+        password: 'Arpita@jain',
       },
     };
     server.inject(options, (response) => {
