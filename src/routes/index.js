@@ -1,3 +1,4 @@
 const publicLogin = require('./publicLogin.js');
+const userSignUp = require('./userSignUp');
 
-module.exports = [].concat(publicLogin);
+module.exports = [].concat(userSignUp, publicLogin);

@@ -11,12 +11,10 @@ const validate = (decoded, request, callback) => {
 
   return callback(null, false);
 };
-
 server.connection({
   host: 'localhost',
   port: 8000,
 });
-
 
 server.register(require('hapi-auth-jwt2'), (err) => {
   if (err) {
@@ -34,7 +32,6 @@ server.register(require('hapi-auth-jwt2'), (err) => {
 
   server.auth.default('jwt');
 });
-
 
 server.route(Routes);
 
