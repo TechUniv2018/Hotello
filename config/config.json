@@ -16,7 +16,7 @@
   "production": {
     "username": "hotello",
     "password": null,
-    "database": "database_production",
+    "database": "hotello",
     "host": "127.0.0.1",
     "dialect": "postgres"
   }
