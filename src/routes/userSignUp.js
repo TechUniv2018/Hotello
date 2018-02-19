@@ -10,6 +10,7 @@ module.exports = {
     validate: {
       payload: signUpValidation,
     },
+    auth: false,
   },
 };
 
