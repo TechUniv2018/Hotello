@@ -6,7 +6,7 @@ module.exports = [
     path: '/adminDetails',
     handler: (request, reply) => {
       const userDetailsPromise = updateHandler(request.headers.authorization);
-      console.log(userDetailsPromise);
+      // console.log(userDetailsPromise);
       userDetailsPromise.then((userDetails) => { reply(userDetails); });
     },
     config: {

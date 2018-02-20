@@ -2,18 +2,24 @@ const server = require('../../src/server');
 const Models = require('../../models');
 const jwt = require('jsonwebtoken');
 
+jest.setTimeout(10000);
 describe('Testing the validation part', () => {
+  beforeAll((done) => {
+    Models.users.destroy({ truncate: true }).then(() => done());
+  });
+  afterAll((done) => {
+    Models.users.destroy({ truncate: true }).then(() => done());
+  });
   beforeEach((done) => {
     Models.users.create({
-      email: 'admin@hotello.com',
+      email: 'ad2min@hotello.com',
       password: 'Hotello@12',
     }).then(() => {
       done();
     });
   });
   afterEach((done) => {
-    Models.users.destroy({ truncate: true });
-    done();
+    Models.users.destroy({ truncate: true }).then(() => done());
   });
   it('returns status code 400 for username not a valid email', (done) => {
     const options = {
@@ -34,7 +40,7 @@ describe('Testing the validation part', () => {
       method: 'POST',
       url: '/adminLogin',
       payload: {
-        email: 'arpitajain0811@gmail.com',
+        email: 'arpitagjain0811@gmail.com',
         password: 'arpita@123',
       },
     };
@@ -48,7 +54,7 @@ describe('Testing the validation part', () => {
       method: 'POST',
       url: '/adminLogin',
       payload: {
-        email: 'arpitajain0811@gmail.com',
+        email: 'arpitajagin0811@gmail.com',
         password: 'Arpita123',
       },
     };
@@ -62,7 +68,7 @@ describe('Testing the validation part', () => {
       method: 'POST',
       url: '/adminLogin',
       payload: {
-        email: 'arpitajain0811@gmail.com',
+        email: 'arpitajwain0811@gmail.com',
         password: 'Arpita@jain',
       },
     };
@@ -77,7 +83,7 @@ describe('Testing the validation part', () => {
 describe('Testing if database calls are made', () => {
   beforeAll((done) => {
     Models.users.create({
-      email: 'admin@hotello.com',
+      email: 'ad2min@hotello.com',
       password: 'Hotello@12',
     }).then(() => {
       done();
@@ -106,7 +112,7 @@ describe('Testing if database calls are made', () => {
       method: 'POST',
       url: '/adminLogin',
       payload: {
-        email: 'admin@hotello.com',
+        email: 'ad2min@hotello.com',
         password: 'ABcd@123',
       },
     };
@@ -120,7 +126,7 @@ describe('Testing if database calls are made', () => {
 describe('Testing if login route is returning a jwt token', () => {
   beforeAll((done) => {
     Models.users.create({
-      email: 'admin@hotello.com',
+      email: 'admin1@hotello.com',
       password: 'Hotello@12',
     }).then(() => {
       done();
@@ -135,7 +141,7 @@ describe('Testing if login route is returning a jwt token', () => {
       method: 'POST',
       url: '/adminLogin',
       payload: {
-        email: 'admin@hotello.com',
+        email: 'admin1@hotello.com',
         password: 'Hotello@12',
       },
     };

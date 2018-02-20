@@ -1,8 +1,13 @@
 const Server = require('../../src/server');
 const Models = require('../../models');
 
-
+jest.setTimeout(10000);
 describe('Testing for validation of user input', () => {
+  beforeAll((done) => {
+    setTimeout(() => {
+      done();
+    }, 3000);
+  });
   it('Should return 400 Bad Request for invalid input (length of password)', (done) => {
     const options = {
       method: 'POST',

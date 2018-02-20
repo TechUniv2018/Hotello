@@ -5,7 +5,7 @@ const server = new Hapi.Server();
 
 const validate = (decoded, request, callback) => {
   // do checks to see if the person is valid
-  if (decoded.id) {
+  if (decoded.email) {
     return callback(null, true);
   }
 

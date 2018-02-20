@@ -1,12 +1,16 @@
 const Server = require('../../src/server');
 const Models = require('../../models');
 
+jest.setTimeout(10000);
 describe('Test server for POST /usersignup: ', () => {
   beforeAll((done) => {
     Models.users.destroy({ truncate: true }).then(() => {
       console.log('table cleared');
       done();
     });
+  });
+  afterAll((done) => {
+    Models.users.destroy({ truncate: true }).then(() => done());
   });
   test('Should return statusCode 201: ', (done) => {
     const options = {
@@ -80,6 +84,7 @@ describe('Test server for POST /usersignup: ', () => {
       },
     };
     Server.inject(options, (response) => {
+      console.log(response);
       expect(response.statusCode).toBe(409);
       done();
     });

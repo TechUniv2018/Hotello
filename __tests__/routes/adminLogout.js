@@ -2,18 +2,24 @@ const server = require('../../src/server');
 const jwt = require('jsonwebtoken');
 const Models = require('../../models');
 
+jest.setTimeout(10000);
 describe('Testing the logout route', () => {
+  beforeAll((done) => {
+    Models.users.destroy({ truncate: true }).then(() => done());
+  });
+  afterAll((done) => {
+    Models.users.destroy({ truncate: true }).then(() => done());
+  });
   beforeEach((done) => {
     Models.users.create({
-      email: 'admin@hotello.com',
+      email: 'admin2@hotello.com',
       password: 'Hotello@12',
     }).then(() => {
       done();
     });
   });
   afterEach((done) => {
-    Models.users.destroy({ truncate: true });
-    done();
+    Models.users.destroy({ truncate: true }).then(() => done());
   });
   it('Checking if the logout route exists', (done) => {
     const options = {
@@ -22,8 +28,8 @@ describe('Testing the logout route', () => {
       headers: {
         Authorization: jwt.sign({
           exp: Math.floor(Date.now() / 1000) + (60 * 60),
-          email: 'admin@hotello.com',
-        }, 'NeverShareYourSecret'),
+          email: 'admin2@hotello.com',
+        }, 'RandomSecretString'),
       },
     };
     server.inject(options, (response) => {
@@ -34,8 +40,8 @@ describe('Testing the logout route', () => {
   it('Checking if JWT token is expired', (done) => {
     const requestToken = jwt.sign({
       exp: Math.floor(Date.now() / 1000) + (60 * 60),
-      email: 'admin@hotello.com',
-    }, 'NeverShareYourSecret');
+      email: 'admin2@hotello.com',
+    }, 'RandomSecretString');
     const options = {
       method: 'POST',
       url: '/logout',
@@ -44,7 +50,7 @@ describe('Testing the logout route', () => {
       },
     };
     server.inject(options, (response) => {
-      const decodedToken = jwt.decode(response.payload, 'NeverShareYourSecret');
+      const decodedToken = jwt.decode(response.payload, 'RandomSecretString');
       expect(decodedToken.exp).toBeLessThanOrEqual(Math.floor(Date.now() / 1000));
       done();
     });
