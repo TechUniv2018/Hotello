@@ -84,7 +84,7 @@ describe('Test server for POST /usersignup: ', () => {
       },
     };
     Server.inject(options, (response) => {
-      console.log(response);
+      // console.log(response);
       expect(response.statusCode).toBe(409);
       done();
     });

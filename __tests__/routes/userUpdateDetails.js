@@ -1,10 +1,10 @@
 const server = require('../../src/server');
 const Models = require('../../models');
 const jwt = require('jsonwebtoken');
-const updateHandler = require('../../src/controllers/adminUpdateDetails');
+const updateHandler = require('../../src/controllers/userUpdateDetails');
 
-jest.setTimeout(10000);
-describe('Testing the update admin details route', () => {
+// jest.setTimeout(10000);
+describe('Testing the update user details route', () => {
   beforeAll((done) => {
     Models.users.destroy({ truncate: true }).then(() => done());
   });
@@ -29,7 +29,7 @@ describe('Testing the update admin details route', () => {
   it('returns user details for the update form', (done) => {
     const options = {
       method: 'GET',
-      url: '/adminDetails',
+      url: '/userDetails',
       headers: {
         Authorization: jwt.sign({
           exp: Math.floor(Date.now() / 1000) + (60 * 60),
@@ -46,14 +46,14 @@ describe('Testing the update admin details route', () => {
       });
       done();
     });
-  });
+  }),10000;
 
-  it('user details for the given email', (done) => {
+  it('gets user details for the given email-unit function', (done) => {
     const authorization = jwt.sign({
       exp: Math.floor(Date.now() / 1000) + (60 * 60),
       email: 'admin@hotello.com',
     }, 'RandomSecretString');
-    const updateDetailsPromise = updateHandler(authorization);
+    const updateDetailsPromise = updateHandler.updateHandlerForGet(authorization);
     updateDetailsPromise.then((userDetails) => {
       expect(userDetails).toEqual({
         firstName: 'Nidhi',
@@ -62,6 +62,37 @@ describe('Testing the update admin details route', () => {
         phoneNumber: '999999999',
       });
       done();
+    });
+  });
+  it('updates details for the given user-unit function', (done) => {
+    const authorization = jwt.sign({
+      exp: Math.floor(Date.now() / 1000) + (60 * 60),
+      email: 'admin@hotello.com',
+    }, 'RandomSecretString');
+    const payload={
+      firstName: 'Nidhi',
+      lastName: 'Seth',
+      phoneNumber: '888888888',
+    }
+    const promise = updateHandler.updateHandlerForPut(authorization,payload);
+    promise.then((responseObj) => {
+      Models.users.find({
+        where:{
+          email: 'admin@hotello.com',
+        },
+      }).then((user)=>{
+        const userDetails = {
+          firstName: user.dataValues.firstName,
+          lastName: user.dataValues.lastName,
+          phoneNumber: user.dataValues.phoneNumber,
+        };
+        expect(userDetails).toEqual({
+          firstName: 'Nidhi',
+          lastName: 'Seth',
+          phoneNumber: '888888888',
+        });
+        done();
+      });
     });
   });
 });
