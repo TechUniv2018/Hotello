@@ -45,7 +45,7 @@ describe('Testing the suspend user details route', () => {
       },
     };
     server.inject(options, (response) => {
-      expect(response.payload).toBe('working on it');
+      expect(response.payload).toBe('suspended');
       done();
     });
   });

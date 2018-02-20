@@ -1,4 +1,4 @@
-const suspendUserHandler = require('../controllers/suspendUser');
+const suspendUserHandler = require('../controllers/suspendUserHandler');
 
 module.exports = [
   {
@@ -7,8 +7,8 @@ module.exports = [
     handler: (request, reply) => {
       console.log('inside suspenduser handler');
       const promise = suspendUserHandler(request.headers.authorization, request.payload);
-      promise.then(() => {
-        reply('working on it');
+      promise.then((msg) => {
+        reply(msg);
       });
     },
     config: {
