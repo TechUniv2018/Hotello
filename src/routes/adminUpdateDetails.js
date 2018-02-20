@@ -1,4 +1,5 @@
 const updateHandler = require('../controllers/adminUpdateDetails');
+const adminUpdateDetailsValidation = require('../schemes/adminUpdateDetailsValidation');
 
 module.exports = [
   {
@@ -9,7 +10,11 @@ module.exports = [
       reply(userDetailsPromise);
     },
     config: {
-      auth: 'jwt',
+      validate: {
+        payload: adminUpdateDetailsValidation,
+      },
+      auth: false,
     },
+
   },
 ];
