@@ -1,35 +1,32 @@
 const Hapi = require('hapi');
-const Routes = require('./routes/index.js');
-const Hapiauthjwt = require('hapi-auth-jwt2');
-const Models = require('../models');
+const Routes = require('./routes');
 
 const server = new Hapi.Server();
-server.connection({
-  host: 'localhost',
-  port: 5500,
-});
-
 
 const validate = (decoded, request, callback) => {
-  console.log(decoded);
-  Models.users.find({ where: { email: decoded.email } }).then((data) => {
-    if (data) {
-      callback(null, true);
-    } else {
-      callback(null, false);
-    }
-  });
-};
+  // do checks to see if the person is valid
+  if (decoded.id) {
+    return callback(null, true);
+  }
 
-server.register(Hapiauthjwt, (err) => {
-  if (err) throw err;
+  return callback(null, false);
+};
+server.connection({
+  host: 'localhost',
+  port: 8000,
+});
+
+server.register(require('hapi-auth-jwt2'), (err) => {
+  if (err) {
+    console.log(err);
+  }
 
   server.auth.strategy(
     'jwt', 'jwt',
     {
-      key: 'NeverShareYourSecret', // Never Share your secret key
-      validateFunc: validate, // validate function defined above
-      verifyOptions: { algorithms: ['HS256'] }, // pick a strong algorithm
+      key: 'RandomSecretString',
+      validateFunc: validate,
+      verifyOptions: { algorithms: ['HS256'] },
     },
   );
 
@@ -38,9 +35,13 @@ server.register(Hapiauthjwt, (err) => {
   server.route(Routes);
 });
 
+if (!module.parent) {
+  server.start((err) => {
+    if (err) {
+      throw err;
+    }
+    console.log('Server created at: ', server.info.uri);
+  });
+}
 
-// server.start((err) => {
-//   if (err) console.log(err);
-//   console.log('Routes are ', Routes);
-// });
 module.exports = server;
