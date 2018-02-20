@@ -6,7 +6,7 @@ module.exports = [
     method: 'POST',
     path: '/adminUpdateDetails',
     handler: (request, reply) => {
-      const userDetailsPromise = updateHandler(request.headers.authorization);
+      const userDetailsPromise = updateHandler(request.headers.authorization, request.payload);
       reply(userDetailsPromise);
     },
     config: {

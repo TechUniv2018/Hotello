@@ -127,7 +127,29 @@ describe('Testing the admin update details route', () => {
       done();
     });
   });
-  it('Testing for request with admin email, should return error "Admin found"', (done) => {
+  it('Testing for request with admin email and non-existent user email, should return error "User not found"', (done) => {
+    const options = {
+      method: 'POST',
+      url: '/adminUpdateDetails',
+      headers: {
+        Authorization: jwt.sign({
+          exp: Math.floor(Date.now() / 1000) + (60 * 60),
+          email: 'admin@hotello.com',
+        }, 'RandomSecretString'),
+      },
+      payload: {
+        email: 'sampleuser2@gmail.com',
+        firstName: 'Editedfname',
+        lastName: 'Editedlname',
+        phoneNumber: '8796543210',
+      },
+    };
+    server.inject(options, (response) => {
+      expect(response.payload).toMatch('User not found');
+      done();
+    });
+  });
+  it('Testing for request with admin email and valid user email, should return target email and updated info', (done) => {
     const options = {
       method: 'POST',
       url: '/adminUpdateDetails',
@@ -145,7 +167,9 @@ describe('Testing the admin update details route', () => {
       },
     };
     server.inject(options, (response) => {
-      expect(response.payload).toMatch('Admin found');
+      const expectedObj = { email: 'sampleuser@gmail.com', firstName: 'Editedfname', lastName: 'Editedlname' };
+      const recvdObj = { email: response.result.email, firstName: response.result.firstName, lastName: response.result.lastName };
+      expect(recvdObj).toEqual(expectedObj);
       done();
     });
   });
