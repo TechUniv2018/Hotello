@@ -4,7 +4,7 @@ const Models = require('../../models');
 
 const suspendUserHandler = (token, payload) => {
   const decodedToken = JWT.decode(token, 'RandomSecretString');
-  Models.users.update(
+  return Models.users.update(
     {
       suspended: true,
     },

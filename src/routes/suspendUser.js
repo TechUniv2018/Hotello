@@ -6,8 +6,10 @@ module.exports = [
     path: '/suspendUser',
     handler: (request, reply) => {
       console.log('inside suspenduser handler');
-      suspendUserHandler(request.headers.authorization, request.payload);
-      reply('working on it');
+      const promise = suspendUserHandler(request.headers.authorization, request.payload);
+      promise.then(() => {
+        reply('working on it');
+      });
     },
     config: {
       auth: 'jwt',

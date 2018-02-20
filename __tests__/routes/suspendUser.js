@@ -3,7 +3,7 @@ const Models = require('../../models');
 const jwt = require('jsonwebtoken');
 
 jest.setTimeout(10000);
-describe('Testing the update user details route', () => {
+describe('Testing the suspend user details route', () => {
   beforeAll((done) => {
     Models.users.destroy({ truncate: true }).then(() => done());
   });
@@ -29,7 +29,7 @@ describe('Testing the update user details route', () => {
   });
 
 
-  it('gets user details for the given email-unit function', (done) => {
+  it('Checking for response from the suspendUser route', (done) => {
     const authorization = jwt.sign({
       exp: Math.floor(Date.now() / 1000) + (60 * 60),
       email: 'admin@hotello.com',
@@ -47,6 +47,33 @@ describe('Testing the update user details route', () => {
     server.inject(options, (response) => {
       expect(response.payload).toBe('working on it');
       done();
+    });
+  });
+
+  it('Checking if the suspend column has been made true for the respective user', (done) => {
+    const authorization = jwt.sign({
+      exp: Math.floor(Date.now() / 1000) + (60 * 60),
+      email: 'admin@hotello.com',
+    }, 'RandomSecretString');
+    const options = {
+      method: 'PUT',
+      url: '/suspendUser',
+      headers: {
+        Authorization: authorization,
+      },
+      payload: {
+        email: 'publicUser@hotello.com',
+      },
+    };
+    server.inject(options, (response) => {
+      Models.users.find({
+        where: {
+          email: options.payload.email,
+        },
+      }).then((user) => {
+        expect(user.suspended).toBe(true);
+        done();
+      });
     });
   });
 });
