@@ -3,23 +3,37 @@ const Models = require('../../models');
 const jwt = require('jsonwebtoken');
 const updateHandler = require('../../src/controllers/adminUpdateDetails');
 
-jest.setTimeout(10000);
-describe('Testing the update admin details route', () => {
+const usersArray = [{
+  firstName: 'Admin',
+  lastName: 'Admin',
+  email: 'admin@hotello.com',
+  password: 'aA3@zxcy',
+  role: 'admin',
+  phoneNumber: 9876543210,
+},
+{
+  firstName: 'Myfname',
+  lastName: 'Mylname',
+  email: 'sampleuser@gmail.com',
+  password: 'bA$z0bqQ',
+  role: 'user',
+  phoneNumber: 999999999,
+},
+];
+
+
+describe('Testing the admin update details route', () => {
   beforeAll((done) => {
-    Models.users.destroy({ truncate: true }).then(() => done());
+    Models.users.destroy({ truncate: true })
+      .then(() => {
+        done();
+      });
   });
   afterAll((done) => {
     Models.users.destroy({ truncate: true }).then(() => done());
   });
   beforeEach((done) => {
-    Models.users.create({
-      firstName: 'Nidhi',
-      lastName: 'Seth',
-      email: 'admin@hotello.com',
-      password: 'Hotello@12',
-      role: 'admin',
-      phoneNumber: 999999999,
-    }).then(() => {
+    Models.users.bulkCreate(usersArray).then(() => {
       done();
     });
   });
@@ -28,39 +42,23 @@ describe('Testing the update admin details route', () => {
   });
   it('returns user details for the update form', (done) => {
     const options = {
-      method: 'GET',
-      url: '/adminDetails',
+      method: 'POST',
+      url: '/adminUpdateDetails',
       headers: {
         Authorization: jwt.sign({
           exp: Math.floor(Date.now() / 1000) + (60 * 60),
           email: 'admin@hotello.com',
         }, 'RandomSecretString'),
       },
+      payload: {
+        email: 'sampleuser@gmail.com',
+        firstName: 'Editedfname',
+        lastName: 'Editedlname',
+        phoneNumber: 8796543210,
+      },
     };
     server.inject(options, (response) => {
-      expect(response.result).toEqual({
-        firstName: 'Nidhi',
-        lastName: 'Seth',
-        email: 'admin@hotello.com',
-        phoneNumber: '999999999',
-      });
-      done();
-    });
-  });
-
-  it('user details for the given email', (done) => {
-    const authorization = jwt.sign({
-      exp: Math.floor(Date.now() / 1000) + (60 * 60),
-      email: 'admin@hotello.com',
-    }, 'RandomSecretString');
-    const updateDetailsPromise = updateHandler(authorization);
-    updateDetailsPromise.then((userDetails) => {
-      expect(userDetails).toEqual({
-        firstName: 'Nidhi',
-        lastName: 'Seth',
-        email: 'admin@hotello.com',
-        phoneNumber: '999999999',
-      });
+      expect(response.result.email).toMatch('admin@hotello.com');
       done();
     });
   });

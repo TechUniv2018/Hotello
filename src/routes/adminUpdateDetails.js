@@ -2,12 +2,11 @@ const updateHandler = require('../controllers/adminUpdateDetails');
 
 module.exports = [
   {
-    method: 'GET',
-    path: '/adminDetails',
+    method: 'POST',
+    path: '/adminUpdateDetails',
     handler: (request, reply) => {
       const userDetailsPromise = updateHandler(request.headers.authorization);
-      // console.log(userDetailsPromise);
-      userDetailsPromise.then((userDetails) => { reply(userDetails); });
+      reply(userDetailsPromise);
     },
     config: {
       auth: 'jwt',
