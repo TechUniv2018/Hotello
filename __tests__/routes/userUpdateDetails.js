@@ -46,7 +46,7 @@ describe('Testing the update user details route', () => {
       });
       done();
     });
-  }),10000;
+  });
 
   it('gets user details for the given email-unit function', (done) => {
     const authorization = jwt.sign({
@@ -69,18 +69,18 @@ describe('Testing the update user details route', () => {
       exp: Math.floor(Date.now() / 1000) + (60 * 60),
       email: 'admin@hotello.com',
     }, 'RandomSecretString');
-    const payload={
+    const payload = {
       firstName: 'Nidhi',
       lastName: 'Seth',
       phoneNumber: '888888888',
-    }
-    const promise = updateHandler.updateHandlerForPut(authorization,payload);
-    promise.then((responseObj) => {
+    };
+    const promise = updateHandler.updateHandlerForPut(authorization, payload);
+    promise.then(() => {
       Models.users.find({
-        where:{
+        where: {
           email: 'admin@hotello.com',
         },
-      }).then((user)=>{
+      }).then((user) => {
         const userDetails = {
           firstName: user.dataValues.firstName,
           lastName: user.dataValues.lastName,
@@ -96,4 +96,3 @@ describe('Testing the update user details route', () => {
     });
   });
 });
-
