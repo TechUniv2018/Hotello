@@ -31,9 +31,9 @@ server.register(require('hapi-auth-jwt2'), (err) => {
   );
 
   server.auth.default('jwt');
-});
 
-server.route(Routes);
+  server.route(Routes);
+});
 
 if (!module.parent) {
   server.start((err) => {
