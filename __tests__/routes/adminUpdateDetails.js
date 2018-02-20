@@ -152,4 +152,46 @@ describe('Testing the admin update details route', () => {
       done();
     });
   });
+  it('Testing for request without email id, should return error 400', (done) => {
+    const options = {
+      method: 'POST',
+      url: '/adminUpdateDetails',
+      headers: {
+        Authorization: jwt.sign({
+          exp: Math.floor(Date.now() / 1000) + (60 * 60),
+          email: 'admin@hotello.com',
+        }, 'RandomSecretString'),
+      },
+      payload: {
+        firstName: 'Editedfname',
+        lastName: 'Editedlname',
+        phoneNumber: 8796543210,
+      },
+    };
+    server.inject(options, (response) => {
+      expect(response.statusCode).toBe(400);
+      done();
+    });
+  });
+  it('Testing for request with invalid parameters, should return error 400', (done) => {
+    const options = {
+      method: 'POST',
+      url: '/adminUpdateDetails',
+      headers: {
+        Authorization: jwt.sign({
+          exp: Math.floor(Date.now() / 1000) + (60 * 60),
+          email: 'admin@hotello.com',
+        }, 'RandomSecretString'),
+      },
+      payload: {
+        firstName: '123',
+        lastName: '456',
+        phoneNumber: 87965,
+      },
+    };
+    server.inject(options, (response) => {
+      expect(response.statusCode).toBe(400);
+      done();
+    });
+  });
 });
