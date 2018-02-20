@@ -1,5 +1,6 @@
 const Hapi = require('hapi');
 const Routes = require('./routes');
+const Models = require('../../models');
 
 const server = new Hapi.Server();
 
@@ -15,6 +16,7 @@ server.connection({
   host: 'localhost',
   port: 8000,
 });
+
 
 server.register(require('hapi-auth-jwt2'), (err) => {
   if (err) {
