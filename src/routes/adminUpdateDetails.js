@@ -13,7 +13,7 @@ module.exports = [
       validate: {
         payload: adminUpdateDetailsValidation,
       },
-      auth: false,
+      auth: 'jwt',
     },
 
   },
