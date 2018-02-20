@@ -152,27 +152,6 @@ describe('Testing the admin update details route', () => {
       done();
     });
   });
-  it('Testing for request without email id, should return error 400', (done) => {
-    const options = {
-      method: 'POST',
-      url: '/adminUpdateDetails',
-      headers: {
-        Authorization: jwt.sign({
-          exp: Math.floor(Date.now() / 1000) + (60 * 60),
-          email: 'admin@hotello.com',
-        }, 'RandomSecretString'),
-      },
-      payload: {
-        firstName: 'Editedfname',
-        lastName: 'Editedlname',
-        phoneNumber: 8796543210,
-      },
-    };
-    server.inject(options, (response) => {
-      expect(response.statusCode).toBe(400);
-      done();
-    });
-  });
   it('Testing for request with invalid parameters, should return error 400', (done) => {
     const options = {
       method: 'POST',
@@ -184,13 +163,80 @@ describe('Testing the admin update details route', () => {
         }, 'RandomSecretString'),
       },
       payload: {
+        email: 'sampleuser@gmail.com',
         firstName: '123',
         lastName: '456',
-        phoneNumber: 87965,
+        phoneNumber: '87965',
       },
     };
     server.inject(options, (response) => {
       expect(response.statusCode).toBe(400);
+      done();
+    });
+  });
+  it('Testing for request with non-existent admin email, should return error "No such admin found"', (done) => {
+    const options = {
+      method: 'POST',
+      url: '/adminUpdateDetails',
+      headers: {
+        Authorization: jwt.sign({
+          exp: Math.floor(Date.now() / 1000) + (60 * 60),
+          email: 'notadmin@hotello.com',
+        }, 'RandomSecretString'),
+      },
+      payload: {
+        email: 'sampleuser@gmail.com',
+        firstName: 'Editedfname',
+        lastName: 'Editedlname',
+        phoneNumber: '8796543210',
+      },
+    };
+    server.inject(options, (response) => {
+      expect(response.payload).toMatch('No such admin found');
+      done();
+    });
+  });
+  it('Testing for request with public user email, should return error "No such admin found"', (done) => {
+    const options = {
+      method: 'POST',
+      url: '/adminUpdateDetails',
+      headers: {
+        Authorization: jwt.sign({
+          exp: Math.floor(Date.now() / 1000) + (60 * 60),
+          email: 'sampleuser@gmail.com',
+        }, 'RandomSecretString'),
+      },
+      payload: {
+        email: 'sampleuser@gmail.com',
+        firstName: 'Editedfname',
+        lastName: 'Editedlname',
+        phoneNumber: '8796543210',
+      },
+    };
+    server.inject(options, (response) => {
+      expect(response.payload).toMatch('No such admin found');
+      done();
+    });
+  });
+  it('Testing for request with admin email, should return error "Admin found"', (done) => {
+    const options = {
+      method: 'POST',
+      url: '/adminUpdateDetails',
+      headers: {
+        Authorization: jwt.sign({
+          exp: Math.floor(Date.now() / 1000) + (60 * 60),
+          email: 'admin@hotello.com',
+        }, 'RandomSecretString'),
+      },
+      payload: {
+        email: 'sampleuser@gmail.com',
+        firstName: 'Editedfname',
+        lastName: 'Editedlname',
+        phoneNumber: '8796543210',
+      },
+    };
+    server.inject(options, (response) => {
+      expect(response.payload).toMatch('Admin found');
       done();
     });
   });

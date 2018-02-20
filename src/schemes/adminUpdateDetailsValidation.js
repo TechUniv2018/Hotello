@@ -5,7 +5,7 @@ const nameRegEx = /^[a-z]+$/i;
 
 module.exports = Joi.object({
   email: Joi.string().email().required(),
-  firstName: Joi.string().optional(),
-  lastName: Joi.string().optional(),
-  phoneNumber: Joi.number().min(10),
+  firstName: Joi.string().optional().regex(nameRegEx),
+  lastName: Joi.string().optional().regex(nameRegEx),
+  phoneNumber: Joi.string().optional().regex(phoneNumberRegEx),
 }).options({ abortEarly: false });
