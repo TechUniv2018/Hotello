@@ -30,4 +30,20 @@ describe('Testing the search hotels by city route', () => {
       done();
     });
   });
+  it('Testing for request with invalid characters in city name, should return error 400', (done) => {
+    const options = {
+      method: 'GET',
+      url: '/searchHotelsByCity/$1asd',
+      headers: {
+        Authorization: jwt.sign({
+          exp: Math.floor(Date.now() / 1000) + (60 * 60),
+          email: 'sampleuser@gmail.com',
+        }, 'RandomSecretString'),
+      },
+    };
+    server.inject(options, (response) => {
+      expect(response.statusCode).toBe(400);
+      done();
+    });
+  });
 });
