@@ -7,7 +7,11 @@ module.exports = [
     path: '/searchHotelsByCity/{cityName}',
     handler: (request, reply) => {
       const result = searchHotelsByCityHandler(request.params.cityName);
-      result.then(reply);
+      result.then((resultValue) => {
+        if (resultValue === 'Error') {
+          reply('Error').code(500);
+        }
+      });
     },
     config: {
       validate: {

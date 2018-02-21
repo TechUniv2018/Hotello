@@ -1,17 +1,13 @@
 const server = require('../../src/server');
-const Models = require('../../models');
 const jwt = require('jsonwebtoken');
-const searchHotelsByCityHandler = require('../../src/controllers/searchHotelsByCityHandler');
+
 
 describe('Testing the search hotels by city route', () => {
   beforeAll((done) => {
-    Models.users.destroy({ truncate: true })
-      .then(() => {
-        done();
-      });
+    done();
   });
   afterAll((done) => {
-    Models.users.destroy({ truncate: true }).then(() => done());
+    done();
   });
 
   it('Testing for request with no city name, should return error 404', (done) => {
@@ -46,13 +42,8 @@ describe('Testing the search hotels by city route', () => {
       done();
     });
   });
-  //   it('Testing the searchHotelsByCity handler function', (done) => {
-  //     searchHotelsByCityHandler('authtoken', 'Bangalore').then((response) => {
-  //       expect(response).not.toBe('Error');
-  //       done();
-  //     });
-  //   }, 10000);
-  it('Testing for request with valid city name, should return Name OK', (done) => {
+
+  it('Testing for request with valid city name, should return list of hotels with details', (done) => {
     const options = {
       method: 'GET',
       url: '/searchHotelsByCity/Mount%20Abu',
@@ -64,8 +55,8 @@ describe('Testing the search hotels by city route', () => {
       },
     };
     server.inject(options, (response) => {
-      console.log(response.result);
       expect(response.result).not.toBe('Error');
+      expect(response.statusCode).not.toBe(500);
       done();
     });
   });
