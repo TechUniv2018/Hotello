@@ -1,0 +1,33 @@
+const server = require('../../src/server');
+const Models = require('../../models');
+const jwt = require('jsonwebtoken');
+
+
+describe('Testing the search hotels by city route', () => {
+  beforeAll((done) => {
+    Models.users.destroy({ truncate: true })
+      .then(() => {
+        done();
+      });
+  });
+  afterAll((done) => {
+    Models.users.destroy({ truncate: true }).then(() => done());
+  });
+
+  it('Testing for request with no city name, should return error 404', (done) => {
+    const options = {
+      method: 'GET',
+      url: '/searchHotelsByCity/',
+      headers: {
+        Authorization: jwt.sign({
+          exp: Math.floor(Date.now() / 1000) + (60 * 60),
+          email: 'sampleuser@gmail.com',
+        }, 'RandomSecretString'),
+      },
+    };
+    server.inject(options, (response) => {
+      expect(response.statusCode).toBe(404);
+      done();
+    });
+  });
+});
