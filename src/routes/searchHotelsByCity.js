@@ -5,7 +5,7 @@ module.exports = [
     method: 'GET',
     path: '/searchHotelsByCity/{cityName}',
     handler: (request, reply) => {
-      reply(request.params.cityName);
+      reply('Name OK');
     },
     config: {
       validate: {

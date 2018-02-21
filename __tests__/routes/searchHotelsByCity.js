@@ -46,4 +46,20 @@ describe('Testing the search hotels by city route', () => {
       done();
     });
   });
+  it('Testing for request with valid city name, should return Name OK', (done) => {
+    const options = {
+      method: 'GET',
+      url: '/searchHotelsByCity/Bangalore',
+      headers: {
+        Authorization: jwt.sign({
+          exp: Math.floor(Date.now() / 1000) + (60 * 60),
+          email: 'sampleuser@gmail.com',
+        }, 'RandomSecretString'),
+      },
+    };
+    server.inject(options, (response) => {
+      expect(response.payload).toMatch('Name OK');
+      done();
+    });
+  });
 });
