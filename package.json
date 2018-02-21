@@ -30,6 +30,7 @@
     "hapi-auth-jwt2": "^7.4.1",
     "joi": "^13.1.2",
     "jsonwebtoken": "^8.1.1",
+    "node-fetch": "^2.0.0",
     "pg": "^7.4.1",
     "sequelize": "^4.33.4",
     "sequelize-cli": "^3.2.0"
