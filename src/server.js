@@ -16,6 +16,7 @@ server.connection({
   port: 8000,
 });
 
+
 server.register(require('hapi-auth-jwt2'), (err) => {
   if (err) {
     console.log(err);

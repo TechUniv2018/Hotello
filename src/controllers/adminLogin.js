@@ -10,7 +10,7 @@ module.exports = {
           reply(JWT.sign({
             exp: Math.floor(Date.now() / 1000) + (60 * 60),
             email: request.payload.email,
-          }, 'NeverShareYourSecret'));
+          }, 'RandomSecretString'));
         } else {
           reply('Wrong password');
         }
