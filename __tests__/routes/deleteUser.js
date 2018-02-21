@@ -29,14 +29,14 @@ describe('Testing the suspend user details route', () => {
   });
 
 
-  it('Checking for response from the suspendUser route', (done) => {
+  it('Checking for response from the deleteUser route', (done) => {
     const authorization = jwt.sign({
       exp: Math.floor(Date.now() / 1000) + (60 * 60),
       email: 'admin@hotello.com',
     }, 'RandomSecretString');
     const options = {
-      method: 'PUT',
-      url: '/suspendUser',
+      method: 'DELETE',
+      url: '/deleteUser',
       headers: {
         Authorization: authorization,
       },
@@ -45,19 +45,19 @@ describe('Testing the suspend user details route', () => {
       },
     };
     server.inject(options, (response) => {
-      expect(response.payload).toBe('suspended');
+      expect(response.payload).toBe('deleted');
       done();
     });
   });
 
-  it('Checking if the suspend column has been made true for the respective user', (done) => {
+  it('Checking if the user has been removed', (done) => {
     const authorization = jwt.sign({
       exp: Math.floor(Date.now() / 1000) + (60 * 60),
       email: 'admin@hotello.com',
     }, 'RandomSecretString');
     const options = {
-      method: 'PUT',
-      url: '/suspendUser',
+      method: 'DELETE',
+      url: '/deleteUser',
       headers: {
         Authorization: authorization,
       },
@@ -71,7 +71,7 @@ describe('Testing the suspend user details route', () => {
           email: options.payload.email,
         },
       }).then((user) => {
-        expect(user.suspended).toBe(true);
+        expect(user).toBe(null);
         done();
       });
     });
