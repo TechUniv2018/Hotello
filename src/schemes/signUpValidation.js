@@ -1,7 +1,7 @@
 const Joi = require('joi');
 
 const passwordRegExp = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&_])[A-Za-z\d$@$!%*?&_]{8,}/;
-const roleRegExp = /user/;
+const roleRegExp = /^(admin|publicUser)$/;
 const phoneNumberRegEx = /^\d{10}$/;
 
 module.exports = Joi.object({
