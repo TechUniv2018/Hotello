@@ -7,8 +7,8 @@ const suspendUser = require('./suspendUser');
 const addUser = require('./addUser');
 const deleteUser = require('./deleteUser');
 const adminUpdateDetails = require('./adminUpdateDetails');
+const searchHotelsByCity = require('./searchHotelsByCity');
 
-module.exports = [].concat(
-  addUser, userSignUp, publicLogin, login, logout,
-  updateDetails, suspendUser,adminUpdateDetails, deleteUser
-);
+
+module.exports = [].concat(addUser,userSignUp, publicLogin, login, logout, updateDetails, suspendUser, adminUpdateDetails, deleteUser, searchHotelsByCity);
+
