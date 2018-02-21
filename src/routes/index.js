@@ -4,5 +4,9 @@ const updateDetails = require('./userUpdateDetails.js');
 const publicLogin = require('./publicLogin.js');
 const userSignUp = require('./userSignUp');
 const suspendUser = require('./suspendUser');
+const addUser = require('./addUser');
 
-module.exports = [].concat(userSignUp, publicLogin, login, logout, updateDetails, suspendUser);
+module.exports = [].concat(
+  addUser, userSignUp, publicLogin, login, logout,
+  updateDetails, suspendUser,
+);
