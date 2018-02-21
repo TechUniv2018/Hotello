@@ -8,7 +8,7 @@ module.exports = [{
     const userDetailsPromise = addUserHandler(request.headers.authorization, request.payload);
     userDetailsPromise
         .then(userDetails => reply(userDetails))
-        .catch(error => reply(error));
+        .catch(error => reply(error.message));
   },
   config: {
     validate: {
