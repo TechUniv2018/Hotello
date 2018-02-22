@@ -5,7 +5,7 @@ const xSigGenerator = require('../helpers/xSignatureGenerator');
 const searchHotelsByCityHandler = (payload) => {
   const apiUrl = 'https://api.test.hotelbeds.com/hotel-api/1.0/hotels';
   const requestUrl = apiUrl;
-  const apiKey = 't6j676c82cc6n58hg6ysur3c';
+  const apiKey = 'dha2w29wubt6mqh256xnch3d';
   const xSignature = xSigGenerator();
   const requestPaxes = [];
   if (payload.childrenAges) {
