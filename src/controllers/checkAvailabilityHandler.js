@@ -45,7 +45,7 @@ const searchHotelsByCityHandler = (payload) => {
   };
 
   return fetch(requestUrl, requestConfig)
-    .then(response => response.text())
+    .then(response => response.json())
     .then(respJson => respJson)
     .catch(() => 'Error');
 };
