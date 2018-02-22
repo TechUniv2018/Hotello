@@ -8,7 +8,7 @@ describe('Test server for GET /adminViewBookings: ', () => {
     Models.users.create({
       firstName: 'User',
       lastName: 'User',
-      email: 'ajaysingh@gmail.com',
+      email: 'alexander@gmail.com',
       password: 'aA3@zxcy',
       role: 'user',
       phoneNumber: '9876543210',
@@ -27,7 +27,7 @@ describe('Test server for GET /adminViewBookings: ', () => {
           city: 'Bangalore',
         },
         {
-          bookingid: 'ref3456',
+          bookingid: 'ref3457',
           email: 'alexander@gmail.com',
           bookingdate: '2018-05-15',
           amount: 2120.00,
@@ -60,6 +60,38 @@ describe('Test server for GET /adminViewBookings: ', () => {
     };
     Server.inject(options, (response) => {
       expect(response.statusCode).toBe(200);
+      done();
+    });
+  });
+
+  test('Should return all the bookings of the user: ', (done) => {
+    const options = {
+      url: '/userViewBookings',
+      method: 'GET',
+      headers: {
+        Authorization: JWT.sign({
+          exp: Math.floor(Date.now() / 1000) + (60 * 60),
+          email: 'alexander@gmail.com',
+        }, 'RandomSecretString'),
+      },
+    };
+
+    const allBookings = [{
+      bookingid: 'ref3457',
+      email: 'alexander@gmail.com',
+      bookingdate: '2018-05-15',
+      amount: 2120.00,
+      hotelname: 'Grand Orchid',
+      checkin: '2018-02-20',
+      checkout: '2018-02-25',
+      numofguests: 1,
+      numofrooms: 1,
+      city: 'Bangalore',
+    }];
+      // const testObj = { allBookings };
+    Server.inject(options, (response) => {
+      // console.log(response.result);
+      expect(response.result).toEqual(allBookings);
       done();
     });
   });
