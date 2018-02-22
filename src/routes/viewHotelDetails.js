@@ -1,4 +1,5 @@
 const viewHotelDetailsHandler = require('../controllers/viewHotelDetailsHandler');
+const viewHotelDetailsValidation = require('../schemes/viewHotelDetailsValidation');
 
 module.exports = [
   {
@@ -17,6 +18,9 @@ module.exports = [
     config: {
       tags: ['api'],
       auth: 'jwt',
+      validate: {
+        params: viewHotelDetailsValidation,
+      },
     },
 
   },

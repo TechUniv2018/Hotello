@@ -1,4 +1,5 @@
 const deleteUserHandler = require('../controllers/deleteUserHandler');
+const validatePayloadEmail = require('../schemes/validatePayloadEmail');
 
 module.exports = [
   {
@@ -14,6 +15,9 @@ module.exports = [
     config: {
       tags: ['api'],
       auth: 'jwt',
+      validate: {
+        payload: validatePayloadEmail,
+      },
     },
   },
 
