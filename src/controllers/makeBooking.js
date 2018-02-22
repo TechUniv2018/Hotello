@@ -1,6 +1,8 @@
 const fetch = require('node-fetch');
 const xSigGenerator = require('../helpers/xSignatureGenerator');
 const getUserDetails = require('../helpers/getUserName');
+const constants = require('../constants.json');
+
 // const rp = require('request-promise');
 
 const makeBookingHandler = (authorization, requestObj) => {
@@ -17,7 +19,7 @@ const makeBookingHandler = (authorization, requestObj) => {
         remark: '',
       };
       const bookingUrl = 'https://api.test.hotelbeds.com/hotel-api/1.0/bookings';
-      const apiKey = '98a9gvgemf4rsaseztstk7p8';
+      const apiKey = constants.API_KEY;
       const xSignature = xSigGenerator();
       const requestConfig = {
         method: 'POST',
@@ -35,7 +37,7 @@ const makeBookingHandler = (authorization, requestObj) => {
         .then((respJson) => {
           resolve(respJson);
         })
-        .catch(e => console.log('error:', e));
+        .catch(e => resolve(`error:${e}`));
     });
   });
   return promise;
