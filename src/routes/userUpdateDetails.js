@@ -6,7 +6,7 @@ module.exports = [
     path: '/userDetails',
     handler: (request, reply) => {
       const userDetailsPromise = updateHandler.updateHandlerForGet(request.headers.authorization);
-      console.log(userDetailsPromise, '&&&&');
+      // console.log(userDetailsPromise, '&&&&');
       userDetailsPromise.then((userDetails) => { reply(userDetails); });
     },
     config: {
@@ -18,7 +18,7 @@ module.exports = [
     path: '/userDetails',
     handler: (request, reply) => {
       const responsePromise = updateHandler.updateHandlerForPut(request.headers.authorization, request.payload);
-      responsePromise.then((reponse) => { reply(response); });
+      responsePromise.then((response) => { reply(response); });
     },
     config: {
       auth: 'jwt',
