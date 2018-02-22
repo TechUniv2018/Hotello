@@ -1,11 +1,11 @@
 const fetch = require('node-fetch');
 const xSigGenerator = require('../helpers/xSignatureGenerator');
-
+const constants = require('../constants.json');
 
 const searchHotelsByCityHandler = (payload) => {
   const apiUrl = 'https://api.test.hotelbeds.com/hotel-api/1.0/hotels';
   const requestUrl = apiUrl;
-  const apiKey = 'dha2w29wubt6mqh256xnch3d';
+  const apiKey = constants.API_KEY;
   const xSignature = xSigGenerator();
   const requestPaxes = [];
   if (payload.childrenAges) {
@@ -51,4 +51,3 @@ const searchHotelsByCityHandler = (payload) => {
 };
 
 module.exports = searchHotelsByCityHandler;
-

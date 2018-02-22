@@ -1,5 +1,6 @@
 const server = require('../../src/server');
 const jwt = require('jsonwebtoken');
+const constants = require('../../src/constants.json');
 
 const validPayload = {
   checkIn: '2018-03-15',
@@ -72,7 +73,7 @@ describe('Testing the checkAvailability route', () => {
         Authorization: jwt.sign({
           exp: Math.floor(Date.now() / 1000) + (60 * 60),
           email: 'sampleuser@gmail.com',
-        }, 'RandomSecretString'),
+        }, constants.JWT_SECRET),
       },
       payload: invalidPayload,
     };
@@ -90,7 +91,7 @@ describe('Testing the checkAvailability route', () => {
         Authorization: jwt.sign({
           exp: Math.floor(Date.now() / 1000) + (60 * 60),
           email: 'sampleuser@gmail.com',
-        }, 'RandomSecretString'),
+        }, constants.JWT_SECRET),
       },
       payload: invalidPaxPayload,
     };
@@ -108,7 +109,7 @@ describe('Testing the checkAvailability route', () => {
         Authorization: jwt.sign({
           exp: Math.floor(Date.now() / 1000) + (60 * 60),
           email: 'sampleuser@gmail.com',
-        }, 'RandomSecretString'),
+        }, constants.JWT_SECRET),
       },
       payload: validPayload,
     };
@@ -126,7 +127,7 @@ describe('Testing the checkAvailability route', () => {
         Authorization: jwt.sign({
           exp: Math.floor(Date.now() / 1000) + (60 * 60),
           email: 'sampleuser@gmail.com',
-        }, 'RandomSecretString'),
+        }, constants.JWT_SECRET),
       },
       payload: paxPayload,
     };
