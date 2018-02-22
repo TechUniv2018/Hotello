@@ -103,4 +103,26 @@ describe('Test server for GET /adminViewBookings: ', () => {
       done();
     });
   });
+
+  test('Should work for empty bookings table: ', (done) => {
+    Models.bookings.destroy({ truncate: true }).then(() => {
+      const options = {
+        url: '/adminViewBookings',
+        method: 'GET',
+        headers: {
+          Authorization: JWT.sign({
+            exp: Math.floor(Date.now() / 1000) + (60 * 60),
+            email: 'admin@hotello.com',
+          }, 'RandomSecretString'),
+        },
+      };
+
+      const allBookings = [];
+      Server.inject(options, (response) => {
+        // console.log(response.result);
+        expect(response.result).toEqual(allBookings);
+        done();
+      });
+    });
+  });
 });
