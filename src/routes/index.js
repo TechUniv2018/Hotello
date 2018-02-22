@@ -12,21 +12,23 @@ const searchHotelsByCity = require('./searchHotelsByCity');
 const checkAvailability = require('./checkAvailability');
 const viewHotelDetails = require('./viewHotelDetails');
 const viewRegisteredUsers = require('./viewRegisteredUsers');
+const userViewBookings = require('./userViewBookings');
 
 
-module.exports = [].concat(addUser,
-                           userSignUp,
-                           publicLogin,
-                           login,
-                           logout,
-                           updateDetails,
-                           suspendUser,
-                           adminUpdateDetails,
-                           deleteUser,
-                           searchHotelsByCity,
-                           adminViewBookings,
-                           viewRegisteredUsers,
-                           viewHotelDetails,
-                           checkAvailability
-                          );
-
+module.exports = [].concat(
+  addUser,
+  userSignUp,
+  publicLogin,
+  login,
+  logout,
+  updateDetails,
+  suspendUser,
+  adminUpdateDetails,
+  deleteUser,
+  searchHotelsByCity,
+  adminViewBookings,
+  viewRegisteredUsers,
+  viewHotelDetails,
+  checkAvailability,
+  userViewBookings,
+);
