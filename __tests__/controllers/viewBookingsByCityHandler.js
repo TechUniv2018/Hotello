@@ -7,14 +7,22 @@ describe('Test handler for GET /viewBookingsByCity: ', () => {
   beforeAll((done) => {
     Models.bookings.destroy({ truncate: true }).then(() => {
       Models.users.destroy({ truncate: true }).then(() => {
-        Models.users.create({
+        Models.users.bulkCreate([{
           firstName: 'Admin',
           lastName: 'Admin',
           email: 'admin@hotello.com',
           password: 'aA3@zxcy',
           role: 'admin',
           phoneNumber: '9876543210',
-        }).then(() => {
+        },
+        {
+          firstName: 'Sample',
+          lastName: 'User',
+          email: 'sampleuser@gmail.com',
+          password: 'bB6$zxcy',
+          role: 'user',
+          phoneNumber: '9874065321',
+        }]).then(() => {
           Models.bookings.destroy({ truncate: true }).then(() => {
             Models.bookings.bulkCreate([{
               bookingid: 'ref3456',
@@ -121,6 +129,28 @@ describe('Test handler for GET /viewBookingsByCity: ', () => {
     viewBookingsByCityHandler(token, 'Chennai').then((response) => {
       const expectedArr = [];
       expect(response).toEqual(expectedArr);
+      done();
+    });
+  });
+  it('Testing for request from public user, should Unauthorized', (done) => {
+    const token = JWT.sign({
+      exp: Math.floor(Date.now() / 1000) + (60 * 60),
+      email: 'sampleuser@gmail.com',
+    }, constants.JWT_SECRET);
+
+    viewBookingsByCityHandler(token, 'Chennai').then((response) => {
+      expect(response).toMatch('Unauthorized');
+      done();
+    });
+  });
+  it('Testing for request from unregistered email id, should Unauthorized', (done) => {
+    const token = JWT.sign({
+      exp: Math.floor(Date.now() / 1000) + (60 * 60),
+      email: 'unknown@gmail.com',
+    }, constants.JWT_SECRET);
+
+    viewBookingsByCityHandler(token, 'Chennai').then((response) => {
+      expect(response).toMatch('Unauthorized');
       done();
     });
   });
