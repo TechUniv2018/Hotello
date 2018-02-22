@@ -108,7 +108,6 @@ describe('Test handler for GET /viewBookingsByCity: ', () => {
       const expectedArr = [{
         amount: 1720, bookingdate: '2018-02-15', bookingid: 'ref3458', checkin: '2018-02-20', checkout: '2018-02-25', city: 'Mumbai', email: 'ajay3singh@gmail.com', hotelname: 'Royal Orchid', numofguests: 2, numofrooms: 1,
       }];
-      console.log(response);
       expect(response).toEqual(expectedArr);
       done();
     });
@@ -121,7 +120,6 @@ describe('Test handler for GET /viewBookingsByCity: ', () => {
 
     viewBookingsByCityHandler(token, 'Chennai').then((response) => {
       const expectedArr = [];
-      console.log(response);
       expect(response).toEqual(expectedArr);
       done();
     });
