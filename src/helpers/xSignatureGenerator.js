@@ -4,7 +4,6 @@ const crypto = require('crypto');
 
 
 const xSignatureGenerator = () => {
-
   const apiKey = constants.API_KEY;
   const apiSecret = constants.API_SECRET;
 

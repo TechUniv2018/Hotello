@@ -9,6 +9,7 @@ const addUser = require('./addUser');
 const deleteUser = require('./deleteUser');
 const adminUpdateDetails = require('./adminUpdateDetails');
 const searchHotelsByCity = require('./searchHotelsByCity');
+const checkAvailability = require('./checkAvailability');
 const viewHotelDetails = require('./viewHotelDetails');
 const viewRegisteredUsers = require('./viewRegisteredUsers');
 
@@ -25,7 +26,7 @@ module.exports = [].concat(addUser,
                            searchHotelsByCity,
                            adminViewBookings,
                            viewRegisteredUsers,
-                           viewHotelDetails
+                           viewHotelDetails,
+                           checkAvailability
                           );
-
 
