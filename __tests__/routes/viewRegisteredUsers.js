@@ -60,7 +60,7 @@ describe('Testing the add user details route', () => {
     }, 'RandomSecretString');
     const options = {
       method: 'GET',
-      url: '/viewRegisteredUser',
+      url: '/viewRegisteredUsers',
       headers: {
         Authorization: authorization,
       },
@@ -77,13 +77,30 @@ describe('Testing the add user details route', () => {
     }, 'RandomSecretString');
     const options = {
       method: 'GET',
-      url: '/viewRegisteredUser',
+      url: '/viewRegisteredUsers',
       headers: {
         Authorization: authorization,
       },
     };
     server.inject(options, (response) => {
       expect(response.result.usersRecords.length).toBe(4);
+      done();
+    });
+  });
+  it('should retuen error when publicuser tries to use this route', (done) => {
+    const authorization = jwt.sign({
+      exp: Math.floor(Date.now() / 1000) + (60 * 60),
+      email: 'publicUser@hotello.com',
+    }, 'RandomSecretString');
+    const options = {
+      method: 'GET',
+      url: '/viewRegisteredUsers',
+      headers: {
+        Authorization: authorization,
+      },
+    };
+    server.inject(options, (response) => {
+      expect(response.result).toBe('Not admin');
       done();
     });
   });
