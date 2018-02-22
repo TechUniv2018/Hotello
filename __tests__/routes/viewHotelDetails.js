@@ -1,6 +1,6 @@
 const server = require('../../src/server');
 const jwt = require('jsonwebtoken');
-
+const constants = require('../../src/constants.json');
 
 describe('Testing viewHotelDetails route ', () => {
   beforeAll((done) => {
@@ -18,7 +18,7 @@ describe('Testing viewHotelDetails route ', () => {
         Authorization: jwt.sign({
           exp: Math.floor(Date.now() / 1000) + (60 * 60),
           email: 'sampleuser@gmail.com',
-        }, 'RandomSecretString'),
+        }, constants.JWT_SECRET),
       },
     };
     server.inject(options, (response) => {
@@ -34,7 +34,7 @@ describe('Testing viewHotelDetails route ', () => {
         Authorization: jwt.sign({
           exp: Math.floor(Date.now() / 1000) + (60 * 60),
           email: 'sampleuser@gmail.com',
-        }, 'RandomSecretString'),
+        }, constants.JWT_SECRET),
       },
     };
     server.inject(options, (response) => {
@@ -51,7 +51,7 @@ describe('Testing viewHotelDetails route ', () => {
         Authorization: jwt.sign({
           exp: Math.floor(Date.now() / 1000) + (60 * 60),
           email: 'sampleuser@gmail.com',
-        }, 'RandomSecretString'),
+        }, constants.JWT_SECRET),
       },
     };
     server.inject(options, (response) => {
