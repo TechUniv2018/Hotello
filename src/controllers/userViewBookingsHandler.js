@@ -1,8 +1,9 @@
 const JWT = require('jsonwebtoken');
 const Models = require('../../models');
+const constant = require('../constants.json');
 
 const userViewBookingsHandler = (authorization) => {
-  const decodedToken = JWT.decode(authorization, 'RandomSecretString');
+  const decodedToken = JWT.decode(authorization, constants.JSON_SECRET);
   const requesterEmail = decodedToken.email;
   return Models.users.findOne({
     where: { email: requesterEmail },

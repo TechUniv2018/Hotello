@@ -1,4 +1,5 @@
 const JWT = require('jsonwebtoken');
+const constants = require('../../src/constants.json');
 
 const Server = require('../../src/server');
 const Models = require('../../models');
@@ -55,7 +56,7 @@ describe('Test server for GET /adminViewBookings: ', () => {
         Authorization: JWT.sign({
           exp: Math.floor(Date.now() / 1000) + (60 * 60),
           email: 'ajaysingh@gmail.com',
-        }, 'RandomSecretString'),
+        }, constants.JSON_SECRET),
       },
     };
     Server.inject(options, (response) => {
@@ -72,7 +73,7 @@ describe('Test server for GET /adminViewBookings: ', () => {
         Authorization: JWT.sign({
           exp: Math.floor(Date.now() / 1000) + (60 * 60),
           email: 'alexander@gmail.com',
-        }, 'RandomSecretString'),
+        }, constants.JSON_SECRET),
       },
     };
 
@@ -104,7 +105,7 @@ describe('Test server for GET /adminViewBookings: ', () => {
         Authorization: JWT.sign({
           exp: Math.floor(Date.now() / 1000) + (60 * 60),
           email: 'ajaysingh@gmail.com',
-        }, 'RandomSecretString'),
+        }, constants.JSON_SECRET),
       },
     };
 
