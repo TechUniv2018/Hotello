@@ -1,9 +1,10 @@
 const JWT = require('jsonwebtoken');
 const Models = require('../../models');
+const constants = require('../constants.json');
 
 const updateHandlerForGet = (authorization) => {
-  const decodedToken = JWT.decode(authorization, 'RandomSecretString');
-  console.log(decodedToken.email,'###');
+  const decodedToken = JWT.decode(authorization, constants.JWT_SECRET);
+  console.log(decodedToken.email, '###');
   const promise = new Promise((resolve) => {
     Models.users.find({
       where: {
@@ -22,27 +23,27 @@ const updateHandlerForGet = (authorization) => {
   return promise;
 };
 
-const updateHandlerForPut=(authorization,payload)=>{
-  const decodedToken = JWT.decode(authorization, 'RandomSecretString');
+const updateHandlerForPut = (authorization, payload) => {
+  const decodedToken = JWT.decode(authorization, constants.JWT_SECRET);
   const promise = new Promise((resolve) => {
-  Models.users.update(
-    {
-      firstName: payload.firstName,
+    Models.users.update(
+      {
+        firstName: payload.firstName,
         lastName: payload.lastName,
         phoneNumber: payload.phoneNumber,
-    },
-    {
-      where: {
-        email: decodedToken.email,
       },
-    },
-  ).then(() => {
-    resolve({
-      statusCode: 200,
-      message: 'user updated',
+      {
+        where: {
+          email: decodedToken.email,
+        },
+      },
+    ).then(() => {
+      resolve({
+        statusCode: 200,
+        message: 'user updated',
+      });
     });
   });
-});
   return promise;
-}
-module.exports = {updateHandlerForGet,updateHandlerForPut};
+};
+module.exports = { updateHandlerForGet, updateHandlerForPut };

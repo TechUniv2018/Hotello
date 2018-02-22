@@ -1,12 +1,9 @@
 const fetch = require('node-fetch');
-const cityCodes = require('../helpers/cityCodes');
 const xSigGenerator = require('../helpers/xSignatureGenerator');
 const constants = require('../constants.json');
 
-const searchHotelsByCityHandler = (cityName) => {
-  const requestCityCode = cityCodes[cityName];
-  const apiUrl = 'https://api.test.hotelbeds.com/hotel-content-api/1.0/hotels?fields=all&language=ENG&from=1&to=100&useSecondaryLanguage=false&destinationCode=';
-  const requestUrl = apiUrl + requestCityCode;
+const viewHotelDetailsHandler = (hotelId) => {
+  const requestUrl = `https://api.test.hotelbeds.com//hotel-content-api/1.0/hotels/${hotelId}?language=ENG&useSecondaryLanguage=False`;
   const apiKey = constants.API_KEY;
   const xSignature = xSigGenerator();
   const requestConfig = {
@@ -24,4 +21,4 @@ const searchHotelsByCityHandler = (cityName) => {
     .catch(() => 'Error');
 };
 
-module.exports = searchHotelsByCityHandler;
+module.exports = viewHotelDetailsHandler;

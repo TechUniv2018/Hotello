@@ -1,10 +1,9 @@
-const JWT = require('jsonwebtoken');
 const Models = require('../../models');
-const constants = require('../constants.json');
+const JWT = require('jsonwebtoken');
 
-
-const deleteUserHandler = (token, payload) => {
-  const decodedToken = JWT.decode(token, constants.JWT_SECRET);
+function getRegisteredUsers(token) {
+  const decodedToken = JWT.decode(token, 'RandomSecretString');
+  console.log('inside getRegUsesr');
   const promise = new Promise((resolve, reject) => {
     Models.users.find({
       where: {
@@ -12,20 +11,20 @@ const deleteUserHandler = (token, payload) => {
       },
     }).then((user) => {
       if (user.dataValues.role === 'admin') {
-        Models.users.destroy({
+        Models.users.findAll({
           where: {
-            email: payload.email,
+            role: 'publicUser',
           },
-        }).then(() => {
-          resolve('deleted');
+        }).then((usersRecords) => {
+          resolve({ usersRecords });
         });
       } else {
         reject(Error('Not admin'));
       }
     });
   });
-
   return promise;
-};
+}
 
-module.exports = deleteUserHandler;
+module.exports = getRegisteredUsers;
+

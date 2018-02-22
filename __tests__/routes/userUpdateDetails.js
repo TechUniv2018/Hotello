@@ -2,7 +2,7 @@ const server = require('../../src/server');
 const Models = require('../../models');
 const jwt = require('jsonwebtoken');
 const updateHandler = require('../../src/controllers/userUpdateDetails');
-
+const constants = require('../../src/constants.json');
 // jest.setTimeout(10000);
 describe('Testing the update user details route', () => {
   beforeAll((done) => {
@@ -34,7 +34,7 @@ describe('Testing the update user details route', () => {
         Authorization: jwt.sign({
           exp: Math.floor(Date.now() / 1000) + (60 * 60),
           email: 'admin@hotello.com',
-        }, 'RandomSecretString'),
+        }, constants.JWT_SECRET),
       },
     };
     server.inject(options, (response) => {
@@ -52,7 +52,7 @@ describe('Testing the update user details route', () => {
     const authorization = jwt.sign({
       exp: Math.floor(Date.now() / 1000) + (60 * 60),
       email: 'admin@hotello.com',
-    }, 'RandomSecretString');
+    }, constants.JWT_SECRET);
     const updateDetailsPromise = updateHandler.updateHandlerForGet(authorization);
     updateDetailsPromise.then((userDetails) => {
       expect(userDetails).toEqual({
@@ -68,7 +68,7 @@ describe('Testing the update user details route', () => {
     const authorization = jwt.sign({
       exp: Math.floor(Date.now() / 1000) + (60 * 60),
       email: 'admin@hotello.com',
-    }, 'RandomSecretString');
+    }, constants.JWT_SECRET);
     const payload = {
       firstName: 'Nidhi',
       lastName: 'Seth',

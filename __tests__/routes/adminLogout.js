@@ -1,6 +1,7 @@
 const server = require('../../src/server');
 const jwt = require('jsonwebtoken');
 const Models = require('../../models');
+const constants = require('../../src/constants.json');
 
 jest.setTimeout(10000);
 describe('Testing the logout route', () => {
@@ -29,7 +30,7 @@ describe('Testing the logout route', () => {
         Authorization: jwt.sign({
           exp: Math.floor(Date.now() / 1000) + (60 * 60),
           email: 'admin2@hotello.com',
-        }, 'RandomSecretString'),
+        }, constants.JWT_SECRET),
       },
     };
     server.inject(options, (response) => {
@@ -41,7 +42,7 @@ describe('Testing the logout route', () => {
     const requestToken = jwt.sign({
       exp: Math.floor(Date.now() / 1000) + (60 * 60),
       email: 'admin2@hotello.com',
-    }, 'RandomSecretString');
+    }, constants.JWT_SECRET);
     const options = {
       method: 'POST',
       url: '/logout',
@@ -50,7 +51,7 @@ describe('Testing the logout route', () => {
       },
     };
     server.inject(options, (response) => {
-      const decodedToken = jwt.decode(response.payload, 'RandomSecretString');
+      const decodedToken = jwt.decode(response.payload, constants.JWT_SECRET);
       expect(decodedToken.exp).toBeLessThanOrEqual(Math.floor(Date.now() / 1000));
       done();
     });
