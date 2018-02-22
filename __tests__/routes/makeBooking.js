@@ -2,7 +2,7 @@ const server = require('../../src/server');
 const jwt = require('jsonwebtoken');
 const Models = require('../../models');
 
-jest.setTimeout(10000);
+// jest.setTimeout(10000);
 describe('Testing the make booking route', () => {
   beforeAll((done) => {
     Models.users.destroy({ truncate: true }).then(() => done());
@@ -37,7 +37,7 @@ describe('Testing the make booking route', () => {
       },
       payload: {
         rooms: [{
-          rateKey: '20180315|20180316|W|1|215417|DBT.ST|CG-MERCHANT|RO||1~2~0||N@0060D576732E4672ABFC8FAC656BD2740604',
+          rateKey: '20180315|20180316|W|1|1550|DBT.SU|CG-TODOS1|RO||1~2~0||N@437B57020A444F319CCECC97CF9267451326',
           paxes: [{
             roomId: '1',
             type: 'AD',
@@ -49,8 +49,9 @@ describe('Testing the make booking route', () => {
       },
     };
     server.inject(options, (response) => {
-      console.log(response.result);
-      expect(response.result).toEqual();
+      const resJson = JSON.parse(response.payload);
+      console.log(resJson);
+      expect(resJson.status).toEqual('CONFIRMED');
       done();
     });
   });
