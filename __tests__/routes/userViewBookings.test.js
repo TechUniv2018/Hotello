@@ -95,5 +95,23 @@ describe('Test server for GET /adminViewBookings: ', () => {
       done();
     });
   });
+
+  test('Should return \'Unauthorized\' fro another user: ', (done) => {
+    const options = {
+      url: '/userViewBookings',
+      method: 'GET',
+      headers: {
+        Authorization: JWT.sign({
+          exp: Math.floor(Date.now() / 1000) + (60 * 60),
+          email: 'ajaysingh@gmail.com',
+        }, 'RandomSecretString'),
+      },
+    };
+
+    Server.inject(options, (response) => {
+      expect(response.result).toBe('Unauthorized');
+      done();
+    });
+  });
 });
 
