@@ -2,7 +2,7 @@ const server = require('../../src/server');
 const jwt = require('jsonwebtoken');
 
 
-describe('Testing the search hotels by city route', () => {
+describe('Testing viewHotelDetails route ', () => {
   beforeAll((done) => {
     setTimeout(() => { done(); }, 3000);
   });
@@ -10,7 +10,7 @@ describe('Testing the search hotels by city route', () => {
     done();
   });
 
-  it('Testing for request with no city name, should return error 404', (done) => {
+  it('Testing for request with no hotel ID, should return error 404', (done) => {
     const options = {
       method: 'GET',
       url: '/viewHotelDetails/',
@@ -26,7 +26,7 @@ describe('Testing the search hotels by city route', () => {
       done();
     });
   });
-  it('Testing for request with invalid characters in city name, should return error 400', (done) => {
+  it('Testing for request proper hotel id, should return error 200', (done) => {
     const options = {
       method: 'GET',
       url: '/viewHotelDetails/1',
@@ -43,21 +43,23 @@ describe('Testing the search hotels by city route', () => {
     });
   });
 
-  // it('Testing for request with valid city name, should return list of hotels with details', (done) => {
-  //   const options = {
-  //     method: 'GET',
-  //     url: '/searchHotelsByCity/Mount%20Abu',
-  //     headers: {
-  //       Authorization: jwt.sign({
-  //         exp: Math.floor(Date.now() / 1000) + (60 * 60),
-  //         email: 'sampleuser@gmail.com',
-  //       }, 'RandomSecretString'),
-  //     },
-  //   };
-  //   server.inject(options, (response) => {
-  //     expect(response.result).not.toBe('Error');
-  //     expect(response.statusCode).not.toBe(500);
-  //     done();
-  //   });
-  // });
+  it('Testing for request with proper hotel id, checking if response is hotel details object', (done) => {
+    const options = {
+      method: 'GET',
+      url: '/viewHotelDetails/1',
+      headers: {
+        Authorization: jwt.sign({
+          exp: Math.floor(Date.now() / 1000) + (60 * 60),
+          email: 'sampleuser@gmail.com',
+        }, 'RandomSecretString'),
+      },
+    };
+    server.inject(options, (response) => {
+      // console.log(JSON.parse(response.payload));
+      expect(Object.keys(JSON.parse(response.payload))).toContain('rooms');
+      expect(Object.keys(JSON.parse(response.payload))).toContain('images');
+      expect(Object.keys(JSON.parse(response.payload))).toContain('facilities');
+      done();
+    });
+  });
 });

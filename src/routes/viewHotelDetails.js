@@ -10,8 +10,8 @@ module.exports = [
         if (resultValue === 'Error') {
           reply('Error').code(500);
         }
-        console.log(resultValue.hotel.rooms);
-        reply(resultValue);
+        // console.log(resultValue.hotel.rooms);
+        reply(resultValue.hotel);
       });
     },
     config: {
