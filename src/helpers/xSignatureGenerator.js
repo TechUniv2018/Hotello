@@ -2,8 +2,8 @@ const crypto = require('crypto');
 
 
 const xSignatureGenerator = () => {
-  const apiKey = 'dtt3mx22k7bvbc3k8p749scr';
-  const apiSecret = 'TSA8mwPep7';
+  const apiKey = 'unm95u7zree2vf9jjcev4ecv';
+  const apiSecret = 'Fpr9adAjwQ';
   //   const currentTime = Math.floor((new Date().getTime()) / 1000);
   //   const inputString = apiKey + apiSecret + currentTime;
   //   const xSignature = crypto.createHash('sha256').update(inputString).digest('hex');
@@ -15,4 +15,3 @@ const xSignatureGenerator = () => {
 };
 
 module.exports = xSignatureGenerator;
-
