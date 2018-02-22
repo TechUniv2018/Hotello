@@ -21,7 +21,7 @@ describe('Test server for POST /usersignup: ', () => {
         firstName: 'Ajay',
         lastName: 'Singh',
         password: 'P@$$w0rd',
-        role: 'user',
+        role: 'publicUser',
         phoneNumber: '7823298390',
       },
     };
@@ -40,7 +40,7 @@ describe('Test server for POST /usersignup: ', () => {
         firstName: 'Gajay',
         lastName: 'Singha',
         password: 'P@$$w0rd',
-        role: 'user',
+        role: 'publicUser',
         phoneNumber: '7823298390',
       },
     };
@@ -60,7 +60,7 @@ describe('Test server for POST /usersignup: ', () => {
         firstName: null,
         lastName: 'Singh',
         password: 'P@$$w0rd',
-        role: 'user',
+        role: 'publicUser',
       },
     };
     Server.inject(options, (response) => {
@@ -79,7 +79,7 @@ describe('Test server for POST /usersignup: ', () => {
         firstName: 'lionel',
         lastName: 'messi',
         password: 'P@$$w0rd',
-        role: 'user',
+        role: 'publicUser',
         phoneNumber: '7823298390',
       },
     };
