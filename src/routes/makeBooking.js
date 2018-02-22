@@ -1,4 +1,5 @@
 const makeBookingHandler = require('../controllers/makeBooking.js');
+const dbSaveBooking = require('../controllers/saveBooking');
 
 module.exports = [
   {
@@ -8,7 +9,10 @@ module.exports = [
       // console.log('handler');
       const result = makeBookingHandler(request.headers.authorization, request.payload);
       result.then((res) => {
-        reply(res.booking);
+        if (res.booking) {
+          dbSaveBooking(request.headers.authorization, res.booking);
+          reply(res.booking);
+        } else reply(res);
       });
     },
   },

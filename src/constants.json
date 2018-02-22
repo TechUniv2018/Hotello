@@ -1,5 +1,96 @@
 {
   "JWT_SECRET" : "XabRBQ12sad",
-  "API_KEY" : "dha2w29wubt6mqh256xnch3d",
-  "API_SECRET": "chqYCFypzA"
+  "API_KEY" : "rzgqtb3qnpzdkrw2s2u5swmd",
+  "API_SECRET": "P8fkV9w9ZU",
+  "BOOKING":{
+        "reference": "1-3777734",
+        "clientReference": "INTEGRATIONAGENCY",
+        "creationDate": "2018-02-22",
+        "status": "CONFIRMED",
+        "modificationPolicies": {
+            "cancellation": true,
+            "modification": true
+        },
+        "creationUser": "98a9gvgemf4rsaseztstk7p8",
+        "holder": {
+            "name": "HOLDERFIRSTNAME",
+            "surname": "HOLDERLASTNAME"
+        },
+        "hotel": {
+            "checkOut": "2018-03-16",
+            "checkIn": "2018-03-15",
+            "code": 212167,
+            "name": "Hotel Ca Sa Padrina",
+            "categoryCode": "3EST",
+            "categoryName": "3 STARS",
+            "destinationCode": "PMI",
+            "destinationName": "Majorca",
+            "zoneCode": 10,
+            "zoneName": "Palma",
+            "latitude": "39.5732284",
+            "longitude": "2.651458199999979",
+            "rooms": [
+                {
+                    "status": "CONFIRMED",
+                    "id": 1,
+                    "code": "DBT.ST",
+                    "name": "Double or Twin STANDARD",
+                    "paxes": [
+                        {
+                            "roomId": 1,
+                            "type": "AD",
+                            "name": "Second Adult Name",
+                            "surname": "Surname"
+                        },
+                        {
+                            "roomId": 1,
+                            "type": "AD",
+                            "name": "First Adult Name",
+                            "surname": "Surname"
+                        }
+                    ],
+                    "rates": [
+                        {
+                            "rateClass": "NOR",
+                            "net": "89.19",
+                            "rateComments": "1x Double or Twin Estimated total amount of taxes & fees for this booking: 4.40 Euro   payable on arrival  \r. Car park NO   . . To get inside the hotel the client must call 0034971425300 to get a 4 digit code to be allow to enter the hotels",
+                            "paymentType": "AT_WEB",
+                            "packaging": false,
+                            "boardCode": "RO",
+                            "boardName": "ROOM ONLY",
+                            "cancellationPolicies": [
+                                {
+                                    "amount": "89.19",
+                                    "from": "2018-03-09T23:59:00+01:00"
+                                }
+                            ],
+                            "taxes": {
+                                "taxes": [
+                                    {
+                                        "included": false,
+                                        "amount": "4.40",
+                                        "currency": "EUR"
+                                    }
+                                ],
+                                "allIncluded": false
+                            },
+                            "rooms": 1,
+                            "adults": 2,
+                            "children": 0
+                        }
+                    ]
+                }
+            ],
+            "totalNet": "89.19",
+            "currency": "EUR",
+            "supplier": {
+                "name": "HOTELBEDS PRODUCT,S.L.U.",
+                "vatNumber": "ESB38877676"
+            }
+        },
+        "remark": "Booking remarks are to be written here.",
+        "totalNet": 89.19,
+        "pendingAmount": 89.19,
+        "currency": "EUR"
+    },
 }

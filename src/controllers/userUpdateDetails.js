@@ -3,7 +3,7 @@ const Models = require('../../models');
 const constants = require('../constants.json');
 
 const updateHandlerForGet = (authorization) => {
-  const decodedToken = JWT.decode(authorization, 'RandomSecretString');
+  const decodedToken = JWT.decode(authorization, constants.JWT_SECRET);
   // console.log(decodedsToken.email, '###');
   const promise = new Promise((resolve) => {
     Models.users.find({
