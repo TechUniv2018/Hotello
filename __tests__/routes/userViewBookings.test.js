@@ -56,7 +56,7 @@ describe('Test server for GET /adminViewBookings: ', () => {
         Authorization: JWT.sign({
           exp: Math.floor(Date.now() / 1000) + (60 * 60),
           email: 'ajaysingh@gmail.com',
-        }, constants.JSON_SECRET),
+        }, constants.JWT_SECRET),
       },
     };
     Server.inject(options, (response) => {
@@ -73,7 +73,7 @@ describe('Test server for GET /adminViewBookings: ', () => {
         Authorization: JWT.sign({
           exp: Math.floor(Date.now() / 1000) + (60 * 60),
           email: 'alexander@gmail.com',
-        }, constants.JSON_SECRET),
+        }, constants.JWT_SECRET),
       },
     };
 
@@ -105,7 +105,7 @@ describe('Test server for GET /adminViewBookings: ', () => {
         Authorization: JWT.sign({
           exp: Math.floor(Date.now() / 1000) + (60 * 60),
           email: 'ajaysingh@gmail.com',
-        }, constants.JSON_SECRET),
+        }, constants.JWT_SECRET),
       },
     };
 
