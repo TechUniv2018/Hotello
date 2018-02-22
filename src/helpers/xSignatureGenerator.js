@@ -1,9 +1,11 @@
+const constants = require('../constants.json');
+
 const crypto = require('crypto');
 
 
 const xSignatureGenerator = () => {
-  const apiKey = 'dha2w29wubt6mqh256xnch3d';
-  const apiSecret = 'chqYCFypzA';
+  const apiKey = constants.API_KEY;
+  const apiSecret = constants.API_SECRET;
 
   //   const currentTime = Math.floor((new Date().getTime()) / 1000);
   //   const inputString = apiKey + apiSecret + currentTime;
@@ -16,4 +18,3 @@ const xSignatureGenerator = () => {
 };
 
 module.exports = xSignatureGenerator;
-

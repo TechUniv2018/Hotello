@@ -31,7 +31,7 @@ server.register(require('hapi-auth-jwt2'), (err) => {
   server.auth.strategy(
     'jwt', 'jwt',
     {
-      key: 'NeverShareYourSecret', // Never Share your secret key
+      key: constants.JWT_SECRET, // Never Share your secret key
       validateFunc: validate, // validate function defined above
       verifyOptions: { algorithms: ['HS256'] }, // pick a strong algorithm
     },

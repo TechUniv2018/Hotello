@@ -1,5 +1,6 @@
 const Models = require('../../models');
 const JWT = require('jsonwebtoken');
+const constants = require('../constants.json');
 
 module.exports = {
   validateAndSign: (request, reply) => {
@@ -10,7 +11,7 @@ module.exports = {
           reply(JWT.sign({
             exp: Math.floor(Date.now() / 1000) + (60 * 60),
             email: request.payload.email,
-          }, 'RandomSecretString'));
+          }, constants.JWT_SECRET));
         } else {
           reply('Wrong password');
         }
