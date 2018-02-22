@@ -98,7 +98,6 @@ describe('Test handler for GET /viewBookingsByCity: ', () => {
       done();
     });
   });
-
   it('Testing for city with single booking, should return 1 row', (done) => {
     const token = JWT.sign({
       exp: Math.floor(Date.now() / 1000) + (60 * 60),
@@ -109,6 +108,19 @@ describe('Test handler for GET /viewBookingsByCity: ', () => {
       const expectedArr = [{
         amount: 1720, bookingdate: '2018-02-15', bookingid: 'ref3458', checkin: '2018-02-20', checkout: '2018-02-25', city: 'Mumbai', email: 'ajay3singh@gmail.com', hotelname: 'Royal Orchid', numofguests: 2, numofrooms: 1,
       }];
+      console.log(response);
+      expect(response).toEqual(expectedArr);
+      done();
+    });
+  });
+  it('Testing for city with no bookings, should return 0 rows', (done) => {
+    const token = JWT.sign({
+      exp: Math.floor(Date.now() / 1000) + (60 * 60),
+      email: 'admin@hotello.com',
+    }, constants.JWT_SECRET);
+
+    viewBookingsByCityHandler(token, 'Chennai').then((response) => {
+      const expectedArr = [];
       console.log(response);
       expect(response).toEqual(expectedArr);
       done();
