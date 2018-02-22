@@ -2,7 +2,8 @@ const adminViewBookingsHandler = require('../controllers/adminViewBookingsHandle
 
 const handler = (request, reply) => {
   const data = adminViewBookingsHandler(request.headers.authorization);
-  reply(data);
+  // reply(data);
+  data.then(reply);
 };
 
 module.exports = {
