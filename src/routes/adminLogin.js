@@ -7,6 +7,7 @@ module.exports = [
     path: '/adminLogin',
     handler: handlerFunction.validateAndSign,
     config: {
+      tags: ['api'],
       auth: false,
       validate: {
         payload: joiValidation,

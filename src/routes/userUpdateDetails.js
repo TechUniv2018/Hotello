@@ -1,9 +1,10 @@
 const updateHandler = require('../controllers/userUpdateDetails');
+const userUpdateDetailsValidation = require('../schemes/userUpdateDetailsValidation');
 
 module.exports = [
   {
     method: 'GET',
-    path: '/userDetails',
+    path: '/userUpdateDetails',
     handler: (request, reply) => {
       const userDetailsPromise = updateHandler.updateHandlerForGet(request.headers.authorization);
       console.log(userDetailsPromise, '&&&&');
@@ -16,7 +17,7 @@ module.exports = [
   },
   {
     method: 'PUT',
-    path: '/userDetails',
+    path: '/userUpdateDetails',
     handler: (request, reply) => {
       const responsePromise = updateHandler.updateHandlerForPut(
         request.headers.authorization,
@@ -27,6 +28,9 @@ module.exports = [
     config: {
       tags: ['api'],
       auth: 'jwt',
+      validate: {
+        payload: userUpdateDetailsValidation,
+      },
     },
   },
 ];
