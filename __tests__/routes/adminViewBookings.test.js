@@ -23,6 +23,7 @@ describe('Test server for GET /adminViewBookings: ', () => {
           checkout: '2018-02-25',
           numofguests: 2,
           numofrooms: 1,
+          city: 'Bangalore',
         },
         {
           bookingid: 'ref3456',
@@ -34,6 +35,7 @@ describe('Test server for GET /adminViewBookings: ', () => {
           checkout: '2018-02-25',
           numofguests: 2,
           numofrooms: 1,
+          city: 'Bangalore',
         }]).then(() => done());
       });
     });
@@ -84,6 +86,7 @@ describe('Test server for GET /adminViewBookings: ', () => {
         hotelname: 'Royal Orchid',
         numofguests: 2,
         numofrooms: 1,
+        city: 'Bangalore',
       },
       {
         amount: 1720,
@@ -95,6 +98,7 @@ describe('Test server for GET /adminViewBookings: ', () => {
         hotelname: 'Royal Orchid',
         numofguests: 2,
         numofrooms: 1,
+        city: 'Bangalore',
       }];
     // const testObj = { allBookings };
     Server.inject(options, (response) => {

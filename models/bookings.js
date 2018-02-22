@@ -1,6 +1,7 @@
-'use strict';
+
+
 module.exports = (sequelize, DataTypes) => {
-  var bookings = sequelize.define('bookings', {
+  let bookings = sequelize.define('bookings', {
     bookingid: DataTypes.STRING,
     email: DataTypes.STRING,
     bookingdate: DataTypes.DATEONLY,
@@ -9,13 +10,14 @@ module.exports = (sequelize, DataTypes) => {
     checkin: DataTypes.DATEONLY,
     checkout: DataTypes.DATEONLY,
     numofguests: DataTypes.INTEGER,
-    numofrooms: DataTypes.INTEGER
+    numofrooms: DataTypes.INTEGER,
+    city: DataTypes.STRING,
   }, {
     classMethods: {
-      associate: function(models) {
+      associate(models) {
         // associations can be defined here
-      }
-    }
+      },
+    },
   });
   return bookings;
 };
