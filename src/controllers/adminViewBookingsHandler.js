@@ -1,7 +1,7 @@
 const JWT = require('jsonwebtoken');
 const Models = require('../../models');
 
-const adminViewBookingshandler = (authorization) => {
+const adminViewBookingsHandler = (authorization) => {
   const decodedToken = JWT.decode(authorization, 'RandomSecretString');
   const requesterEmail = decodedToken.email;
 
@@ -17,11 +17,10 @@ const adminViewBookingshandler = (authorization) => {
               return result;
             });
         }
-      } else {
-        return 'Unauthorized';
       }
+      return 'Unauthorized';
     });
   // console.log(decodedToken);
 };
 
-module.exports = adminViewBookingshandler;
+module.exports = adminViewBookingsHandler;

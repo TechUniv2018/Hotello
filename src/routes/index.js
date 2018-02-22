@@ -9,17 +9,20 @@ const addUser = require('./addUser');
 const deleteUser = require('./deleteUser');
 const adminUpdateDetails = require('./adminUpdateDetails');
 const searchHotelsByCity = require('./searchHotelsByCity');
+const userViewBookings = require('./userViewBookings');
 
 
-module.exports = [].concat(addUser,
-                           userSignUp,
-                           publicLogin,
-                           login,
-                           logout,
-                           updateDetails,
-                           suspendUser,
-                           adminUpdateDetails,
-                           deleteUser,
-                           searchHotelsByCity,
-                           adminViewBookings
-                          );
+module.exports = [].concat(
+  addUser,
+  userSignUp,
+  publicLogin,
+  login,
+  logout,
+  updateDetails,
+  suspendUser,
+  adminUpdateDetails,
+  deleteUser,
+  searchHotelsByCity,
+  adminViewBookings,
+  userViewBookings,
+);
