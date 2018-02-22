@@ -70,6 +70,23 @@ describe('Testing the add user details route', () => {
       done();
     });
   });
+  it('Checking for response.result from the viewRegisteredusers route', (done) => {
+    const authorization = jwt.sign({
+      exp: Math.floor(Date.now() / 1000) + (60 * 60),
+      email: 'admin@hotello.com',
+    }, 'RandomSecretString');
+    const options = {
+      method: 'GET',
+      url: '/viewRegisteredUser',
+      headers: {
+        Authorization: authorization,
+      },
+    };
+    server.inject(options, (response) => {
+      expect(response.result.usersRecords.length).toBe(4);
+      done();
+    });
+  });
   // it('should return an error when anyone other than admin tries to use route', (done) => {
   //   const authorization = jwt.sign({
   //     exp: Math.floor(Date.now() / 1000) + (60 * 60),
