@@ -1,8 +1,9 @@
 const JWT = require('jsonwebtoken');
 const Models = require('../../models');
+const constants = require('../constants.json');
 
 function addUser(token, payload) {
-  const decodedToken = JWT.decode(token, 'RandomSecretString');
+  const decodedToken = JWT.decode(token, constants.JWT_SECRET);
   const promise = new Promise((resolve, reject) => {
     Models.users.find({
       where: {
@@ -27,4 +28,3 @@ function addUser(token, payload) {
 }
 
 module.exports = addUser;
-

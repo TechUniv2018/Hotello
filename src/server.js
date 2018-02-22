@@ -1,5 +1,6 @@
 const Hapi = require('hapi');
 const Routes = require('./routes');
+const constants = require('./constants.json');
 
 const server = new Hapi.Server();
 
@@ -25,7 +26,7 @@ server.register(require('hapi-auth-jwt2'), (err) => {
   server.auth.strategy(
     'jwt', 'jwt',
     {
-      key: 'RandomSecretString',
+      key: constants.JWT_SECRET,
       validateFunc: validate,
       verifyOptions: { algorithms: ['HS256'] },
     },

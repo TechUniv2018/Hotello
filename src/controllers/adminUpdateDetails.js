@@ -1,8 +1,9 @@
 const JWT = require('jsonwebtoken');
 const Models = require('../../models');
+const constants = require('../constants.json');
 
 const adminUpdateDetailsHandler = (authorization, payload) => {
-  const decodedToken = JWT.decode(authorization, 'RandomSecretString');
+  const decodedToken = JWT.decode(authorization, constants.JWT_SECRET);
   const requesterEmail = decodedToken.email;
   return Models.users.findOne({ where: { email: requesterEmail } }).then((value) => {
     if (value !== null) {

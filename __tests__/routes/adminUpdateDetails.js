@@ -2,6 +2,7 @@ const server = require('../../src/server');
 const Models = require('../../models');
 const jwt = require('jsonwebtoken');
 // const updateHandler = require('../../src/controllers/adminUpdateDetails');
+const constants = require('../../src/constants.json');
 
 const usersArray = [{
   firstName: 'Admin',
@@ -48,7 +49,7 @@ describe('Testing the admin update details route', () => {
         Authorization: jwt.sign({
           exp: Math.floor(Date.now() / 1000) + (60 * 60),
           email: 'admin@hotello.com',
-        }, 'RandomSecretString'),
+        }, constants.JWT_SECRET),
       },
       payload: {
         email: 'sampleuser@gmail.com',
@@ -70,7 +71,7 @@ describe('Testing the admin update details route', () => {
         Authorization: jwt.sign({
           exp: Math.floor(Date.now() / 1000) + (60 * 60),
           email: 'notadmin@hotello.com',
-        }, 'RandomSecretString'),
+        }, constants.JWT_SECRET),
       },
       payload: {
         email: 'sampleuser@gmail.com',
@@ -92,7 +93,7 @@ describe('Testing the admin update details route', () => {
         Authorization: jwt.sign({
           exp: Math.floor(Date.now() / 1000) + (60 * 60),
           email: 'sampleuser@gmail.com',
-        }, 'RandomSecretString'),
+        }, constants.JWT_SECRET),
       },
       payload: {
         email: 'sampleuser@gmail.com',
@@ -114,7 +115,7 @@ describe('Testing the admin update details route', () => {
         Authorization: jwt.sign({
           exp: Math.floor(Date.now() / 1000) + (60 * 60),
           email: 'admin@hotello.com',
-        }, 'RandomSecretString'),
+        }, constants.JWT_SECRET),
       },
       payload: {
         email: 'sampleuser2@gmail.com',
@@ -136,7 +137,7 @@ describe('Testing the admin update details route', () => {
         Authorization: jwt.sign({
           exp: Math.floor(Date.now() / 1000) + (60 * 60),
           email: 'admin@hotello.com',
-        }, 'RandomSecretString'),
+        }, constants.JWT_SECRET),
       },
       payload: {
         email: 'sampleuser@gmail.com',

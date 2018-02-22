@@ -1,6 +1,7 @@
 const suspendUserHandler = require('../../src/controllers/suspendUserHandler');
 const jwt = require('jsonwebtoken');
 const Models = require('../../models');
+const constants = require('../../src/constants.json');
 
 jest.setTimeout(10000);
 describe('Testing the suspend user handler function', () => {
@@ -32,7 +33,7 @@ describe('Testing the suspend user handler function', () => {
     const authorization = jwt.sign({
       exp: Math.floor(Date.now() / 1000) + (60 * 60),
       email: 'publicUser@hotello.com',
-    }, 'RandomSecretString');
+    }, constants.JWT_SECRET);
     const payload = {
       email: 'publicUser@hotello.com',
     };

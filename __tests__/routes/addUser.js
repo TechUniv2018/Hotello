@@ -1,6 +1,7 @@
 const server = require('../../src/server');
 const Models = require('../../models');
 const jwt = require('jsonwebtoken');
+const constants = require('../../src/constants.json');
 
 jest.setTimeout(10000);
 describe('Testing the add user details route', () => {
@@ -32,7 +33,7 @@ describe('Testing the add user details route', () => {
     const authorization = jwt.sign({
       exp: Math.floor(Date.now() / 1000) + (60 * 60),
       email: 'admin@hotello.com',
-    }, 'RandomSecretString');
+    }, constants.JWT_SECRET);
     const toAdd = {
       email: 'kukkal@gmail.com',
       firstName: 'Ajay',
@@ -58,7 +59,7 @@ describe('Testing the add user details route', () => {
     const authorization = jwt.sign({
       exp: Math.floor(Date.now() / 1000) + (60 * 60),
       email: 'publicUser@hotello.com',
-    }, 'RandomSecretString');
+    }, constants.JWT_SECRET);
     const toAdd = {
       email: 'kukkal@gmail.com',
       firstName: 'Ajay',
@@ -85,7 +86,7 @@ describe('Testing the add user details route', () => {
   //   const authorization = jwt.sign({
   //     exp: Math.floor(Date.now() / 1000) + (60 * 60),
   //     email: 'admin@hotello.com',
-  //   }, 'RandomSecretString');
+  //   }, constants.JWT_SECRET);
   //   const options = {
   //     method: 'PUT',
   //     url: '/suspendUser',
