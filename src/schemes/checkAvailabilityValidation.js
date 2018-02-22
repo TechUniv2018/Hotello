@@ -8,7 +8,7 @@ const checkAvailabilityValidation = Joi.object({
   adults: Joi.number().integer().min(1).required(),
   children: Joi.number().integer().min(0).required(),
   childrenAges: Joi.array().items(Joi.number().integer().min(0).max(17)).when('children', { is: Joi.number().integer().min(1), then: Joi.required(), otherwise: Joi.optional() }),
-  hotelCode: Joi.number().integer().min(1).required(),
+  hotels: Joi.array().items(Joi.number().integer().min(1)).required(),
 });
 
 module.exports = checkAvailabilityValidation;
