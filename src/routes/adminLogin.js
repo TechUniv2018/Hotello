@@ -17,6 +17,7 @@ module.exports = [
     method: 'GET',
     path: '/jwtVerification',
     config: {
+      tags: ['api'],
       auth: 'jwt',
     },
     handler: (request, reply) => {

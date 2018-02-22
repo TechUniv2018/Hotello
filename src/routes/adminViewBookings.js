@@ -11,6 +11,7 @@ module.exports = {
   method: 'GET',
   handler,
   config: {
+    tags: ['api'],
     auth: 'jwt',
   },
 };

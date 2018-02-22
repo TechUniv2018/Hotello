@@ -9,5 +9,8 @@ module.exports = {
   path: '/userViewBookings',
   method: 'GET',
   handler,
+  config: {
+    tags: ['api'],
+  },
 };
 

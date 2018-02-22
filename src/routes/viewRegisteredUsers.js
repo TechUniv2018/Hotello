@@ -11,6 +11,7 @@ module.exports = [
         .catch(error => reply(error.message));
     },
     config: {
+      tags: ['api'],
       auth: 'jwt',
     },
   },

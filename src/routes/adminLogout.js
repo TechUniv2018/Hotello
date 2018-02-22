@@ -9,6 +9,7 @@ module.exports = [
       reply(signedToken);
     },
     config: {
+      tags: ['api'],
       auth: 'jwt',
     },
   },
