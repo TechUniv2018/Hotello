@@ -20,7 +20,7 @@ describe('Testing the add user details route', () => {
     {
       email: 'publicUser@hotello.com',
       password: 'PublicUser@1234',
-      role: 'user',
+      role: 'publicUser',
     }]).then(() => {
       done();
     });

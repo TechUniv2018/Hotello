@@ -4,8 +4,10 @@ const crypto = require('crypto');
 
 
 const xSignatureGenerator = () => {
+
   const apiKey = constants.API_KEY;
   const apiSecret = constants.API_SECRET;
+
   //   const currentTime = Math.floor((new Date().getTime()) / 1000);
   //   const inputString = apiKey + apiSecret + currentTime;
   //   const xSignature = crypto.createHash('sha256').update(inputString).digest('hex');

@@ -16,7 +16,7 @@ function addUser(token, payload) {
         } = payload;
         Models.users.create({
           firstName, lastName, password, email, role, phoneNumber,
-        }).then((userDetails) => {
+        }).then(() => {
           resolve({ userDetails: { firstName, lastName, email }, msg: 'User added' });
         });
       } else {
