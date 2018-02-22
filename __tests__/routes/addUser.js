@@ -19,7 +19,7 @@ describe('Testing the add user details route', () => {
     {
       email: 'publicUser@hotello.com',
       password: 'PublicUser@1234',
-      role: 'user',
+      role: 'publicUser',
     }]).then(() => {
       done();
     });
@@ -27,7 +27,7 @@ describe('Testing the add user details route', () => {
   afterEach((done) => {
     Models.users.destroy({ truncate: true }).then(() => done());
   });
-  
+
   it('Checking for response from the addUser route', (done) => {
     const authorization = jwt.sign({
       exp: Math.floor(Date.now() / 1000) + (60 * 60),
@@ -40,7 +40,7 @@ describe('Testing the add user details route', () => {
       password: 'P@$$w0rd',
       role: 'admin',
       phoneNumber: '7823298390',
-      }
+    };
     const options = {
       method: 'POST',
       url: '/addUser',
@@ -66,7 +66,7 @@ describe('Testing the add user details route', () => {
       password: 'P@$$w0rd',
       role: 'publicUser',
       phoneNumber: '7823298390',
-      }
+    };
     const options = {
       method: 'POST',
       url: '/addUser',

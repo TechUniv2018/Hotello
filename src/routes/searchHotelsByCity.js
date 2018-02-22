@@ -10,6 +10,8 @@ module.exports = [
       result.then((resultValue) => {
         if (resultValue === 'Error') {
           reply('Error').code(500);
+        } else {
+          reply(resultValue);
         }
       });
     },

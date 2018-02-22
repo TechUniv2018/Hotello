@@ -46,7 +46,7 @@ describe('Testing the search hotels by city route', () => {
   it('Testing for request with valid city name, should return list of hotels with details', (done) => {
     const options = {
       method: 'GET',
-      url: '/searchHotelsByCity/Mount%20Abu',
+      url: '/searchHotelsByCity/Bangalore',
       headers: {
         Authorization: jwt.sign({
           exp: Math.floor(Date.now() / 1000) + (60 * 60),
@@ -55,9 +55,10 @@ describe('Testing the search hotels by city route', () => {
       },
     };
     server.inject(options, (response) => {
+      // console.log(response);
       expect(response.result).not.toBe('Error');
       expect(response.statusCode).not.toBe(500);
       done();
     });
-  });
+  }, 10000);
 });

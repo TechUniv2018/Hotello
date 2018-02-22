@@ -1,8 +1,9 @@
-const JWT = require('jsonwebtoken');
 const Models = require('../../models');
+const JWT = require('jsonwebtoken');
 
-function addUser(token, payload) {
+function getRegisteredUsers(token) {
   const decodedToken = JWT.decode(token, 'RandomSecretString');
+  console.log('inside getRegUsesr');
   const promise = new Promise((resolve, reject) => {
     Models.users.find({
       where: {
@@ -10,13 +11,12 @@ function addUser(token, payload) {
       },
     }).then((user) => {
       if (user.dataValues.role === 'admin') {
-        const {
-          firstName, lastName, password, email, role, phoneNumber,
-        } = payload;
-        Models.users.create({
-          firstName, lastName, password, email, role, phoneNumber,
-        }).then(() => {
-          resolve({ userDetails: { firstName, lastName, email }, msg: 'User added' });
+        Models.users.findAll({
+          where: {
+            role: 'publicUser',
+          },
+        }).then((usersRecords) => {
+          resolve({ usersRecords });
         });
       } else {
         reject(Error('Not admin'));
@@ -26,5 +26,5 @@ function addUser(token, payload) {
   return promise;
 }
 
-module.exports = addUser;
+module.exports = getRegisteredUsers;
 
