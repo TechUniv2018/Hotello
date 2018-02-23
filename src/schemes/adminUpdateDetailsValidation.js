@@ -7,5 +7,5 @@ module.exports = Joi.object({
   email: Joi.string().email().required().example('alex@gmail.com'),
   firstName: Joi.string().optional().regex(nameRegEx).example('Alex'),
   lastName: Joi.string().optional().regex(nameRegEx).example('Cage'),
-  phoneNumber: Joi.string().optional().regex(phoneNumberRegEx).example('98998767654'),
+  phoneNumber: Joi.string().optional().regex(phoneNumberRegEx).example('9899877654'),
 }).options({ abortEarly: false });
