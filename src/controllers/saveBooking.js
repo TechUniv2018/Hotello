@@ -20,8 +20,9 @@ module.exports = (authorization, booking) => {
       numofguests: guests,
       numofrooms: booking.hotel.rooms.length,
       city: booking.hotel.destinationName,
+    }).then(() => {
+      resolve();
     });
-    resolve();
   });
   return promise;
 };
