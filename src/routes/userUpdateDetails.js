@@ -1,5 +1,6 @@
 const updateHandler = require('../controllers/userUpdateDetails');
 const userUpdateDetailsValidation = require('../schemes/userUpdateDetailsValidation');
+const Joi = require('joi');
 
 module.exports = [
   {
@@ -13,6 +14,9 @@ module.exports = [
     config: {
       tags: ['api'],
       auth: 'jwt',
+      validate: {
+        headers: Joi.object({ authorization: Joi.string() }).unknown(true),
+      },
     },
   },
   {
@@ -30,6 +34,7 @@ module.exports = [
       auth: 'jwt',
       validate: {
         payload: userUpdateDetailsValidation,
+        headers: Joi.object({ authorization: Joi.string() }).unknown(true),
       },
     },
   },
