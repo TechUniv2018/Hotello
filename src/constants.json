@@ -1,17 +1,17 @@
 {
   "JWT_SECRET" : "XabRBQ12sad",
-  "API_KEY" : "rzgqtb3qnpzdkrw2s2u5swmd",
-  "API_SECRET": "P8fkV9w9ZU",
-  "BOOKING":{
-        "reference": "1-3777734",
+  "API_KEY" : "rhsqpwqh8cubj2skv43bhp7z",
+  "API_SECRET": "QmADfZ2ntW",
+  "BOOKING": {
+        "reference": "1-3777867",
         "clientReference": "INTEGRATIONAGENCY",
-        "creationDate": "2018-02-22",
+        "creationDate": "2018-02-23",
         "status": "CONFIRMED",
         "modificationPolicies": {
             "cancellation": true,
             "modification": true
         },
-        "creationUser": "98a9gvgemf4rsaseztstk7p8",
+        "creationUser": "rhsqpwqh8cubj2skv43bhp7z",
         "holder": {
             "name": "HOLDERFIRSTNAME",
             "surname": "HOLDERLASTNAME"
@@ -19,22 +19,22 @@
         "hotel": {
             "checkOut": "2018-03-16",
             "checkIn": "2018-03-15",
-            "code": 212167,
-            "name": "Hotel Ca Sa Padrina",
-            "categoryCode": "3EST",
-            "categoryName": "3 STARS",
+            "code": 215417,
+            "name": "Brondo Architect",
+            "categoryCode": "4EST",
+            "categoryName": "4 STARS",
             "destinationCode": "PMI",
             "destinationName": "Majorca",
             "zoneCode": 10,
             "zoneName": "Palma",
-            "latitude": "39.5732284",
-            "longitude": "2.651458199999979",
+            "latitude": "39.571015",
+            "longitude": "2.647788",
             "rooms": [
                 {
                     "status": "CONFIRMED",
                     "id": 1,
-                    "code": "DBT.ST",
-                    "name": "Double or Twin STANDARD",
+                    "code": "JSU.PI",
+                    "name": "JUNIOR SUITE PREMIUM",
                     "paxes": [
                         {
                             "roomId": 1,
@@ -52,27 +52,40 @@
                     "rates": [
                         {
                             "rateClass": "NOR",
-                            "net": "89.19",
-                            "rateComments": "1x Double or Twin Estimated total amount of taxes & fees for this booking: 4.40 Euro   payable on arrival  \r. Car park NO   . . To get inside the hotel the client must call 0034971425300 to get a 4 digit code to be allow to enter the hotels",
+                            "net": "180.65",
+                            "rateComments": "1x JUNIOR SUITE Estimated total amount of taxes & fees for this booking: 6.60 Euro   payable on arrival  \r. Car park NO   . . LATE CHECK OUT FROM 15.00H, WILL HAVE ADITIONAL CHARGE OF 50.00€ PAYABLE AT THE HOTEL. \nLATE CHECK OUT UNTIL 15.00H, WILL HAVE ADITIONAL CHARGE OF  30.00€ PAYABLE AT THE HOTEL.",
                             "paymentType": "AT_WEB",
                             "packaging": false,
-                            "boardCode": "RO",
-                            "boardName": "ROOM ONLY",
+                            "boardCode": "BB",
+                            "boardName": "BED AND BREAKFAST",
                             "cancellationPolicies": [
                                 {
-                                    "amount": "89.19",
-                                    "from": "2018-03-09T23:59:00+01:00"
+                                    "amount": "180.65",
+                                    "from": "2018-03-10T23:59:00+01:00"
                                 }
                             ],
                             "taxes": {
                                 "taxes": [
                                     {
                                         "included": false,
-                                        "amount": "4.40",
+                                        "amount": "6.60",
                                         "currency": "EUR"
                                     }
                                 ],
                                 "allIncluded": false
+                            },
+                            "rateBreakDown": {
+                                "rateSupplements": [
+                                    {
+                                        "code": "SR",
+                                        "name": "UNKNOWN",
+                                        "from": "2018-03-15",
+                                        "to": "2018-03-16",
+                                        "amount": "28.76",
+                                        "nights": 1,
+                                        "paxNumber": 2
+                                    }
+                                ]
                             },
                             "rooms": 1,
                             "adults": 2,
@@ -81,7 +94,7 @@
                     ]
                 }
             ],
-            "totalNet": "89.19",
+            "totalNet": "180.65",
             "currency": "EUR",
             "supplier": {
                 "name": "HOTELBEDS PRODUCT,S.L.U.",
@@ -89,8 +102,9 @@
             }
         },
         "remark": "Booking remarks are to be written here.",
-        "totalNet": 89.19,
-        "pendingAmount": 89.19,
+        "totalNet": 180.65,
+        "pendingAmount": 180.65,
         "currency": "EUR"
-    },
-}
+    }
+}    
+
