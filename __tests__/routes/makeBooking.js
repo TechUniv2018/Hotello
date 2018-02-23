@@ -42,7 +42,7 @@ describe('Testing the make booking route', () => {
       },
       payload: {
         rooms: [{
-          rateKey: '20180315|20180316|W|1|215417|JSU.PI|CG-MERCHANT|BB||1~2~0||N@73F1DF727CF6454BA65894FA0B5ADF4B0121',
+          rateKey: constants.RATE_KEY,
           paxes: [{
             roomId: '1',
             type: 'AD',
