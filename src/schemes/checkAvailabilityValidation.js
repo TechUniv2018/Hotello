@@ -11,8 +11,8 @@ const checkAvailabilityValidation = Joi.object({
   adults: Joi.number().integer().min(1).required()
     .example(2),
   children: Joi.number().integer().min(0).required()
-    .example(0),
-  childrenAges: Joi.array().items(Joi.number().integer().min(0).max(17)).when('children', { is: Joi.number().integer().min(1), then: Joi.required(), otherwise: Joi.optional() }),
+    .example(1),
+  childrenAges: Joi.array().items(Joi.number().integer().min(0).max(17)).when('children', { is: Joi.number().integer().min(1).example([3]), then: Joi.required(), otherwise: Joi.optional() }),
   hotels: Joi.array().items(Joi.number().integer().min(1)).required()
     .example([1067,
       182125,
