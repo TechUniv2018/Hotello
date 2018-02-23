@@ -14,7 +14,7 @@ module.exports = {
     tags: ['api'],
     validate: {
       headers: Joi.object({ authorization: Joi.string() }).unknown(true),
-    },
+    }
   },
 };
 
