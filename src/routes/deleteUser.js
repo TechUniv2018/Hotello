@@ -12,6 +12,7 @@ module.exports = [
       });
     },
     config: {
+      tags: ['api'],
       auth: 'jwt',
     },
   },

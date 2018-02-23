@@ -10,6 +10,7 @@ module.exports = [
       userDetailsPromise.then((userDetails) => { reply(userDetails); });
     },
     config: {
+      tags: ['api'],
       auth: 'jwt',
     },
   },
@@ -17,10 +18,14 @@ module.exports = [
     method: 'PUT',
     path: '/userDetails',
     handler: (request, reply) => {
-      const responsePromise = updateHandler.updateHandlerForPut(request.headers.authorization, request.payload);
+      const responsePromise = updateHandler.updateHandlerForPut(
+        request.headers.authorization,
+        request.payload,
+      );
       responsePromise.then((response) => { reply(response); });
     },
     config: {
+      tags: ['api'],
       auth: 'jwt',
     },
   },

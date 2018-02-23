@@ -10,6 +10,7 @@ module.exports = [
       reply(userDetailsPromise);
     },
     config: {
+      tags: ['api'],
       validate: {
         payload: adminUpdateDetailsValidation,
       },
