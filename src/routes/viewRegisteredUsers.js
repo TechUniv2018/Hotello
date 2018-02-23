@@ -1,4 +1,5 @@
 const getRegisteredUsers = require('../controllers/viewRegisteredUsers');
+const Joi = require('joi');
 
 module.exports = [
   {
@@ -11,7 +12,11 @@ module.exports = [
         .catch(error => reply(error.message));
     },
     config: {
+      tags: ['api'],
       auth: 'jwt',
+      validate: {
+        headers: Joi.object({ authorization: Joi.string() }).unknown(true),
+      },
     },
   },
 ];

@@ -1,5 +1,6 @@
 const checkAvailabilityValidation = require('../schemes/checkAvailabilityValidation');
 const checkAvailabilityHandler = require('../controllers/checkAvailabilityHandler');
+const Joi = require('joi');
 
 module.exports = [
   {
@@ -16,8 +17,10 @@ module.exports = [
       });
     },
     config: {
+      tags: ['api'],
       validate: {
         payload: checkAvailabilityValidation,
+        headers: Joi.object({ authorization: Joi.string() }).unknown(true),
       },
       auth: 'jwt',
     },

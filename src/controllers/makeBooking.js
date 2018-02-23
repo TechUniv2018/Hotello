@@ -15,7 +15,7 @@ const makeBookingHandler = (authorization, requestObj) => {
           surname: userObj.lastName,
         },
         rooms: requestObj.rooms,
-        clientReference: userObj.email,
+        clientReference: userObj.firstName,
         remark: '',
       };
       const bookingUrl = 'https://api.test.hotelbeds.com/hotel-api/1.0/bookings';

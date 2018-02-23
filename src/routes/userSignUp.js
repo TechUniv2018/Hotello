@@ -7,6 +7,7 @@ module.exports = {
   method: 'POST',
   handler,
   config: {
+    tags: ['api'],
     validate: {
       payload: signUpValidation,
     },

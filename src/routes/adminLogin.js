@@ -7,6 +7,7 @@ module.exports = [
     path: '/adminLogin',
     handler: handlerFunction.validateAndSign,
     config: {
+      tags: ['api'],
       auth: false,
       validate: {
         payload: joiValidation,
@@ -17,6 +18,7 @@ module.exports = [
     method: 'GET',
     path: '/jwtVerification',
     config: {
+      tags: ['api'],
       auth: 'jwt',
     },
     handler: (request, reply) => {
