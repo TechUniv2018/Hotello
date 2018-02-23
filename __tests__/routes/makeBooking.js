@@ -11,8 +11,8 @@ describe('Testing the make booking route', () => {
     Models.bookings.destroy({ truncate: true }).then(() => done());
   });
   afterAll((done) => {
-    // Models.users.destroy({ truncate: true }).then(() => done());
-    // Models.bookings.destroy({ truncate: true }).then(() => done());
+    Models.users.destroy({ truncate: true }).then(() => done());
+    Models.bookings.destroy({ truncate: true }).then(() => done());
   });
   beforeEach((done) => {
     Models.users.create({
@@ -26,38 +26,38 @@ describe('Testing the make booking route', () => {
       done();
     });
   });
-  // afterEach((done) => {
-  // Models.users.destroy({ truncate: true }).then(() => done());
-  // });
-  // it('returns the response for booking', (done) => {
-  //   const options = {
-  //     method: 'POST',
-  //     url: '/bookHotel',
-  //     headers: {
-  //       Authorization: jwt.sign({
-  //         exp: Math.floor(Date.now() / 1000) + (60 * 60),
-  //         email: 'admin@hotello.com',
-  //       }, constants.JWT_SECRET),
-  //     },
-  //     payload: {
-  //       rooms: [{
-  //         rateKey: constants.RATE_KEY,
-  //         paxes: [{
-  //           roomId: '1',
-  //           type: 'AD',
-  //           name: 'First Adult Name',
-  //           surname: 'Surname',
-  //         },
-  //         ],
-  //       }],
-  //     },
-  //   };
-  //   server.inject(options, (response) => {
-  //     const resJson = JSON.parse(response.payload);
-  //     expect(resJson.status).toEqual('CONFIRMED');
-  //     done();
-  //   });
-  // });
+  afterEach((done) => {
+    Models.users.destroy({ truncate: true }).then(() => done());
+  });
+  it('returns the response for booking', (done) => {
+    const options = {
+      method: 'POST',
+      url: '/bookHotel',
+      headers: {
+        Authorization: jwt.sign({
+          exp: Math.floor(Date.now() / 1000) + (60 * 60),
+          email: 'admin@hotello.com',
+        }, constants.JWT_SECRET),
+      },
+      payload: {
+        rooms: [{
+          rateKey: constants.RATE_KEY,
+          paxes: [{
+            roomId: '1',
+            type: 'AD',
+            name: 'First Adult Name',
+            surname: 'Surname',
+          },
+          ],
+        }],
+      },
+    };
+    server.inject(options, (response) => {
+      const resJson = JSON.parse(response.payload);
+      expect(resJson.status).toEqual('CONFIRMED');
+      done();
+    });
+  });
   it('adds the booking details to the db', (done) => {
     const Authorization = jwt.sign({
       exp: Math.floor(Date.now() / 1000) + (60 * 60),
