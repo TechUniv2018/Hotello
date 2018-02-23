@@ -1,5 +1,6 @@
 const makeBookingHandler = require('../controllers/makeBooking.js');
 const dbSaveBooking = require('../controllers/saveBooking');
+const bookingsValidation = require('../schemes/bookingsValidation');
 
 module.exports = [
   {
@@ -14,6 +15,13 @@ module.exports = [
           reply(res.booking);
         } else reply(res);
       });
+    },
+    config: {
+      tags: ['api'],
+      validate: {
+        payload: bookingsValidation,
+      },
+      auth: 'jwt',
     },
   },
 ];
