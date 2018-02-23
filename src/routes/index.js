@@ -14,6 +14,7 @@ const viewHotelDetails = require('./viewHotelDetails');
 const viewRegisteredUsers = require('./viewRegisteredUsers');
 const userViewBookings = require('./userViewBookings');
 const viewBookingsbyCity = require('./viewBookingsByCity');
+const makeBooking = require('./makeBooking');
 
 module.exports = [].concat(
   addUser,
@@ -32,4 +33,5 @@ module.exports = [].concat(
   checkAvailability,
   userViewBookings,
   viewBookingsbyCity,
+  makeBooking,
 );
