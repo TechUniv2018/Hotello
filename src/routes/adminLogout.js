@@ -7,7 +7,7 @@ module.exports = [
     path: '/logout',
     handler: (request, reply) => {
       const signedToken = logoutHandler(request.headers.authorization);
-      reply('User Logged Out!', signedToken);
+      reply(`User Logged Out!${signedToken}`);
     },
     config: {
       tags: ['api'],
