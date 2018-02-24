@@ -1,8 +1,9 @@
 const JWT = require('jsonwebtoken');
 const Models = require('../../models');
+const constants = require('../constants.json');
 
 const getUserDetails = (authorization) => {
-  const decodedToken = JWT.decode(authorization, 'RandomSecretString');
+  const decodedToken = JWT.decode(authorization, constants.JWT_SECRET);
   const promise = new Promise((resolve) => {
     Models.users.find({
       where: {

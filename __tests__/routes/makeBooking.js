@@ -109,6 +109,7 @@ fetch.mockResponse(JSON.stringify({
   },
 }));
 
+
 // jest.setTimeout(10000);
 describe('Testing the make booking route', () => {
   beforeAll((done) => {

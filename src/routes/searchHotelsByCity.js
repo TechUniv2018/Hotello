@@ -1,5 +1,6 @@
 const searchHotelsByCityValidation = require('../schemes/searchHotelsByCityValidation');
 const searchHotelsByCityHandler = require('../controllers/searchHotelsByCityHandler');
+const Joi = require('joi');
 
 module.exports = [
   {
@@ -16,8 +17,10 @@ module.exports = [
       });
     },
     config: {
+      tags: ['api'],
       validate: {
         params: searchHotelsByCityValidation,
+        headers: Joi.object({ authorization: Joi.string() }).unknown(true),
       },
       auth: 'jwt',
     },

@@ -1,4 +1,6 @@
 const deleteUserHandler = require('../controllers/deleteUserHandler');
+const validatePayloadEmail = require('../schemes/validatePayloadEmail');
+const Joi = require('joi');
 
 module.exports = [
   {
@@ -12,7 +14,12 @@ module.exports = [
       });
     },
     config: {
+      tags: ['api'],
       auth: 'jwt',
+      validate: {
+        payload: validatePayloadEmail,
+        headers: Joi.object({ authorization: Joi.string() }).unknown(true),
+      },
     },
   },
 

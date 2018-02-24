@@ -1,4 +1,5 @@
 const logoutHandler = require('../controllers/adminLogout');
+const Joi = require('joi');
 
 module.exports = [
   {
@@ -6,10 +7,14 @@ module.exports = [
     path: '/logout',
     handler: (request, reply) => {
       const signedToken = logoutHandler(request.headers.authorization);
-      reply(signedToken);
+      reply(`User Logged Out!${signedToken}`);
     },
     config: {
+      tags: ['api'],
       auth: 'jwt',
+      validate: {
+        headers: Joi.object({ authorization: Joi.string() }).unknown(true),
+      },
     },
   },
 

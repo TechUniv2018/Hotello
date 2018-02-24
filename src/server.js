@@ -1,4 +1,8 @@
 const Hapi = require('hapi');
+const Inert = require('inert');
+const Vision = require('vision');
+const HapiSwagger = require('hapi-swagger');
+const HapiJWTAuth = require('hapi-auth-jwt2');
 const Routes = require('./routes');
 const constants = require('./constants.json');
 
@@ -17,24 +21,54 @@ server.connection({
   port: 4000,
 });
 
+// const a = [{
+//   register: require('hapi-auth-jwt2'),
+// },
+// {
+//   register: Inert,
+// },
+// {
+//   register: Vision,
+//   options: {
 
-server.register(require('hapi-auth-jwt2'), (err) => {
-  if (err) {
-    console.log(err);
-  }
+//   }
+// }];
 
-  server.auth.strategy(
-    'jwt', 'jwt',
+const options = {
+  info: {
+    title: 'Hotello API Documentation',
+    version: '1.0.0',
+  },
+};
+
+server.register(
+  [
+    HapiJWTAuth,
+    Inert,
+    Vision,
     {
-      key: constants.JWT_SECRET,
-      validateFunc: validate,
-      verifyOptions: { algorithms: ['HS256'] },
-    },
-  );
+      register: HapiSwagger,
+      options,
+    }],
+  (err) => {
+    if (err) {
+      console.log(err);
+    }
+    
+    server.auth.strategy(
+      'jwt', 'jwt',
+      {
+        key: constants.JWT_SECRET,
+        validateFunc: validate,
+        verifyOptions: { algorithms: ['HS256'] },
+      },
+    );
 
-  server.auth.default('jwt');
-  server.route(Routes);
-});
+    server.auth.default('jwt');
+
+    server.route(Routes);
+  },
+);
 
 if (!module.parent) {
   server.start((err) => {

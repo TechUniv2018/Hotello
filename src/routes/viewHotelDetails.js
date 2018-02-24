@@ -1,4 +1,6 @@
 const viewHotelDetailsHandler = require('../controllers/viewHotelDetailsHandler');
+const viewHotelDetailsValidation = require('../schemes/viewHotelDetailsValidation');
+const Joi = require('joi');
 
 module.exports = [
   {
@@ -15,7 +17,12 @@ module.exports = [
       });
     },
     config: {
+      tags: ['api'],
       auth: 'jwt',
+      validate: {
+        params: viewHotelDetailsValidation,
+        headers: Joi.object({ authorization: Joi.string() }).unknown(true),
+      },
     },
 
   },

@@ -1,7 +1,7 @@
 {
   "JWT_SECRET" : "XabRBQ12sad",
-  "API_KEY" : "rhsqpwqh8cubj2skv43bhp7z",
-  "API_SECRET": "QmADfZ2ntW",
+  "API_KEY" : "dtt3mx22k7bvbc3k8p749scr",
+  "API_SECRET": "TSA8mwPep7",
   "RATE_KEY":   "20180315|20180316|W|1|161032|STU.ST|REP-TODOS|SC||1~2~0||N@002642FC0BA643609D447AF680C1DFB70133",
   "BOOKING": {
         "reference": "1-3777867",
@@ -107,4 +107,4 @@
         "pendingAmount": 180.65,
         "currency": "EUR"
     }
-}
+}    

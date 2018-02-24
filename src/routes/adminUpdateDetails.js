@@ -1,5 +1,6 @@
 const updateHandler = require('../controllers/adminUpdateDetails');
 const adminUpdateDetailsValidation = require('../schemes/adminUpdateDetailsValidation');
+const Joi = require('joi');
 
 module.exports = [
   {
@@ -10,8 +11,10 @@ module.exports = [
       reply(userDetailsPromise);
     },
     config: {
+      tags: ['api'],
       validate: {
         payload: adminUpdateDetailsValidation,
+        headers: Joi.object({ authorization: Joi.string() }).unknown(true),
       },
       auth: 'jwt',
     },

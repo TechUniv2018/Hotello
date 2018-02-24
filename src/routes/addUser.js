@@ -1,3 +1,4 @@
+const Joi = require('joi');
 const addUserHandler = require('../controllers/addUser');
 const Validation = require('../schemes/signUpValidation');
 
@@ -11,8 +12,10 @@ module.exports = [{
       .catch(error => reply(error.message));
   },
   config: {
+    tags: ['api'],
     validate: {
       payload: Validation,
+      headers: Joi.object({ authorization: Joi.string() }).unknown(true),
     },
     auth: 'jwt',
   },
