@@ -18,7 +18,7 @@ const validate = (decoded, request, callback) => {
 };
 server.connection({
   host: 'localhost',
-  port: 8000,
+  port: 4000,
 });
 
 // const a = [{
@@ -54,7 +54,7 @@ server.register(
     if (err) {
       console.log(err);
     }
-
+    
     server.auth.strategy(
       'jwt', 'jwt',
       {
