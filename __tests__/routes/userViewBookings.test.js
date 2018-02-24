@@ -11,7 +11,7 @@ describe('Test server for GET /adminViewBookings: ', () => {
       lastName: 'User',
       email: 'alexander@gmail.com',
       password: 'aA3@zxcy',
-      role: 'user',
+      role: 'publicUser',
       phoneNumber: '9876543210',
     }).then(() => {
       Models.bookings.destroy({ truncate: true }).then(() => {

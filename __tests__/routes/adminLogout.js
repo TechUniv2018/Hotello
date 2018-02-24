@@ -51,7 +51,8 @@ describe('Testing the logout route', () => {
       },
     };
     server.inject(options, (response) => {
-      const decodedToken = jwt.decode(response.payload, constants.JWT_SECRET);
+      const parsedResponse = JSON.parse(response.payload);
+      const decodedToken = jwt.decode(parsedResponse.token, constants.JWT_SECRET);
       expect(decodedToken.exp).toBeLessThanOrEqual(Math.floor(Date.now() / 1000));
       done();
     });

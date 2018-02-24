@@ -29,7 +29,7 @@ describe('Testing the update user details route', () => {
   it('returns user details for the update form', (done) => {
     const options = {
       method: 'GET',
-      url: '/userDetails',
+      url: '/userUpdateDetails',
       headers: {
         Authorization: jwt.sign({
           exp: Math.floor(Date.now() / 1000) + (60 * 60),
