@@ -15,6 +15,7 @@ const viewRegisteredUsers = require('./viewRegisteredUsers');
 const userViewBookings = require('./userViewBookings');
 const viewBookingsbyCity = require('./viewBookingsByCity');
 const makeBooking = require('./makeBooking');
+const cancelBooking = require('./cancelBooking');
 
 module.exports = [].concat(
   addUser,
@@ -34,4 +35,5 @@ module.exports = [].concat(
   userViewBookings,
   viewBookingsbyCity,
   makeBooking,
+  cancelBooking,
 );

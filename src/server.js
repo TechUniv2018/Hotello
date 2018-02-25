@@ -14,7 +14,7 @@ const validate = (decoded, request, callback) => {
 };
 server.connection({
   host: 'localhost',
-  port: 4000,
+  port: 8000,
 });
 
 

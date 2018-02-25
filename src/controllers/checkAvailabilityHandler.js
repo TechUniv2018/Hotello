@@ -31,7 +31,6 @@ const searchHotelsByCityHandler = (payload) => {
     },
   };
 
-
   const requestConfig = {
     method: 'post',
     headers: {
@@ -45,7 +44,10 @@ const searchHotelsByCityHandler = (payload) => {
   };
 
   return fetch(requestUrl, requestConfig)
-    .then(response => response.json())
+    .then((response) => {
+      console.log(response);
+      return response.json();
+    })
     .then(respJson => respJson)
     .catch(() => 'Error');
 };
