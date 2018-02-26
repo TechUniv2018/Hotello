@@ -4,7 +4,6 @@ const constants = require('../../src/constants.json');
 
 function getRegisteredUsers(token) {
   const decodedToken = JWT.decode(token, constants.JWT_SECRET);
-  console.log('inside getRegUsesr');
   const promise = new Promise((resolve, reject) => {
     Models.users.find({
       where: {
@@ -24,7 +23,6 @@ function getRegisteredUsers(token) {
       }
     });
   });
-  console.log('la');
   return promise;
 }
 
