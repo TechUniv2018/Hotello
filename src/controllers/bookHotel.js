@@ -5,7 +5,7 @@ const constants = require('../constants.json');
 
 // const rp = require('request-promise');
 
-const makeBookingHandler = (authorization, requestObj) => {
+const bookHotelHandler = (authorization, requestObj) => {
   const promise = new Promise((resolve) => {
     const userPromise = getUserDetails(authorization);
     userPromise.then((userObj) => {
@@ -42,4 +42,4 @@ const makeBookingHandler = (authorization, requestObj) => {
   });
   return promise;
 };
-module.exports = makeBookingHandler;
+module.exports = bookHotelHandler;

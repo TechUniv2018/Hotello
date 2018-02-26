@@ -1,9 +1,9 @@
 const Models = require('../../models');
 const JWT = require('jsonwebtoken');
+const constants = require('../../src/constants.json');
 
 function getRegisteredUsers(token) {
-  const decodedToken = JWT.decode(token, 'RandomSecretString');
-  console.log('inside getRegUsesr');
+  const decodedToken = JWT.decode(token, constants.JWT_SECRET);
   const promise = new Promise((resolve, reject) => {
     Models.users.find({
       where: {

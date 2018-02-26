@@ -54,7 +54,7 @@ server.register(
     if (err) {
       console.log(err);
     }
-    
+
     server.auth.strategy(
       'jwt', 'jwt',
       {
