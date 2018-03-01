@@ -1,6 +1,6 @@
 const JWT = require('jsonwebtoken');
 const constants = require('../../src/constants.json');
-
+const crypto = require('crypto');
 const Server = require('../../src/server');
 const Models = require('../../models');
 
@@ -10,7 +10,7 @@ describe('Test server for GET /adminViewBookings: ', () => {
       firstName: 'User',
       lastName: 'User',
       email: 'alexander@gmail.com',
-      password: 'aA3@zxcy',
+      password: crypto.createHash('md5').update('aA3@zxcy').digest('hex'),
       role: 'publicUser',
       phoneNumber: '9876543210',
     }).then(() => {

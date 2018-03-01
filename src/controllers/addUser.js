@@ -1,6 +1,7 @@
 const JWT = require('jsonwebtoken');
 const Models = require('../../models');
 const constants = require('../constants.json');
+const crypto = require('crypto');
 
 function addUser(token, payload) {
   const decodedToken = JWT.decode(token, constants.JWT_SECRET);
@@ -12,8 +13,9 @@ function addUser(token, payload) {
     }).then((user) => {
       if (user.dataValues.role === 'admin') {
         const {
-          firstName, lastName, password, email, role, phoneNumber,
+          firstName, lastName, email, role, phoneNumber,
         } = payload;
+        const password = crypto.createHash('md5').update(payload.password).digest('hex');
         Models.users.create({
           firstName, lastName, password, email, role, phoneNumber,
         }).then(() => {

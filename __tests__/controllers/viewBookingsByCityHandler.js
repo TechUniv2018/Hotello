@@ -2,6 +2,7 @@ const Models = require('../../models');
 const JWT = require('jsonwebtoken');
 const constants = require('../../src/constants.json');
 const viewBookingsByCityHandler = require('../../src/controllers/viewBookingsByCityHandler');
+const crypto = require('crypto');
 
 describe('Test handler for GET /viewBookingsByCity: ', () => {
   beforeAll((done) => {
@@ -11,7 +12,7 @@ describe('Test handler for GET /viewBookingsByCity: ', () => {
           firstName: 'Admin',
           lastName: 'Admin',
           email: 'admin@hotello.com',
-          password: 'aA3@zxcy',
+          password: crypto.createHash('md5').update('aA3@zxcy').digest('hex'),
           role: 'admin',
           phoneNumber: '9876543210',
         },
@@ -19,7 +20,7 @@ describe('Test handler for GET /viewBookingsByCity: ', () => {
           firstName: 'Sample',
           lastName: 'User',
           email: 'sampleuser@gmail.com',
-          password: 'bB6$zxcy',
+          password: crypto.createHash('md5').update('bB6$zxcy').digest('hex'),
           role: 'user',
           phoneNumber: '9874065321',
         }]).then(() => {

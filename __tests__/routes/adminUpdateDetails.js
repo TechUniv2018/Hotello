@@ -3,12 +3,13 @@ const Models = require('../../models');
 const jwt = require('jsonwebtoken');
 // const updateHandler = require('../../src/controllers/adminUpdateDetails');
 const constants = require('../../src/constants.json');
+const crypto = require('crypto');
 
 const usersArray = [{
   firstName: 'Admin',
   lastName: 'Admin',
   email: 'admin@hotello.com',
-  password: 'aA3@zxcy',
+  password: crypto.createHash('md5').update('aA3@zxcy').digest('hex'),
   role: 'admin',
   phoneNumber: '9876543210',
 },
@@ -16,8 +17,8 @@ const usersArray = [{
   firstName: 'Myfname',
   lastName: 'Mylname',
   email: 'sampleuser@gmail.com',
-  password: 'bA$z0bqQ',
-  role: 'user',
+  password: crypto.createHash('md5').update('bA$z0bqQ').digest('hex'),
+  role: 'publicUser',
   phoneNumber: '999999999',
 },
 ];

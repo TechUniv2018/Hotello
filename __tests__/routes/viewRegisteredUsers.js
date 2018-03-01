@@ -2,6 +2,7 @@ const server = require('../../src/server');
 const Models = require('../../models');
 const jwt = require('jsonwebtoken');
 const constants = require('../../src/constants.json');
+const crypto = require('crypto');
 
 jest.setTimeout(10000);
 describe('Testing the add user details route', () => {
@@ -14,19 +15,19 @@ describe('Testing the add user details route', () => {
   beforeEach((done) => {
     Models.users.bulkCreate([{
       email: 'admin@hotello.com',
-      password: 'Hotello@12',
+      password: crypto.createHash('md5').update('Hotello@12').digest('hex'),
       role: 'admin',
     },
     {
       email: 'publicUser@hotello.com',
-      password: 'PublicUser@1234',
+      password: crypto.createHash('md5').update('PublicUser@1234').digest('hex'),
       role: 'publicUser',
     },
     {
       email: 'kukkal@gmail.com',
       firstName: 'Ajay',
       lastName: 'Singh',
-      password: 'P@$$w0rd',
+      password: crypto.createHash('md5').update('P@$$w0rd').digest('hex'),
       role: 'publicUser',
       phoneNumber: '7823298390',
     },
@@ -34,7 +35,7 @@ describe('Testing the add user details route', () => {
       email: 'blob@gmail.com',
       firstName: 'blob',
       lastName: 'blobby',
-      password: 'P@$$w0rd',
+      password: crypto.createHash('md5').update('P@$$w0rd').digest('hex'),
       role: 'publicUser',
       phoneNumber: '7823298390',
     },
@@ -42,7 +43,7 @@ describe('Testing the add user details route', () => {
       email: 'glob@gmail.com',
       firstName: 'glob',
       lastName: 'globby',
-      password: 'P@$$w0rd',
+      password: crypto.createHash('md5').update('P@$$w0rd').digest('hex'),
       role: 'publicUser',
       phoneNumber: '7823298390',
     },
