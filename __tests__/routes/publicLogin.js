@@ -1,5 +1,6 @@
 const Server = require('../../src/server');
 const Models = require('../../models');
+const crypto = require('crypto');
 
 jest.setTimeout(10000);
 describe('Testing for validation of user input', () => {
@@ -54,16 +55,16 @@ describe('Testing for validation of user input', () => {
 
 
 describe('Testing for user validation with database', () => {
-  beforeAll(() => Models.users.create({
+  beforeAll(done => Models.users.create({
     firstName: 'ABC',
     lastName: 'DEF',
     email: 'abcdef@sample.com',
-    password: 'aA$basd1',
+    password: crypto.createHash('md5').update('aA$basd1').digest('hex'),
     role: 'Admin',
     phoneNumber: 9876543210,
-  }));
+  }).then(() => { done(); }));
 
-  afterAll(() => Models.users.destroy({ truncate: true }));
+  afterAll(done => Models.users.destroy({ truncate: true }).then(() => { done(); }));
 
   it('Should return "Valid credentials" for valid user (user exists in database)', (done) => {
     const options = {
