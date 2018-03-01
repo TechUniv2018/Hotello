@@ -1,6 +1,7 @@
 const server = require('../../src/server');
 const Models = require('../../models');
 const jwt = require('jsonwebtoken');
+const crypto = require('crypto');
 
 jest.setTimeout(10000);
 describe('Testing the validation part', () => {
@@ -127,7 +128,7 @@ describe('Testing if login route is returning a jwt token', () => {
   beforeAll((done) => {
     Models.users.create({
       email: 'admin1@hotello.com',
-      password: 'Hotello@12',
+      password: crypto.createHash('md5').update('Hotello@12').digest('hex'),
     }).then(() => {
       done();
     });

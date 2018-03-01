@@ -2,6 +2,7 @@ const server = require('../../src/server');
 const jwt = require('jsonwebtoken');
 const Models = require('../../models');
 const constants = require('../../src/constants.json');
+const crypto = require('crypto');
 
 jest.setTimeout(10000);
 describe('Testing the logout route', () => {
@@ -14,7 +15,7 @@ describe('Testing the logout route', () => {
   beforeEach((done) => {
     Models.users.create({
       email: 'admin2@hotello.com',
-      password: 'Hotello@12',
+      password: crypto.createHash('md5').update('Hotello@12').digest('hex'),
     }).then(() => {
       done();
     });

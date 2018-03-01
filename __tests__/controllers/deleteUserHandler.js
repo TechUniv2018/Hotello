@@ -2,6 +2,7 @@ const deleteUserHandler = require('../../src/controllers/deleteUserHandler');
 const jwt = require('jsonwebtoken');
 const Models = require('../../models');
 const constants = require('../../src/constants.json');
+const crypto = require('crypto');
 
 jest.setTimeout(10000);
 describe('Testing the delete user handler function', () => {
@@ -14,12 +15,12 @@ describe('Testing the delete user handler function', () => {
   beforeEach((done) => {
     Models.users.bulkCreate([{
       email: 'admin@hotello.com',
-      password: 'Hotello@12',
+      password: crypto.createHash('md5').update('Hotello@12').digest('hex'),
       role: 'admin',
     },
     {
       email: 'publicUser@hotello.com',
-      password: 'PublicUser@1234',
+      password: crypto.createHash('md5').update('PublicUser@1234').digest('hex'),
       role: 'user',
     }]).then(() => {
       done();

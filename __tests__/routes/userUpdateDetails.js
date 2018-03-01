@@ -3,6 +3,7 @@ const Models = require('../../models');
 const jwt = require('jsonwebtoken');
 const updateHandler = require('../../src/controllers/userUpdateDetails');
 const constants = require('../../src/constants.json');
+const crypto = require('crypto');
 // jest.setTimeout(10000);
 describe('Testing the update user details route', () => {
   beforeAll((done) => {
@@ -16,7 +17,7 @@ describe('Testing the update user details route', () => {
       firstName: 'Nidhi',
       lastName: 'Seth',
       email: 'admin@hotello.com',
-      password: 'Hotello@12',
+      password: crypto.createHash('md5').update('Hotello@12').digest('hex'),
       role: 'admin',
       phoneNumber: 999999999,
     }).then(() => {

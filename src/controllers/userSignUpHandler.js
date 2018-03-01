@@ -1,9 +1,10 @@
 const Models = require('../../models');
+const crypto = require('crypto');
 
 const handler = (request, reply) => {
-  const {
-    firstName, lastName, password, email, role,
-  } = request.payload;
+  const password = crypto.createHash('md5').update(request.payload.password).digest('hex');
+  const { firstName, lastName, email } = request.payload;
+  const role = 'publicUser';
   const phoneNumber = Number(request.payload.phoneNumber);
   const userInsertedPromise = Models.users.create({
     firstName,

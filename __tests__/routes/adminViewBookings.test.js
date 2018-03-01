@@ -2,6 +2,7 @@ const Server = require('../../src/server');
 const Models = require('../../models');
 const JWT = require('jsonwebtoken');
 const constants = require('../../src/constants.json');
+const crypto = require('crypto');
 
 describe('Test server for GET /adminViewBookings: ', () => {
   beforeAll((done) => {
@@ -9,7 +10,7 @@ describe('Test server for GET /adminViewBookings: ', () => {
       firstName: 'Admin',
       lastName: 'Admin',
       email: 'admin@hotello.com',
-      password: 'aA3@zxcy',
+      password: crypto.createHash('md5').update('aA3@zxcy').digest('hex'),
       role: 'admin',
       phoneNumber: '9876543210',
     }).then(() => {

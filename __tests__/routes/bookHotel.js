@@ -4,6 +4,7 @@ const Models = require('../../models');
 const constants = require('../../src/constants.json');
 const saveBooking = require('../../src/controllers/saveBooking');
 const fetch = require('node-fetch');
+const crypto = require('crypto');
 
 fetch.mockResponse(JSON.stringify({
   auditData: {
@@ -125,7 +126,7 @@ describe('Testing the make booking route', () => {
       firstName: 'Nidhi',
       lastName: 'Seth',
       email: 'admin@hotello.com',
-      password: 'Hotello@12',
+      password: crypto.createHash('md5').update('Hotello@12').digest('hex'),
       role: 'admin',
       phoneNumber: 999999999,
     }).then(() => {
