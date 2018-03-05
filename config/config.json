@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "hotello",
+    "password": null,
+    "database": "hotello",
+    "host": "localhost",
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "hotello",
+    "password": null,
+    "database": "hotello_test",
+    "host": "localhost",
+    "dialect": "postgres"
+  },
+  "production": {
+    "username": "hotello",
+    "password": null,
+    "database": "hotello",
+    "host": "localhost",
+    "dialect": "postgres"
+  }
+}
