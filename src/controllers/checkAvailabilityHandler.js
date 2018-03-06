@@ -1,54 +1,41 @@
-
 const fetch = require('node-fetch');
-const xSigGenerator = require('../helpers/xSignatureGenerator');
 const constants = require('../constants.json');
+const cityCodes = require('../helpers/cityCodes');
 
-const searchHotelsByCityHandler = (payload) => {
-  const apiUrl = 'https://api.test.hotelbeds.com/hotel-api/1.0/hotels';
-  const requestUrl = apiUrl;
+const checkAvailabilityHandler = (authorization, payload) => {
+  const apiUrl = 'https://dev.allmyles.com/v2.0/hotels/';
+
   const apiKey = constants.API_KEY;
-  const xSignature = xSigGenerator();
-  const requestPaxes = [];
-  if (payload.childrenAges) {
-    payload.childrenAges.forEach((element) => {
-      const currentPax = { type: 'CH', age: element };
-      requestPaxes.push(currentPax);
-    });
+  const cityCode = cityCodes[payload.cityName];
+
+  if (cityCode === undefined) {
+    return Promise.resolve('City not found');
   }
   const requestBody = {
-    stay: {
-      checkIn: payload.checkIn,
-      checkOut: payload.checkOut,
-    },
-    occupancies: [{
-      rooms: payload.rooms,
-      adults: payload.adults,
-      children: payload.children,
-      paxes: requestPaxes,
-    },
-    ],
-    hotels: {
-      hotel: payload.hotels,
-    },
+    cityCode,
+    rooms: payload.rooms,
+    arrivalDate: payload.checkIn,
+    leaveDate: payload.checkOut,
+    nationality: payload.nationality,
   };
 
 
   const requestConfig = {
     method: 'post',
     headers: {
-      'Api-key': apiKey,
-      'X-Signature': xSignature,
-      Accept: 'application/json',
-      'Accept-Encoding': 'gzip',
-      'content-type': 'application/json',
+      'X-Auth-Token': apiKey,
+      Cookie: authorization,
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify(requestBody),
   };
 
-  return fetch(requestUrl, requestConfig)
-    .then(response => response.json())
-    .then(respJson => respJson)
+
+  return fetch(apiUrl, requestConfig)
+    .then(response =>
+      response.text())
+    .then((responseJSON) => { console.log(responseJSON, 'after'); return responseJSON; })
     .catch(() => 'Error');
 };
 
-module.exports = searchHotelsByCityHandler;
+module.exports = checkAvailabilityHandler;

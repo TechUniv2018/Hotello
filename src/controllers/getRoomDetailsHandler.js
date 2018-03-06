@@ -1,8 +1,8 @@
 const fetch = require('node-fetch');
 const constants = require('../constants.json');
 
-const viewHotelDetailsHandler = (authorization, hotelId) => {
-  const requestUrl = `https://dev.allmyles.com/v2.0/hotels/${hotelId}`;
+const getRoomDetailsHandler = (authorization, hotelId, roomId) => {
+  const requestUrl = `https://dev.allmyles.com/v2.0/hotels/${hotelId}/rooms/${roomId}`;
   const apiKey = constants.API_KEY;
   const requestConfig = {
     method: 'get',
@@ -19,4 +19,4 @@ const viewHotelDetailsHandler = (authorization, hotelId) => {
     .catch(() => 'Error');
 };
 
-module.exports = viewHotelDetailsHandler;
+module.exports = getRoomDetailsHandler;

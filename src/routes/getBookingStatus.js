@@ -1,13 +1,13 @@
-const viewHotelDetailsHandler = require('../controllers/viewHotelDetailsHandler');
-const viewHotelDetailsValidation = require('../schemes/viewHotelDetailsValidation');
+const getBookingStatusHandler = require('../controllers/getBookingStatusHandler');
+const getBookingStatusValidation = require('../schemes/getBookingStatusValidation');
 const Joi = require('joi');
 
 module.exports = [
   {
     method: 'GET',
-    path: '/viewHotelDetails/{hotelId}',
+    path: '/getBookingStatus/{pnr}',
     handler: (request, reply) => {
-      const result = viewHotelDetailsHandler(request.headers.authorization, request.params.hotelId);
+      const result = getBookingStatusHandler(request.headers.authorization, request.params.pnr);
       result.then((resultValue) => {
         if (resultValue === 'Error') {
           reply('Error').code(500);
@@ -21,7 +21,7 @@ module.exports = [
       tags: ['api'],
       auth: 'jwt',
       validate: {
-        params: viewHotelDetailsValidation,
+        params: getBookingStatusValidation,
         headers: Joi.object({ authorization: Joi.string() }).unknown(true),
       },
     },

@@ -1,18 +1,20 @@
-const viewHotelDetailsHandler = require('../controllers/viewHotelDetailsHandler');
-const viewHotelDetailsValidation = require('../schemes/viewHotelDetailsValidation');
+const makePaymentHandler = require('../controllers/makePaymentHandler');
+const makePaymentValidation = require('../schemes/makePaymentValidation');
 const Joi = require('joi');
 
 module.exports = [
   {
-    method: 'GET',
-    path: '/viewHotelDetails/{hotelId}',
+    method: 'POST',
+    path: '/makePayment',
     handler: (request, reply) => {
-      const result = viewHotelDetailsHandler(request.headers.authorization, request.params.hotelId);
+      const result = makePaymentHandler(request.headers.authorization, request.payload);
       result.then((resultValue) => {
         if (resultValue === 'Error') {
           reply('Error').code(500);
-        } else {
+        } else if (resultValue === 'Successful') {
         // console.log(resultValue.hotel.rooms);
+          reply('Successful').code(204);
+        } else {
           reply(resultValue);
         }
       });
@@ -21,7 +23,7 @@ module.exports = [
       tags: ['api'],
       auth: 'jwt',
       validate: {
-        params: viewHotelDetailsValidation,
+        payload: makePaymentValidation,
         headers: Joi.object({ authorization: Joi.string() }).unknown(true),
       },
     },

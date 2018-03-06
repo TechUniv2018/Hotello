@@ -7,7 +7,8 @@ module.exports = [
     method: 'POST',
     path: '/checkAvailability',
     handler: (request, reply) => {
-      const result = checkAvailabilityHandler(request.payload);
+      const result = checkAvailabilityHandler(request.headers.authorization, request.payload);
+      console.log(result);
       result.then((resultValue) => {
         if (resultValue === 'Error') {
           reply('Error').code(500);
