@@ -15,6 +15,7 @@ function getRegisteredUsers(token) {
           where: {
             role: 'publicUser',
           },
+          order: [['firstName', 'ASC']],
         }).then((usersRecords) => {
           resolve({ usersRecords });
         });
