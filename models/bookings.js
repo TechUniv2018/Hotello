@@ -12,6 +12,7 @@ module.exports = (sequelize, DataTypes) => {
     numofguests: DataTypes.INTEGER,
     numofrooms: DataTypes.INTEGER,
     city: DataTypes.STRING,
+    status: DataTypes.STRING,
   }, {
     classMethods: {
       associate(models) {
