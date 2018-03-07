@@ -1,6 +1,5 @@
-const bookHotelHandler = require('../controllers/bookHotel');
-const dbSaveBooking = require('../controllers/saveBooking');
-const bookingsValidation = require('../schemes/bookingsValidation');
+const bookHotelHandler = require('../controllers/bookHotelHandler');
+const bookHotelValidation = require('../schemes/bookHotelValidation');
 const Joi = require('joi');
 
 module.exports = [
@@ -8,22 +7,24 @@ module.exports = [
     method: 'POST',
     path: '/bookHotel',
     handler: (request, reply) => {
-      // console.log('handler');
       const result = bookHotelHandler(request.headers.authorization, request.payload);
-      result.then((res) => {
-        if (res.booking) {
-          dbSaveBooking(request.headers.authorization, res.booking);
-          reply(res.booking);
-        } else reply(res);
+      result.then((resultValue) => {
+        if (resultValue === 'Error') {
+          reply('Error').code(500);
+        } else {
+        // console.log(resultValue.hotel.rooms);
+          reply(resultValue);
+        }
       });
     },
     config: {
       tags: ['api'],
+      auth: 'jwt',
       validate: {
-        payload: bookingsValidation,
+        params: bookHotelValidation,
         headers: Joi.object({ authorization: Joi.string() }).unknown(true),
       },
-      auth: 'jwt',
     },
+
   },
 ];
