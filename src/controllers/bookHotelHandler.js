@@ -3,7 +3,7 @@ const constants = require('../constants.json');
 const jwt = require('jsonwebtoken');
 const Models = require('../../models');
 
-const getBookingStatusHandler = (authorization, payload) => {
+const bookHotelHandler = (authorization, payload) => {
   const decodedToken = jwt.decode(authorization, constants.JWT_SECRET);
   const requestUrl = 'https://dev.allmyles.com/v2.0/books';
   const apiKey = constants.API_KEY;
@@ -82,4 +82,4 @@ const getBookingStatusHandler = (authorization, payload) => {
     .catch(() => 'Error');
 };
 
-module.exports = getBookingStatusHandler;
+module.exports = bookHotelHandler;
