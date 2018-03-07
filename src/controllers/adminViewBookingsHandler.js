@@ -10,7 +10,7 @@ const adminViewBookingsHandler = (authorization) => {
       if (value !== null) {
         if (value.dataValues.role === 'admin') {
           return Models.bookings.findAll({
-            attributes: ['amount', 'bookingdate', 'bookingid', 'checkin', 'checkout', 'email', 'city', 'hotelname', 'numofguests', 'numofrooms'],
+            attributes: ['amount', 'bookingdate', 'bookingid', 'checkin', 'checkout', 'email', 'city', 'hotelname', 'numofguests', 'numofrooms', 'status'],
           })
             .then((allBookings) => {
               const result = allBookings.map(element => element.dataValues);
