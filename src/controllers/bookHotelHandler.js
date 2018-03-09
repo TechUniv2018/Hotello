@@ -47,7 +47,7 @@ const bookHotelHandler = (authorization, payload) => {
     method: 'post',
     headers: {
       'X-Auth-Token': apiKey,
-      Cookie: constants.TEST_COOKIE,
+      Cookie: authorization,
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(reqBody),

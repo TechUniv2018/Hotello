@@ -8,7 +8,7 @@ const getBookingStatusHandler = (authorization, pnr) => {
     method: 'get',
     headers: {
       'X-Auth-Token': apiKey,
-      Cookie: constants.TEST_COOKIE,
+      Cookie: authorization,
       'Content-Type': 'application/json',
     },
   };

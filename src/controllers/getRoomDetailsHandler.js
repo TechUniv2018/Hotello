@@ -8,22 +8,11 @@ const getRoomDetailsHandler = (authorization, hotelId, roomId) => {
     method: 'GET',
     headers: {
       'X-Auth-Token': apiKey,
-      Cookie: constants.TEST_COOKIE,
+      Cookie: authorization,
       'Content-Type': 'application/json',
     },
   };
-  console.log('c:::::', requestConfig, requestUrl);
-  // const result = new Promise((resolve, reject))
-  // return axios.get(requestUrl, {
-  //   headers: {
-  //     'X-Auth-Token': apiKey,
-  //     Cookie: constants.TEST_COOKIE,
-  //     'Content-Type': 'application/json',
-  //   },
-  // }).then((response) => {
-  //   console.log(response.data);
-  //   return response.data;
-  // });
+
   return fetch(requestUrl, requestConfig)
     .then((response) => { console.log(response); return response.text(); })
     .then((respJson) => { console.log('a:::', respJson); return respJson; })

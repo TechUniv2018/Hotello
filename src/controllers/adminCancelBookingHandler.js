@@ -9,7 +9,7 @@ const adminCancelBookingHandler = (authorization, pnr) => {
     method: 'delete',
     headers: {
       'X-Auth-Token': apiKey,
-      Cookie: constants.TEST_COOKIE,
+      Cookie: authorization,
       'Content-Type': 'application/json',
     },
   };
