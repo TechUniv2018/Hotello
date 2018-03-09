@@ -24,7 +24,7 @@ const checkAvailabilityHandler = (authorization, payload) => {
     method: 'post',
     headers: {
       'X-Auth-Token': apiKey,
-      Cookie: authorization,
+      Cookie: constants.TEST_COOKIE,
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(requestBody),

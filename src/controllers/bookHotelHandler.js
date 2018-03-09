@@ -4,9 +4,63 @@ const jwt = require('jsonwebtoken');
 const Models = require('../../models');
 
 const bookHotelHandler = (authorization, payload) => {
+  console.log('asds');
   const decodedToken = jwt.decode(authorization, constants.JWT_SECRET);
   const requestUrl = 'https://dev.allmyles.com/v2.0/books';
   const apiKey = constants.API_KEY;
+  const personsArr = [
+    {
+      birthDate: '1974-04-03',
+      email: 'aaa@gmail.com',
+      firstName: 'Janos',
+      gender: 'MALE',
+      lastName: 'Kovacs',
+      namePrefix: 'Mr',
+      passengerTypeCode: 'ADT',
+      baggage: '0',
+      document: {
+        id: '123456',
+        type: 'Passport',
+        dateOfExpiry: '2018-11-14',
+        issueCountry: 'RS',
+      },
+      room_index: '0',
+    },
+    {
+      birthDate: '1974-05-03',
+      email: 'aaa@gmail.com',
+      firstName: 'Istvan',
+      gender: 'MALE',
+      lastName: 'Kovacs',
+      namePrefix: 'Mr',
+      passengerTypeCode: 'ADT',
+      baggage: '0',
+      document: {
+        id: '103456',
+        type: 'Passport',
+        dateOfExpiry: '2018-11-14',
+        issueCountry: 'RS',
+      },
+      room_index: '0',
+    },
+    {
+      birthDate: '2010-04-03',
+      email: 'aaa@gmail.com',
+      firstName: 'Tiga',
+      gender: 'MALE',
+      lastName: 'Kovacs',
+      namePrefix: 'Mr',
+      passengerTypeCode: 'CHD',
+      baggage: '0',
+      document: {
+        id: '122456',
+        type: 'Passport',
+        dateOfExpiry: '2018-11-14',
+        issueCountry: 'RS',
+      },
+      room_index: '1',
+    },
+  ];
   const reqBody = {
     bookBasket: payload.bookBasket,
     billingInfo: {
@@ -15,8 +69,8 @@ const bookHotelHandler = (authorization, payload) => {
       firstName: payload.firstName,
       lastName: payload.lastName,
       phone: {
-        countryCode: '+91',
-        areaCode: '',
+        countryCode: '91',
+        areaCode: '45',
         phoneNumber: payload.phoneNumber,
       },
     },
@@ -26,19 +80,20 @@ const bookHotelHandler = (authorization, payload) => {
       firstName: payload.firstName,
       lastName: payload.lastName,
       phone: {
-        countryCode: '+91',
-        areaCode: '',
+        countryCode: '91',
+        areaCode: '45',
         phoneNumber: payload.phoneNumber,
       },
-      persons: payload.persons,
-      userData: {
-        ip: '89.134.155.92',
-        browser_agent: 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:46.0) Gecko/20100101 Firefox/46.0',
-      },
-
     },
-  };
+    persons: personsArr,
+    userData: {
+      ip: '89.134.155.92',
+      browser_agent: 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:46.0) Gecko/20100101 Firefox/46.0',
+    },
 
+
+  };
+  console.log(reqBody);
 
   const requestConfig = {
     method: 'post',
@@ -63,8 +118,8 @@ const bookHotelHandler = (authorization, payload) => {
 
 
   return fetch(requestUrl, requestConfig)
-    .then(response => response.text())
-    .then((respText) => { console.log(respText); return JSON.parse(respText); })
+    .then((response) => { console.log('b:::::::', response); return response.text(); })
+    .then((respText) => { console.log('a::::::::', respText); return JSON.parse(respText); })
     .then(respJson => Models.bookings.create({
       bookingid: respJson.pnr,
       email: decodedToken.email,

@@ -18,7 +18,7 @@ const expectedObj = {
     charge_in_preferred_currencies: [],
   },
 };
-fetch.mockResponse(JSON.stringify(expectedObj));
+// fetch.mockResponse(JSON.stringify(expectedObj));
 
 
 describe('Testing getRoomDetails route ', () => {
@@ -50,7 +50,7 @@ describe('Testing getRoomDetails route ', () => {
   it('Testing for request with proper hotel id, checking if response is hotel details object', (done) => {
     const options = {
       method: 'GET',
-      url: '/getRoomDetails/5778955/c73894a7-cb0e-4bd9-83ec-320743624ee1',
+      url: '/getRoomDetails/13535/e90018d-7559-4164-83aa-edd6200e18b7',
       headers: {
         Authorization: jwt.sign({
           exp: Math.floor(Date.now() / 1000) + (60 * 60),
@@ -60,7 +60,7 @@ describe('Testing getRoomDetails route ', () => {
     };
     server.inject(options, (response) => {
       console.log(response.payload);
-      expect(JSON.parse(response.payload)).toEqual(expectedObj);
+      expect((response.payload)).toEqual(expectedObj);
       done();
     });
   });

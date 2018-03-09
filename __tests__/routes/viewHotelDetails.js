@@ -94,7 +94,7 @@ const expectedObj = {
     ],
   },
 };
-fetch.mockResponse(JSON.stringify(expectedObj));
+// fetch.mockResp onse(JSON.stringify(expectedObj));
 
 
 describe('Testing viewHotelDetails route ', () => {
@@ -126,7 +126,7 @@ describe('Testing viewHotelDetails route ', () => {
   it('Testing for request with proper hotel id, checking if response is hotel details object', (done) => {
     const options = {
       method: 'GET',
-      url: '/viewHotelDetails/3117526',
+      url: '/viewHotelDetails/13535',
       headers: {
         Authorization: jwt.sign({
           exp: Math.floor(Date.now() / 1000) + (60 * 60),

@@ -5,14 +5,14 @@ const fetch = require('node-fetch');
 
 
 const validPayload = {
-  cityName: 'Bhubaneshwar',
+  cityName: 'Mumbai',
   rooms: [
     {
       ADT: 2,
+      CHD: 1,
     },
     {
       ADT: 1,
-      CHD: 1,
     },
   ],
   checkIn: '2018-03-29',
@@ -61,7 +61,7 @@ const expectedObj = {
   ],
 };
 
-fetch.mockResponse(JSON.stringify(expectedObj));
+// fetch.mockResponse(JSON.stringify(expectedObj));
 describe('Testing the checkAvailability route', () => {
   beforeAll((done) => {
     setTimeout(() => { done(); }, 0);

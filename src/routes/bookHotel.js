@@ -18,10 +18,11 @@ module.exports = [
       });
     },
     config: {
+      // auth: false,
       tags: ['api'],
       auth: 'jwt',
       validate: {
-        params: bookHotelValidation,
+        payload: bookHotelValidation,
         headers: Joi.object({ authorization: Joi.string() }).unknown(true),
       },
     },

@@ -8,7 +8,7 @@ const viewHotelDetailsHandler = (authorization, hotelId) => {
     method: 'get',
     headers: {
       'X-Auth-Token': apiKey,
-      Cookie: authorization,
+      Cookie: constants.TEST_COOKIE,
       'Content-Type': 'application/json',
     },
   };
