@@ -7,7 +7,7 @@ const expectedObj =
 {
   reservationState: 'CONFIRMED',
 };
-fetch.mockResponse(JSON.stringify(expectedObj));
+// fetch.mockResponse(JSON.stringify(expectedObj));
 
 
 describe('Testing getBookingStatus route ', () => {
@@ -36,10 +36,10 @@ describe('Testing getBookingStatus route ', () => {
   });
 
 
-  it('Testing for request with proper hotel id, checking if response is booking status object', (done) => {
+  it('Testing for request with proper pnr, checking if response is booking status object', (done) => {
     const options = {
       method: 'GET',
-      url: '/getBookingStatus/5778955',
+      url: '/getBookingStatus/2f41b259-7f30-4b4c-84be-41142e278394',
       headers: {
         Authorization: jwt.sign({
           exp: Math.floor(Date.now() / 1000) + (60 * 60),

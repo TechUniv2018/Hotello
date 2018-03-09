@@ -7,10 +7,10 @@ const testPayload =
     {
       paymentId: '926915vdqwd712',
       basket: [
-        'e264f824-052d-4180-9af7-a82c5b725686',
+        '2f41b259-7f30-4b4c-84be-41142e278394',
       ],
       currency: 'USD',
-      amount: 68.4847,
+      amount: 364.3213,
     };
 
 // fetch.mockResponse(JSON.stringify(expectedObj));
@@ -64,8 +64,8 @@ describe('Testing makePayment route ', () => {
       payload: testPayload,
     };
     server.inject(options, (response) => {
-      console.log(response.payload);
-      expect(response.payload).toMatch('');
+      console.log(response.statusCode);
+      expect(response.payload).toMatch('Successful');
       done();
     });
   });

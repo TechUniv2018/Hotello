@@ -12,8 +12,8 @@ module.exports = [
         if (resultValue === 'Error') {
           reply('Error').code(500);
         } else if (resultValue === 'Successful') {
-        // console.log(resultValue.hotel.rooms);
-          reply('Successful').code(204);
+          console.log('here');
+          reply('Successful').code(200);
         } else {
           reply(resultValue);
         }

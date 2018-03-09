@@ -5,7 +5,7 @@ const fetch = require('node-fetch');
 const Models = require('../../models');
 
 
-describe('Testing getBookingStatus route ', () => {
+describe('Testing cancel booking route ', () => {
   beforeAll((done) => {
     Models.bookings.create({
       bookingid: 'validPnr',
@@ -33,8 +33,8 @@ describe('Testing getBookingStatus route ', () => {
       process_time: 2.0507080554962,
       mode: 'TEST',
     };
-    fetch.mockResponse(JSON.stringify(expectedObj));
-    const validPnr = 'validPnr';
+    // fetch.mockResponse(JSON.stringify(expectedObj));
+    const validPnr = '2f41b259-7f30-4b4c-84be-41142e278394';
     const options = {
       method: 'GET',
       url: `/adminCancelBooking/${validPnr}`,
@@ -53,11 +53,11 @@ describe('Testing getBookingStatus route ', () => {
   });
   it('Testing for invalid pnr', (done) => {
     const expectedObj = 'PNR not found';
-    fetch.mockResponse(JSON.stringify(expectedObj));
-    const validPnr = 'invalidPnr';
+    // fetch.mockResponse(JSON.stringify(expectedObj));
+    const invalidPnr = 'c49b90d7-4ce5-4bd3-9cca-0aaa77d4a017';
     const options = {
       method: 'GET',
-      url: `/adminCancelBooking/${validPnr}`,
+      url: `/adminCancelBooking/${invalidPnr}`,
       headers: {
         Authorization: jwt.sign({
           exp: Math.floor(Date.now() / 1000) + (60 * 60),
@@ -72,23 +72,3 @@ describe('Testing getBookingStatus route ', () => {
     });
   });
 });
-
-
-//   it('Testing for request with proper hotel id, checking if response is booking status object', (done) => {
-//     const options = {
-//       method: 'GET',
-//       url: '/getBookingStatus/5778955',
-//       headers: {
-//         Authorization: jwt.sign({
-//           exp: Math.floor(Date.now() / 1000) + (60 * 60),
-//           email: 'sampleuser@gmail.com',
-//         }, constants.JWT_SECRET),
-//       },
-//     };
-//     server.inject(options, (response) => {
-//       console.log(response.payload);
-//       expect(JSON.parse(response.payload)).toEqual(expectedObj);
-//       done();
-//     });
-//   });
-// });

@@ -13,6 +13,8 @@ const personObj1 = {
   lastName: 'Lastname1',
   birthDate: '1997-03-21',
   room_index: '0',
+  passengerTypeCode: 'ADT',
+  baggage: '0',
 };
 const personObj2 = {
   namePrefix: 'Mrs',
@@ -20,6 +22,8 @@ const personObj2 = {
   lastName: 'Lastname2',
   birthDate: '2005-03-22',
   room_index: '0',
+  passengerTypeCode: 'CHD',
+  baggage: '0',
 };
 const personObj3 = {
   namePrefix: 'Mrs',
@@ -27,9 +31,11 @@ const personObj3 = {
   lastName: 'Lastname3',
   birthDate: '1997-03-21',
   room_index: '1',
+  passengerTypeCode: 'ADT',
+  baggage: '0',
 };
 const payload = {
-  bookBasket: ['cf4bac31-ca95-4771-b0ff-00a5d8f01d3d'],
+  bookBasket: ['2f41b259-7f30-4b4c-84be-41142e278394'],
   address: addressObj,
   email: 'someuser@gmail.com',
   firstName: 'Firstname',

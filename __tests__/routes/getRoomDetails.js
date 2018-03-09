@@ -50,7 +50,7 @@ describe('Testing getRoomDetails route ', () => {
   it('Testing for request with proper hotel id, checking if response is hotel details object', (done) => {
     const options = {
       method: 'GET',
-      url: '/getRoomDetails/13535/e90018d-7559-4164-83aa-edd6200e18b7',
+      url: '/getRoomDetails/13425/2f41b259-7f30-4b4c-84be-41142e278394',
       headers: {
         Authorization: jwt.sign({
           exp: Math.floor(Date.now() / 1000) + (60 * 60),

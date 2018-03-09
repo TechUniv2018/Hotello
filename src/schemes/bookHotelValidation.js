@@ -19,6 +19,8 @@ const personObj = Joi.object({
   lastName: Joi.string().required().example('Lastname'),
   birthDate: Joi.string().required().example('1997-03-21'),
   room_index: Joi.string().required().example('0'),
+  passengerTypeCode: Joi.string().required().regex(/^(ADT|CHD)$/).example('ADT'),
+  baggage: Joi.string().required().regex(/^[0-9]+$/),
 });
 
 module.exports = Joi.object({

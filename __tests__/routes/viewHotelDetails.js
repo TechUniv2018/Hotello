@@ -126,7 +126,7 @@ describe('Testing viewHotelDetails route ', () => {
   it('Testing for request with proper hotel id, checking if response is hotel details object', (done) => {
     const options = {
       method: 'GET',
-      url: '/viewHotelDetails/13535',
+      url: '/viewHotelDetails/13425',
       headers: {
         Authorization: jwt.sign({
           exp: Math.floor(Date.now() / 1000) + (60 * 60),

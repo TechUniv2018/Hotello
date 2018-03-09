@@ -16,7 +16,7 @@ const makePaymentHandler = (authorization, payload) => {
     method: 'post',
     headers: {
       'X-Auth-Token': apiKey,
-      Cookie: authorization,
+      Cookie: constants.TEST_COOKIE,
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(reqBody),
@@ -30,7 +30,7 @@ const makePaymentHandler = (authorization, payload) => {
 
       return res.text();
     })
-    .then(resText => resText)
+    .then((resText) => { console.log(resText); return resText; })
     .catch(() => 'Error');
 };
 
