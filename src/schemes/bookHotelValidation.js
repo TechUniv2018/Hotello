@@ -24,7 +24,7 @@ const personObj = Joi.object({
 module.exports = Joi.object({
   bookBasket: Joi.array().min(1).items(Joi.string()).required()
     .example('cas631bf263'),
-  address: Joi.object(addressObj).required(),
+  address: addressObj,
   email: Joi.string().email().required().example('someuser@gmail.com'),
   firstName: Joi.string().regex(/^[-a-zA-Z]+$/).required().example('Firstname'),
   lastName: Joi.string().regex(/^[-a-zA-Z]+$/).required().example('Lastname'),
