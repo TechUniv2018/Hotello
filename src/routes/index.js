@@ -18,6 +18,7 @@ const bookHotel = require('./bookHotel');
 const getRoomDetails = require('./getRoomDetails');
 const makePayment = require('./makePayment');
 const getBookingStatus = require('./getBookingStatus');
+const adminCancelBooking = require('./adminCancelBooking');
 
 module.exports = [].concat(
   addUser,
@@ -40,4 +41,5 @@ module.exports = [].concat(
   getRoomDetails,
   makePayment,
   getBookingStatus,
+  adminCancelBooking,
 );

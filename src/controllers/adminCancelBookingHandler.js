@@ -18,13 +18,14 @@ const adminCancelBookingHandler = (authorization, pnr) => {
     .then(response => response.text())
     .then((respText) => { console.log(respText); return JSON.parse(respText); })
     .then((respJSON) => {
+      console.log('respJSON', respJSON);
       if (respJSON.result.reservationState === 'CANCELLED') {
         return Models.bookings.update({ status: 'CANCELLED' }, { where: { bookingid: pnr } })
           .then((resultArray) => {
+            console.log(resultArray);
             if (resultArray[0] === 1) {
               return 'Cancelled';
             }
-
             return 'Confirmed';
           });
       }

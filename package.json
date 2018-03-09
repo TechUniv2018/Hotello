@@ -4,7 +4,7 @@
   "description": "## Problem Statement",
   "main": "index.js",
   "scripts": {
-    "test": "NODE_ENV=test node_modules/.bin/sequelize db:migrate:undo:all && NODE_ENV=test node_modules/.bin/sequelize db:migrate && jest --runInBand --coverage --notify",
+    "test": "jest --runInBand --coverage --notify",
     "start": "node_modules/.bin/sequelize db:migrate && nodemon src/server.js"
   },
   "repository": {
