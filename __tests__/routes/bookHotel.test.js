@@ -1,16 +1,19 @@
 const server = require('../../src/server');
 const jwt = require('jsonwebtoken');
 const constants = require('../../src/constants.json');
-// const fetch = require('node-fetch');
-// const Models = require('../../models');
+const fetch = require('node-fetch');
+const mockResponses = require('../../src/mockResponses');
 const payloadForBooking = require('../../payloadForBooking');
 
+
+const expectedObj = mockResponses.bookHotelResponse;
+fetch.mockResponse(JSON.stringify(expectedObj));
 
 describe('Testing bookHotel route ', () => {
   beforeAll((done) => {
     setTimeout(() => done(), 3000);
   });
-  test('sdasjkb', (done) => {
+  test('Testing for booking with correct parameters', (done) => {
     console.log(jwt.sign({
       exp: Math.floor(Date.now() / 1000) + (60 * 60),
       email: 'sampleuser@gmail.com',
@@ -28,7 +31,7 @@ describe('Testing bookHotel route ', () => {
     };
     server.inject(options, (response) => {
       console.log(response.result);
-      expect(response.result).not.toBe(null);
+      expect(response.result.pnr).not.toBe(null);
       done();
     });
   });

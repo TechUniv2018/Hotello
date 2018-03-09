@@ -371,3 +371,11 @@ const makePaymentResponse = '';
 
 const bookHotelResponse = { ref: '(HB)-270-198304', pnr: '8ae6a294-6782-4792-8747-9b5bbcca9c76', confirmation: '207-6494a88f9660e1e1ebaad00dd08c2da9' };
 
+module.exports = {
+  checkAvailabilityResponse,
+  viewHotelDetailsResponse,
+  getRoomDetailsResponse,
+  makePaymentResponse,
+  bookHotelResponse,
+};
+

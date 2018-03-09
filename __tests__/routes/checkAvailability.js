@@ -2,7 +2,7 @@ const server = require('../../src/server');
 const jwt = require('jsonwebtoken');
 const constants = require('../../src/constants.json');
 const fetch = require('node-fetch');
-
+const mockResponses = require('../../src/mockResponses');
 
 const validPayload = {
   cityName: 'Mumbai',
@@ -36,32 +36,9 @@ const invalidPayload = {
 
 };
 
-const expectedObj = {
-  hotelResultSet: [
-    {
-      thumbnail: '',
-      chain_name: '',
-      max_rate_in_preferred_currencies: [],
-      hotel_id: '3117526',
-      distance: 2.3,
-      max_rate: {
-        amount: 130.7173,
-        currency: 'USD',
-      },
-      longitude: '85.850000',
-      hotel_name: 'Mango Hotels Prangan',
-      min_rate_in_preferred_currencies: [],
-      min_rate: {
-        amount: 130.7173,
-        currency: 'USD',
-      },
-      latitude: '20.271320',
-      stars: '3',
-    },
-  ],
-};
+const expectedObj = mockResponses.checkAvailabilityResponse;
 
-// fetch.mockResponse(JSON.stringify(expectedObj));
+fetch.mockResponse(JSON.stringify(expectedObj));
 describe('Testing the checkAvailability route', () => {
   beforeAll((done) => {
     setTimeout(() => { done(); }, 0);

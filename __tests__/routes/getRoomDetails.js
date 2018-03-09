@@ -1,24 +1,11 @@
 const server = require('../../src/server');
 const jwt = require('jsonwebtoken');
 const constants = require('../../src/constants.json');
+const mockResponses = require('../../src/mockResponses');
 const fetch = require('node-fetch');
 
-const expectedObj = {
-  hotel_room_details: {
-    price_in_preferred_currencies: [],
-    rules: {
-      cancellation: 'cancel latest by 2018-03-22',
-      remarks: [],
-    },
-    includes: [],
-    price: {
-      total: 264.1023,
-      charge: 264.1023,
-    },
-    charge_in_preferred_currencies: [],
-  },
-};
-// fetch.mockResponse(JSON.stringify(expectedObj));
+const expectedObj = mockResponses.getRoomDetailsResponse;
+fetch.mockResponse(JSON.stringify(expectedObj));
 
 
 describe('Testing getRoomDetails route ', () => {
@@ -47,7 +34,7 @@ describe('Testing getRoomDetails route ', () => {
   });
 
 
-  it('Testing for request with proper hotel id, checking if response is hotel details object', (done) => {
+  it('Testing for request with proper hotel id and room id, checking if response is room details object', (done) => {
     const options = {
       method: 'GET',
       url: '/getRoomDetails/13425/2f41b259-7f30-4b4c-84be-41142e278394',
@@ -60,7 +47,7 @@ describe('Testing getRoomDetails route ', () => {
     };
     server.inject(options, (response) => {
       console.log(response.payload);
-      expect((response.payload)).toEqual(expectedObj);
+      expect(JSON.parse(response.payload)).toEqual(expectedObj);
       done();
     });
   });

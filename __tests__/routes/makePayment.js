@@ -2,6 +2,7 @@ const server = require('../../src/server');
 const jwt = require('jsonwebtoken');
 const constants = require('../../src/constants.json');
 const fetch = require('node-fetch');
+const mockResponses = require('../../src/mockResponses');
 
 const testPayload =
     {
@@ -12,8 +13,8 @@ const testPayload =
       currency: 'USD',
       amount: 364.3213,
     };
-
-// fetch.mockResponse(JSON.stringify(expectedObj));
+const expectedResponse = mockResponses.makePaymentResponse;
+fetch.mockResponse(expectedResponse);
 
 
 describe('Testing makePayment route ', () => {

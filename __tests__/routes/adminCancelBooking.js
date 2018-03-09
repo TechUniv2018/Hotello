@@ -33,8 +33,8 @@ describe('Testing cancel booking route ', () => {
       process_time: 2.0507080554962,
       mode: 'TEST',
     };
-    // fetch.mockResponse(JSON.stringify(expectedObj));
-    const validPnr = '2f41b259-7f30-4b4c-84be-41142e278394';
+    fetch.mockResponse(JSON.stringify(expectedObj));
+    const validPnr = 'validPnr';
     const options = {
       method: 'GET',
       url: `/adminCancelBooking/${validPnr}`,
@@ -52,9 +52,9 @@ describe('Testing cancel booking route ', () => {
     });
   });
   it('Testing for invalid pnr', (done) => {
-    const expectedObj = 'PNR not found';
-    // fetch.mockResponse(JSON.stringify(expectedObj));
-    const invalidPnr = 'c49b90d7-4ce5-4bd3-9cca-0aaa77d4a017';
+    const expectedString = 'PNR not found';
+    fetch.mockResponse(expectedString);
+    const invalidPnr = 'invalidPnr';
     const options = {
       method: 'GET',
       url: `/adminCancelBooking/${invalidPnr}`,

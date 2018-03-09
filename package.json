@@ -44,6 +44,9 @@
     "vision": "^4.1.1"
   },
   "jest": {
-    "automock": false
+    "automock": false,
+    "setupFiles": [
+      "./setup.js"
+    ]
   }
 }

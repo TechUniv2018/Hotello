@@ -3,11 +3,12 @@ const jwt = require('jsonwebtoken');
 const constants = require('../../src/constants.json');
 const fetch = require('node-fetch');
 
+
 const expectedObj =
 {
   reservationState: 'CONFIRMED',
 };
-// fetch.mockResponse(JSON.stringify(expectedObj));
+fetch.mockResponse(JSON.stringify(expectedObj));
 
 
 describe('Testing getBookingStatus route ', () => {

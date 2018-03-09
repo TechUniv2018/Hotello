@@ -26,7 +26,7 @@ const adminCancelBookingHandler = (authorization, pnr) => {
             if (resultArray[0] === 1) {
               return 'Cancelled';
             }
-            return 'Confirmed';
+            return 'Not found';
           });
       }
 

@@ -23,12 +23,13 @@ const makePaymentHandler = (authorization, payload) => {
   };
 
   return fetch(requestUrl, requestConfig)
-    .then((res) => {
-      if (res.status === 204) {
+    .then(res => res.text())
+    .then((resText) => {
+      if (resText === '') {
         return 'Successful';
       }
 
-      return res.text();
+      return resText;
     })
     .then((resText) => { console.log(resText); return resText; })
     .catch(() => 'Error');
