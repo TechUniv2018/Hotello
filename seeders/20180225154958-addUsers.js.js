@@ -1,21 +1,22 @@
-
+const crypto = require('crypto');
 
 module.exports = {
   up: (queryInterface, Sequelize) => queryInterface.bulkInsert('users', [{
     email: 'admin@hotello.com',
-    password: 'Hotello@12',
+    password: crypto.createHash('md5').update('Hotello@12').digest('hex'),
     role: 'admin',
   },
   {
     email: 'publicUser@hotello.com',
-    password: 'PublicUser@1234',
+    password: crypto.createHash('md5').update('PublicUser@1234').digest('hex'),
+    // password: 'PublicUser@1234',
     role: 'publicUser',
   },
   {
     email: 'kukkal@gmail.com',
     firstName: 'Ajay',
     lastName: 'Singh',
-    password: 'P@$$w0rd',
+    password: crypto.createHash('md5').update('P@$$w0rd').digest('hex'),
     role: 'publicUser',
     phoneNumber: '7823298390',
   },
@@ -23,7 +24,7 @@ module.exports = {
     email: 'blob@gmail.com',
     firstName: 'blob',
     lastName: 'blobby',
-    password: 'P@$$w0rd',
+    password: crypto.createHash('md5').update('P@$$w0rd').digest('hex'),
     role: 'publicUser',
     phoneNumber: '7823298390',
   },
@@ -31,7 +32,7 @@ module.exports = {
     email: 'kukoop@gmail.com',
     firstName: 'Vijay',
     lastName: 'Singh',
-    password: 'P@$$w0rd',
+    password: crypto.createHash('md5').update('P@$$w0rd').digest('hex'),
     role: 'publicUser',
     phoneNumber: '7823298390',
   },
@@ -39,7 +40,7 @@ module.exports = {
     email: 'blah@gmail.com',
     firstName: 'blah',
     lastName: 'blobby',
-    password: 'P@$$w0rd',
+    password: crypto.createHash('md5').update('P@$$w0rd').digest('hex'),
     role: 'publicUser',
     phoneNumber: '7823298390',
   },
@@ -47,18 +48,12 @@ module.exports = {
     email: 'glob@gmail.com',
     firstName: 'glob',
     lastName: 'globby',
-    password: 'P@$$w0rd',
+    password: crypto.createHash('md5').update('P@$$w0rd').digest('hex'),
     role: 'publicUser',
     phoneNumber: '7823298390',
   }], {}),
 
   down: (queryInterface, Sequelize) =>
-  /*
-      Add reverting commands here.
-      Return a promise to correctly handle asynchronicity.
-
-      Example:
-      */
     queryInterface.bulkDelete('users', null, {}),
 
 };
