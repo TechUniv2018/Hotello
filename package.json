@@ -37,6 +37,7 @@
     "joi": "^13.1.2",
     "jsonwebtoken": "^8.1.1",
     "node-fetch": "^2.0.0",
+    "nodemon": "^1.17.1",
     "pg": "^7.4.1",
     "request-promise": "^4.2.2",
     "sequelize": "^4.33.4",
