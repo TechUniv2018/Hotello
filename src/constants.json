@@ -1,0 +1,111 @@
+{
+  "JWT_SECRET" : "XabRBQ12sad",
+  "API_KEY" : "t6j676c82cc6n58hg6ysur3c",
+  "API_SECRET": "v9BeVdsTga",
+  "RATE_KEY":   "20180315|20180316|W|1|228671|DUS.ST|CG-TODOS|BB||1~1~0||N@8BE7C1A3BB504F3DA0C5E8787889ED821318",
+  "BOOKING": {
+        "reference": "1-3777867",
+        "clientReference": "INTEGRATIONAGENCY",
+        "creationDate": "2018-02-23",
+        "status": "CONFIRMED",
+        "modificationPolicies": {
+            "cancellation": true,
+            "modification": true
+        },
+        "creationUser": "rhsqpwqh8cubj2skv43bhp7z",
+        "holder": {
+            "name": "HOLDERFIRSTNAME",
+            "surname": "HOLDERLASTNAME"
+        },
+        "hotel": {
+            "checkOut": "2018-03-16",
+            "checkIn": "2018-03-15",
+            "code": 215417,
+            "name": "Brondo Architect",
+            "categoryCode": "4EST",
+            "categoryName": "4 STARS",
+            "destinationCode": "PMI",
+            "destinationName": "Majorca",
+            "zoneCode": 10,
+            "zoneName": "Palma",
+            "latitude": "39.571015",
+            "longitude": "2.647788",
+            "rooms": [
+                {
+                    "status": "CONFIRMED",
+                    "id": 1,
+                    "code": "JSU.PI",
+                    "name": "JUNIOR SUITE PREMIUM",
+                    "paxes": [
+                        {
+                            "roomId": 1,
+                            "type": "AD",
+                            "name": "Second Adult Name",
+                            "surname": "Surname"
+                        },
+                        {
+                            "roomId": 1,
+                            "type": "AD",
+                            "name": "First Adult Name",
+                            "surname": "Surname"
+                        }
+                    ],
+                    "rates": [
+                        {
+                            "rateClass": "NOR",
+                            "net": "180.65",
+                            "rateComments": "1x JUNIOR SUITE Estimated total amount of taxes & fees for this booking: 6.60 Euro   payable on arrival  \r. Car park NO   . . LATE CHECK OUT FROM 15.00H, WILL HAVE ADITIONAL CHARGE OF 50.00€ PAYABLE AT THE HOTEL. \nLATE CHECK OUT UNTIL 15.00H, WILL HAVE ADITIONAL CHARGE OF  30.00€ PAYABLE AT THE HOTEL.",
+                            "paymentType": "AT_WEB",
+                            "packaging": false,
+                            "boardCode": "BB",
+                            "boardName": "BED AND BREAKFAST",
+                            "cancellationPolicies": [
+                                {
+                                    "amount": "180.65",
+                                    "from": "2018-03-10T23:59:00+01:00"
+                                }
+                            ],
+                            "taxes": {
+                                "taxes": [
+                                    {
+                                        "included": false,
+                                        "amount": "6.60",
+                                        "currency": "EUR"
+                                    }
+                                ],
+                                "allIncluded": false
+                            },
+                            "rateBreakDown": {
+                                "rateSupplements": [
+                                    {
+                                        "code": "SR",
+                                        "name": "UNKNOWN",
+                                        "from": "2018-03-15",
+                                        "to": "2018-03-16",
+                                        "amount": "28.76",
+                                        "nights": 1,
+                                        "paxNumber": 2
+                                    }
+                                ]
+                            },
+                            "rooms": 1,
+                            "adults": 2,
+                            "children": 0
+                        }
+                    ]
+                }
+            ],
+            "totalNet": "180.65",
+            "currency": "EUR",
+            "supplier": {
+                "name": "HOTELBEDS PRODUCT,S.L.U.",
+                "vatNumber": "ESB38877676"
+            }
+        },
+        "remark": "Booking remarks are to be written here.",
+        "totalNet": 180.65,
+        "pendingAmount": 180.65,
+        "currency": "EUR"
+    }
+}    
+
