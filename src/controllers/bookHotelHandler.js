@@ -3,7 +3,7 @@ const constants = require('../constants.json');
 const jwt = require('jsonwebtoken');
 const Models = require('../../models');
 
-const bookHotelHandler = (authorization, payload) => {
+const bookHotelHandler = (authorization, sessionId, payload) => {
   console.log('asds');
   const decodedToken = jwt.decode(authorization, constants.JWT_SECRET);
   const requestUrl = 'https://dev.allmyles.com/v2.0/books';
@@ -47,7 +47,7 @@ const bookHotelHandler = (authorization, payload) => {
     method: 'post',
     headers: {
       'X-Auth-Token': apiKey,
-      Cookie: authorization,
+      Cookie: sessionId,
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(reqBody),

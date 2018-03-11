@@ -7,7 +7,7 @@ module.exports = [
     method: 'POST',
     path: '/bookHotel',
     handler: (request, reply) => {
-      const result = bookHotelHandler(request.headers.authorization, request.payload);
+      const result = bookHotelHandler(request.headers.authorization, request.headers.sessionId, request.payload);
       result.then((resultValue) => {
         if (resultValue === 'Error') {
           reply('Error').code(500);
@@ -23,7 +23,7 @@ module.exports = [
       auth: 'jwt',
       validate: {
         payload: bookHotelValidation,
-        headers: Joi.object({ authorization: Joi.string() }).unknown(true),
+        headers: Joi.object({ authorization: Joi.string(), sessionId: Joi.string() }).unknown(true),
       },
     },
 

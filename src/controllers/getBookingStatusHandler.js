@@ -1,14 +1,14 @@
 const fetch = require('node-fetch');
 const constants = require('../constants.json');
 
-const getBookingStatusHandler = (authorization, pnr) => {
+const getBookingStatusHandler = (authorization, sessionId, pnr) => {
   const requestUrl = `https://dev.allmyles.com/v2.0/hotels/${pnr}/status`;
   const apiKey = constants.API_KEY;
   const requestConfig = {
     method: 'get',
     headers: {
       'X-Auth-Token': apiKey,
-      Cookie: authorization,
+      Cookie: sessionId,
       'Content-Type': 'application/json',
     },
   };

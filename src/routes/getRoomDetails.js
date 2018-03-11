@@ -7,7 +7,7 @@ module.exports = [
     method: 'GET',
     path: '/getRoomDetails/{hotelId}/{roomId}',
     handler: (request, reply) => {
-      const result = getRoomDetailsHandler(request.headers.authorization, request.params.hotelId, request.params.roomId);
+      const result = getRoomDetailsHandler(request.headers.authorization, request.headers.sessionId, request.params.hotelId, request.params.roomId);
       result.then((resultValue) => {
         if (resultValue === 'Error') {
           reply('Error').code(500);
@@ -22,7 +22,7 @@ module.exports = [
       auth: 'jwt',
       validate: {
         params: getRoomDetailsValidation,
-        headers: Joi.object({ authorization: Joi.string() }).unknown(true),
+        headers: Joi.object({ authorization: Joi.string(), sessionId: Joi.string() }).unknown(true),
       },
     },
 

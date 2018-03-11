@@ -28,6 +28,7 @@ describe('Testing getBookingStatus route ', () => {
           exp: Math.floor(Date.now() / 1000) + (60 * 60),
           email: 'sampleuser@gmail.com',
         }, constants.JWT_SECRET),
+        sessionId: 'testcookie',
       },
     };
     server.inject(options, (response) => {
@@ -46,6 +47,7 @@ describe('Testing getBookingStatus route ', () => {
           exp: Math.floor(Date.now() / 1000) + (60 * 60),
           email: 'sampleuser@gmail.com',
         }, constants.JWT_SECRET),
+        sessionId: 'testcookie',
       },
     };
     server.inject(options, (response) => {

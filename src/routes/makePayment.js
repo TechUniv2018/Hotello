@@ -7,7 +7,7 @@ module.exports = [
     method: 'POST',
     path: '/makePayment',
     handler: (request, reply) => {
-      const result = makePaymentHandler(request.headers.authorization, request.payload);
+      const result = makePaymentHandler(request.headers.authorization, request.headers.sessionId, request.payload);
       result.then((resultValue) => {
         if (resultValue === 'Error') {
           reply('Error').code(500);
@@ -24,7 +24,7 @@ module.exports = [
       auth: 'jwt',
       validate: {
         payload: makePaymentValidation,
-        headers: Joi.object({ authorization: Joi.string() }).unknown(true),
+        headers: Joi.object({ authorization: Joi.string(), sessionId: Joi.string() }).unknown(true),
       },
     },
 

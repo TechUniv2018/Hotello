@@ -1,7 +1,7 @@
 const fetch = require('node-fetch');
 const constants = require('../constants.json');
 
-const makePaymentHandler = (authorization, payload) => {
+const makePaymentHandler = (authorization, sessionId, payload) => {
   const requestUrl = 'https://dev.allmyles.com/v2.0/payment';
   const apiKey = constants.API_KEY;
   const reqBody = {
@@ -16,7 +16,7 @@ const makePaymentHandler = (authorization, payload) => {
     method: 'post',
     headers: {
       'X-Auth-Token': apiKey,
-      Cookie: authorization,
+      Cookie: sessionId,
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(reqBody),

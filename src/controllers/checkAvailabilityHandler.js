@@ -2,7 +2,7 @@ const fetch = require('node-fetch');
 const constants = require('../constants.json');
 const cityCodes = require('../helpers/cityCodes');
 
-const checkAvailabilityHandler = (cookie, payload) => {
+const checkAvailabilityHandler = (sessionId, payload) => {
   const apiUrl = 'https://dev.allmyles.com/v2.0/hotels/';
 
   const apiKey = constants.API_KEY;
@@ -24,7 +24,7 @@ const checkAvailabilityHandler = (cookie, payload) => {
     method: 'post',
     headers: {
       'X-Auth-Token': apiKey,
-      Cookie: cookie,
+      Cookie: sessionId,
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(requestBody),

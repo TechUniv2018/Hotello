@@ -7,7 +7,7 @@ module.exports = [
     method: 'POST',
     path: '/checkAvailability',
     handler: (request, reply) => {
-      const result = checkAvailabilityHandler(request.headers.cookie, request.payload);
+      const result = checkAvailabilityHandler(request.headers.sessionId, request.payload);
       console.log(result);
       result.then((resultValue) => {
         if (resultValue === 'Error') {
@@ -21,7 +21,7 @@ module.exports = [
       tags: ['api'],
       validate: {
         payload: checkAvailabilityValidation,
-        headers: Joi.object({ authorization: Joi.string(), cookie: Joi.string() }).unknown(true),
+        headers: Joi.object({ sessionId: Joi.string() }).unknown(true),
       },
       auth: false,
     },

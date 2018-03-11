@@ -2,14 +2,14 @@ const fetch = require('node-fetch');
 const constants = require('../constants.json');
 const Models = require('../../models');
 
-const adminCancelBookingHandler = (authorization, pnr) => {
+const adminCancelBookingHandler = (authorization, sessionId, pnr) => {
   const requestUrl = `https://dev.allmyles.com/v2.0/books/${pnr}`;
   const apiKey = constants.API_KEY;
   const requestConfig = {
     method: 'delete',
     headers: {
       'X-Auth-Token': apiKey,
-      Cookie: authorization,
+      Cookie: sessionId,
       'Content-Type': 'application/json',
     },
   };

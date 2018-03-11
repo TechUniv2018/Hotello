@@ -34,6 +34,7 @@ describe('Testing makePayment route ', () => {
           exp: Math.floor(Date.now() / 1000) + (60 * 60),
           email: 'sampleuser@gmail.com',
         }, constants.JWT_SECRET),
+        sessionId: 'testcookie',
       },
       payload: {
         paymentId: '926915vdqwd712',
@@ -61,6 +62,7 @@ describe('Testing makePayment route ', () => {
           exp: Math.floor(Date.now() / 1000) + (60 * 60),
           email: 'sampleuser@gmail.com',
         }, constants.JWT_SECRET),
+        sessionId: 'testcookie',
       },
       payload: testPayload,
     };

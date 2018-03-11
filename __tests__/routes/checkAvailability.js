@@ -55,7 +55,7 @@ describe('Testing the checkAvailability route', () => {
       method: 'POST',
       url: '/checkAvailability',
       headers: {
-        Authorization: jwt.sign({
+        cookie: jwt.sign({
           exp: Math.floor(Date.now() / 1000) + (60 * 60),
           email: 'sampleuser@gmail.com',
         }, constants.JWT_SECRET),
@@ -75,7 +75,7 @@ describe('Testing the checkAvailability route', () => {
       method: 'POST',
       url: '/checkAvailability',
       headers: {
-        Authorization: jwt.sign({
+        sessionId: jwt.sign({
           exp: Math.floor(Date.now() / 1000) + (60 * 60),
           email: 'sampleuser@gmail.com',
         }, constants.JWT_SECRET),
