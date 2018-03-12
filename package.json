@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest --runInBand --coverage --notify",
-    "start": "node_modules/.bin/sequelize db:migrate && nodemon src/server.js"
+    "start": "sequelize db:migrate:undo:all && sequelize db:migrate &&sequelize db:seed:undo:all && sequelize db:seed:all && nodemon src/server.js"
   },
   "repository": {
     "type": "git",

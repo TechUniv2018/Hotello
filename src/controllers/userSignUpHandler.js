@@ -16,7 +16,12 @@ const handler = (request, reply) => {
   });
   userInsertedPromise
     .then(() => {
-      reply({ userDetails: { firstName, lastName, email }, msg: 'User Signed Up!' }).code(201);
+      reply({
+        userDetails: {
+          firstName, lastName, email, phoneNumber,
+        },
+        msg: 'User Signed Up!',
+      }).code(201);
     })
     .catch(() => {
       reply('This email belongs to an existing user.').code(409);
