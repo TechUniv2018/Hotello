@@ -5,10 +5,10 @@ const makePaymentHandler = (authorization, sessionId, payload) => {
   const requestUrl = 'https://dev.allmyles.com/v2.0/payment';
   const apiKey = constants.API_KEY;
   const reqBody = {
-    paymentId: payload.paymentId,
+    paymentId: 'abc123',
     basket: payload.basket,
     finalPrice: {
-      currency: payload.currency,
+      currency: 'USD',
       amount: payload.amount,
     },
   };
