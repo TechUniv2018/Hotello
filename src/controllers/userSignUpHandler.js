@@ -18,7 +18,7 @@ const handler = (request, reply) => {
     .then(() => {
       reply({
         userDetails: {
-          firstName, lastName, email, phoneNumber,
+          firstName, lastName, email, phoneNumber, password: request.payload.password,
         },
         msg: 'User Signed Up!',
       }).code(201);
