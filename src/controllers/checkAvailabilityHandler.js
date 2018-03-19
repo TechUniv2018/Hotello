@@ -3,6 +3,7 @@ const constants = require('../constants.json');
 const cityCodes = require('../helpers/cityCodes');
 
 const checkAvailabilityHandler = (sessionId, payload) => {
+  console.log('Hit the check aPI');
   const apiUrl = 'https://dev.allmyles.com/v2.0/hotels/';
 
   const apiKey = constants.API_KEY;
@@ -35,7 +36,7 @@ const checkAvailabilityHandler = (sessionId, payload) => {
     .then(response =>
       response.text())
     .then((responseJSON) => { console.log(responseJSON, 'after'); return responseJSON; })
-    .catch(() => 'Error');
+    .catch((err) => 'Error');
 };
 
 module.exports = checkAvailabilityHandler;

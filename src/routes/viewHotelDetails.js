@@ -19,7 +19,7 @@ module.exports = [
     },
     config: {
       tags: ['api'],
-      auth: 'jwt',
+      auth: false,
       validate: {
         params: viewHotelDetailsValidation,
         headers: Joi.object({ authorization: Joi.string(), sessionId: Joi.string() }).unknown(true),
