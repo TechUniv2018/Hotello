@@ -9,7 +9,8 @@ module.exports = {
     Models.users.find({ where: { email: request.payload.email } }).then((user) => {
       if (user) {
         const password = crypto.createHash('md5').update(request.payload.password).digest('hex');
-        if (user.dataValues.password === password) {
+        console.log('####', user.dataValues.role);
+        if (user.dataValues.password === password && user.dataValues.role === 'admin') {
           reply(JWT.sign({
             exp: Math.floor(Date.now() / 1000) + (60 * 60),
             email: request.payload.email,
