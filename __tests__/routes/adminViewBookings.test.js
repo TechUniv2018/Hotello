@@ -89,6 +89,7 @@ describe('Test server for GET /adminViewBookings: ', () => {
         numofguests: 2,
         numofrooms: 1,
         city: 'Bangalore',
+        status: 'false',
       },
       {
         amount: 1720,
@@ -101,6 +102,7 @@ describe('Test server for GET /adminViewBookings: ', () => {
         numofguests: 2,
         numofrooms: 1,
         city: 'Bangalore',
+        status: 'false',
       }];
     // const testObj = { allBookings };
     Server.inject(options, (response) => {

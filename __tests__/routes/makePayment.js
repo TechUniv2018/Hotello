@@ -6,11 +6,9 @@ const mockResponses = require('../../src/mockResponses');
 
 const testPayload =
     {
-      paymentId: '926915vdqwd712',
       basket: [
         '2f41b259-7f30-4b4c-84be-41142e278394',
       ],
-      currency: 'USD',
       amount: 364.3213,
     };
 const expectedResponse = mockResponses.makePaymentResponse;
@@ -37,11 +35,9 @@ describe('Testing makePayment route ', () => {
         sessionId: 'testcookie',
       },
       payload: {
-        paymentId: '926915vdqwd712',
         basket:
           'e264f824-052d-4180-9af7-a82c5b725686',
         finalPrice: {
-          currency: 'USD',
           amount: 68.4847,
         },
       },

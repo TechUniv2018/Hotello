@@ -8,7 +8,6 @@ module.exports = (sequelize, DataTypes) => {
     role: DataTypes.STRING,
     phoneNumber: DataTypes.BIGINT,
     suspended: DataTypes.BOOLEAN,
-    address: DataTypes.JSONB,
   }, {
     classMethods: {
       associate(models) {

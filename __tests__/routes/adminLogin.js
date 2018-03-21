@@ -129,6 +129,7 @@ describe('Testing if login route is returning a jwt token', () => {
     Models.users.create({
       email: 'admin1@hotello.com',
       password: crypto.createHash('md5').update('Hotello@12').digest('hex'),
+      role: 'admin',
     }).then(() => {
       done();
     });
