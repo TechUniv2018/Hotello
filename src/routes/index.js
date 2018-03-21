@@ -19,6 +19,7 @@ const getRoomDetails = require('./getRoomDetails');
 const makePayment = require('./makePayment');
 const getBookingStatus = require('./getBookingStatus');
 const adminCancelBooking = require('./adminCancelBooking');
+const unsuspendUser = require('./unsuspendUser');
 
 module.exports = [].concat(
   addUser,
@@ -42,4 +43,5 @@ module.exports = [].concat(
   makePayment,
   getBookingStatus,
   adminCancelBooking,
+  unsuspendUser,
 );
