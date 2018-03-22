@@ -2,7 +2,7 @@
 module.exports = {
   up: (queryInterface, Sequelize) => queryInterface.bulkInsert('bookings', [{
     bookingid: 'ref3456',
-    email: 'ajaysingh@gmail.com',
+    email: 'AjaySingh@gmail.com',
     bookingdate: '2018-02-15',
     amount: 1720.00,
     hotelname: 'Royal Orchid',
@@ -17,7 +17,7 @@ module.exports = {
   },
   {
     bookingid: 'ref3457',
-    email: 'alexander@gmail.com',
+    email: 'ViratKohli@gmail.com',
     bookingdate: '2018-05-15',
     amount: 2120.00,
     hotelname: 'Grand Orchid',
