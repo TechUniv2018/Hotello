@@ -26,6 +26,7 @@ describe('Test server for GET /adminViewBookings: ', () => {
           numofguests: 2,
           numofrooms: 1,
           city: 'Bangalore',
+          status: 'confirmed',
         },
         {
           bookingid: 'ref3456',
@@ -38,6 +39,7 @@ describe('Test server for GET /adminViewBookings: ', () => {
           numofguests: 2,
           numofrooms: 1,
           city: 'Bangalore',
+          status: 'cancelled',
         }]).then(() => done());
       });
     });
@@ -89,7 +91,7 @@ describe('Test server for GET /adminViewBookings: ', () => {
         numofguests: 2,
         numofrooms: 1,
         city: 'Bangalore',
-        status: 'false',
+        status: 'confirmed',
       },
       {
         amount: 1720,
@@ -102,7 +104,7 @@ describe('Test server for GET /adminViewBookings: ', () => {
         numofguests: 2,
         numofrooms: 1,
         city: 'Bangalore',
-        status: 'false',
+        status: 'cancelled',
       }];
     // const testObj = { allBookings };
     Server.inject(options, (response) => {
