@@ -24,6 +24,7 @@ const updateHandlerForGet = (authorization) => {
 };
 
 const updateHandlerForPut = (authorization, payload) => {
+  console.log('PAYLOAD IS: ',payload);
   const decodedToken = JWT.decode(authorization, constants.JWT_SECRET);
   const promise = new Promise((resolve) => {
     Models.users.update(
