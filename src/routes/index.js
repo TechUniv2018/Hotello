@@ -20,6 +20,7 @@ const makePayment = require('./makePayment');
 const getBookingStatus = require('./getBookingStatus');
 const adminCancelBooking = require('./adminCancelBooking');
 const unsuspendUser = require('./unsuspendUser');
+const adminDetails = require('./getAdminDetails');
 
 module.exports = [].concat(
   addUser,
@@ -44,4 +45,5 @@ module.exports = [].concat(
   getBookingStatus,
   adminCancelBooking,
   unsuspendUser,
+  adminDetails,
 );
