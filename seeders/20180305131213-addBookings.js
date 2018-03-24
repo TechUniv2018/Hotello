@@ -17,7 +17,7 @@ module.exports = {
   },
   {
     bookingid: 'ref3457',
-    email: 'alexander@gmail.com',
+    email: 'ViratKohli@gmail.com',
     bookingdate: '2018-05-15',
     amount: 2120.00,
     hotelname: 'Grand Orchid',
