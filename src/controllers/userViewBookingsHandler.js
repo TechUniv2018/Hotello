@@ -11,7 +11,7 @@ const userViewBookingsHandler = (authorization) => {
     if (value !== null) {
       if (value.dataValues.role === 'publicUser') {
         return Models.bookings.findAll({
-          attributes: ['amount', 'bookingdate', 'bookingid', 'checkin', 'checkout', 'email', 'city', 'hotelname', 'numofguests', 'numofrooms'],
+          attributes: ['amount', 'bookingdate', 'bookingid', 'checkin', 'checkout', 'email', 'city', 'hotelname', 'numofguests', 'numofrooms', 'status'],
           where: {
             email: requesterEmail,
           },

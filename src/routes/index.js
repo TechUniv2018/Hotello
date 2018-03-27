@@ -21,6 +21,7 @@ const getBookingStatus = require('./getBookingStatus');
 const adminCancelBooking = require('./adminCancelBooking');
 const unsuspendUser = require('./unsuspendUser');
 const adminDetails = require('./getAdminDetails');
+const cancelBooking = require('./cancelBooking');
 
 module.exports = [].concat(
   addUser,
@@ -46,4 +47,5 @@ module.exports = [].concat(
   adminCancelBooking,
   unsuspendUser,
   adminDetails,
+  cancelBooking,
 );
